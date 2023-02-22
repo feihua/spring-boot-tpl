@@ -1,6 +1,7 @@
 package com.example.springboottpl.advice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.UnexpectedTypeException;
 
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -69,7 +70,7 @@ public class GlobalExceptionHandler {
 		BindingResult bindingResult = e.getBindingResult();
 		StringBuilder errorMessage = new StringBuilder();
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
-			errorMessage.append(fieldError.getDefaultMessage()).append("!");
+			errorMessage.append(fieldError.getDefaultMessage()).append("!, ");
 		}
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), errorMessage.toString());
 	}
@@ -87,8 +88,21 @@ public class GlobalExceptionHandler {
 		BindingResult bindingResult = e.getBindingResult();
 		StringBuilder errorMessage = new StringBuilder();
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
-			errorMessage.append(fieldError.getDefaultMessage()).append("!");
+			errorMessage.append(fieldError.getDefaultMessage()).append("!, ");
 		}
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), errorMessage.toString());
+	}
+
+	/**
+	 * 处理UnexpectedTypeException
+	 * @param e 异常信息
+	 * @return Result<String>
+	 * @author 刘飞华
+	 * @date: 2023/2/22 14:48
+	 */
+	@ResponseBody
+	@ExceptionHandler(value = UnexpectedTypeException.class)
+	public Result<String> handleUnexpectedTypeException(UnexpectedTypeException e) {
+		return Result.error(INTERNAL_SERVER_ERROR.getCode(), e.getMessage());
 	}
 }
