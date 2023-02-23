@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.MenuDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.Menu">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="statusId" property="statusId" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="parentId" property="parentId" jdbcType="BIGINT"/>
+        <result column="menuName" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menuUrl" property="menuUrl" jdbcType="VARCHAR"/>
+        <result column="apiUrl" property="apiUrl" jdbcType="VARCHAR"/>
+        <result column="menuIcon" property="menuIcon" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="menuType" property="menuType" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, gmt_create, gmt_modified, status_id, sort, parent_id, menu_name, menu_url, api_url, menu_icon, remark, menu_type
+    </sql>
+
+    <select id="query" parameterType="com.example.springboottpl.entity.Menu" resultMap="BaseResultMap">
+
+    </select>
+
+    <select id="queryMenuList" parameterType="com.example.springboottpl.entity.Menu" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        <where> 
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="gmtCreate != null">-->
+            <!--    and gmtCreate = #{ gmtCreate}-->
+            <!--</if>-->
+            <!--<if test="gmtModified != null">-->
+            <!--    and gmtModified = #{ gmtModified}-->
+            <!--</if>-->
+            <!--<if test="statusId != null">-->
+            <!--    and statusId = #{ statusId}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="parentId != null">-->
+            <!--    and parentId = #{ parentId}-->
+            <!--</if>-->
+            <!--<if test="menuName != null">-->
+            <!--    and menuName = #{ menuName}-->
+            <!--</if>-->
+            <!--<if test="menuUrl != null">-->
+            <!--    and menuUrl = #{ menuUrl}-->
+            <!--</if>-->
+            <!--<if test="apiUrl != null">-->
+            <!--    and apiUrl = #{ apiUrl}-->
+            <!--</if>-->
+            <!--<if test="menuIcon != null">-->
+            <!--    and menuIcon = #{ menuIcon}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="menuType != null">-->
+            <!--    and menuType = #{ menuType}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.example.springboottpl.entity.Menu">
+        insert into sys_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmtCreate,
+            </if>
+            <if test="gmtModified != null">
+                gmtModified,
+            </if>
+            <if test="statusId != null">
+                statusId,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="parentId != null">
+                parentId,
+            </if>
+            <if test="menuName != null">
+                menuName,
+            </if>
+            <if test="menuUrl != null">
+                menuUrl,
+            </if>
+            <if test="apiUrl != null">
+                apiUrl,
+            </if>
+            <if test="menuIcon != null">
+                menuIcon,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="menuType != null">
+                menuType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType=BIGINT },
+            </if>
+            <if test="gmtCreate != null">
+                #{ gmtCreate,jdbcType=TIMESTAMP },
+            </if>
+            <if test="gmtModified != null">
+                #{ gmtModified,jdbcType=TIMESTAMP },
+            </if>
+            <if test="statusId != null">
+                #{ statusId,jdbcType=TINYINT },
+            </if>
+            <if test="sort != null">
+                #{ sort,jdbcType=INTEGER },
+            </if>
+            <if test="parentId != null">
+                #{ parentId,jdbcType=BIGINT },
+            </if>
+            <if test="menuName != null">
+                #{ menuName,jdbcType=VARCHAR },
+            </if>
+            <if test="menuUrl != null">
+                #{ menuUrl,jdbcType=VARCHAR },
+            </if>
+            <if test="apiUrl != null">
+                #{ apiUrl,jdbcType=VARCHAR },
+            </if>
+            <if test="menuIcon != null">
+                #{ menuIcon,jdbcType=VARCHAR },
+            </if>
+            <if test="remark != null">
+                #{ remark,jdbcType=VARCHAR },
+            </if>
+            <if test="menuType != null">
+                #{ menuType,jdbcType=TINYINT },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from sys_menu where id in
+        <foreach collection="list" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="com.example.springboottpl.entity.Menu">
+        update sys_menu
+        <set>
+            <if test="id != null">
+                id = #{ id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                gmtCreate = #{ gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmtModified = #{ gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="statusId != null">
+                statusId = #{ statusId,jdbcType=TINYINT},
+            </if>
+            <if test="sort != null">
+                sort = #{ sort,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null">
+                parentId = #{ parentId,jdbcType=BIGINT},
+            </if>
+            <if test="menuName != null">
+                menuName = #{ menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                menuUrl = #{ menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="apiUrl != null">
+                apiUrl = #{ apiUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="menuIcon != null">
+                menuIcon = #{ menuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="menuType != null">
+                menuType = #{ menuType,jdbcType=TINYINT},
+            </if>
+        </set>
+        <where> 
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <if test="gmtCreate != null">
+                and gmtCreate = #{ gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmtModified = #{ gmtModified}
+            </if>
+            <if test="statusId != null">
+                and statusId = #{ statusId}
+            </if>
+            <if test="sort != null">
+                and sort = #{ sort}
+            </if>
+            <if test="parentId != null">
+                and parentId = #{ parentId}
+            </if>
+            <if test="menuName != null">
+                and menuName = #{ menuName}
+            </if>
+            <if test="menuUrl != null">
+                and menuUrl = #{ menuUrl}
+            </if>
+            <if test="apiUrl != null">
+                and apiUrl = #{ apiUrl}
+            </if>
+            <if test="menuIcon != null">
+                and menuIcon = #{ menuIcon}
+            </if>
+            <if test="remark != null">
+                and remark = #{ remark}
+            </if>
+            <if test="menuType != null">
+                and menuType = #{ menuType}
+            </if>
+        </where>
+    </update>
+
+    </mapper>
