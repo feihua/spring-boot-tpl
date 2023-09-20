@@ -20,3 +20,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+server:
+  port: 6666
+  servlet:
+    context-path: /tpl
