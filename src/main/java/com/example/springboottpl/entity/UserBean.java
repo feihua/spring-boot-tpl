@@ -27,9 +27,9 @@ public class UserBean implements Serializable {
   //密码
   private String password; 
   //状态(1:正常，0:禁用)
-  private int statusId; 
+  private Integer statusId;
   //排序
-  private int sort; 
+  private Integer sort;
   //备注
   private String remark; 
   //创建时间

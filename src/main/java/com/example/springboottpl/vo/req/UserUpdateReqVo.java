@@ -27,39 +27,25 @@ import lombok.NoArgsConstructor;
 public class UserUpdateReqVo implements Serializable {
 
 	@ApiModelProperty(value = "主键", required = true)
-	//@NotBlank(message = "id主键不能为空")
-	private int id;
+	@NotNull(message = "id主键不能为空")
+	private Integer id;
 
 	@ApiModelProperty(value = "手机", required = true)
-	//@NotBlank(message = "mobile手机不能为空")
+	@NotBlank(message = "mobile手机不能为空")
 	private String mobile;
 
 	@ApiModelProperty(value = "姓名", required = true)
-	//@NotBlank(message = "userName姓名不能为空")
+	@NotBlank(message = "userName姓名不能为空")
 	private String userName;
 
-	@ApiModelProperty(value = "密码", required = true)
-	//@NotBlank(message = "password密码不能为空")
-	private String password;
-
 	@ApiModelProperty(value = "状态(1:正常，0:禁用)", required = true)
-	//@NotBlank(message = "statusId状态(1:正常，0:禁用)不能为空")
-	private int statusId;
+	@NotNull(message = "statusId状态(1:正常，0:禁用)不能为空")
+	private Integer statusId;
 
-	@ApiModelProperty(value = "排序", required = true)
-	//@NotBlank(message = "sort排序不能为空")
-	private int sort;
+	@ApiModelProperty(value = "排序")
+	private Integer sort;
 
-	@ApiModelProperty(value = "备注", required = true)
-	//@NotBlank(message = "remark备注不能为空")
+	@ApiModelProperty(value = "备注")
 	private String remark;
-
-	@ApiModelProperty(value = "创建时间", required = true)
-	//@NotBlank(message = "createTime创建时间不能为空")
-	private Date createTime;
-
-	@ApiModelProperty(value = "修改时间", required = true)
-	//@NotBlank(message = "updateTime修改时间不能为空")
-	private Date updateTime;
 
 }

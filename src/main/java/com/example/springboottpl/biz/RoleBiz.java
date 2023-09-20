@@ -8,6 +8,8 @@ import com.example.springboottpl.vo.req.RoleListReqVo;
 import com.example.springboottpl.vo.req.RoleAddReqVo;
 import com.example.springboottpl.vo.req.RoleDeleteReqVo;
 import com.example.springboottpl.vo.req.RoleUpdateReqVo;
+import com.example.springboottpl.vo.req.UpdateRoleMenuListReqVo;
+import com.example.springboottpl.vo.resp.RoleMenuRespVo;
 import com.example.springboottpl.vo.resp.RoleRespVo;
 
 /**
@@ -67,4 +69,24 @@ public interface RoleBiz {
     */
    ResultPage<RoleRespVo> queryRoleList(RoleListReqVo role);
 
+
+   /**
+    * 查询角色菜单信息列表
+    *
+    * @param roleId 请求参数
+    * @return RoleResp
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+	RoleMenuRespVo queryRoleMenuList(Integer roleId);
+
+   /**
+    * 更新角色菜单信息列表
+    *
+    * @param record 请求参数
+    * @return RoleResp
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+   Integer updateRoleMenuList(UpdateRoleMenuListReqVo record);
 }

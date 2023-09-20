@@ -1,11 +1,11 @@
 package com.example.springboottpl.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.MenuReqVo;
-import com.example.springboottpl.vo.req.MenuListReqVo;
 import com.example.springboottpl.vo.req.MenuAddReqVo;
 import com.example.springboottpl.vo.req.MenuDeleteReqVo;
 import com.example.springboottpl.vo.req.MenuUpdateReqVo;
@@ -82,15 +82,14 @@ public class MenuServiceImpl implements MenuService {
    /**
     * 查询菜单信息列表
     *
-    * @param menu 请求参数
     * @return MenuResp
     * @author 刘飞华
     * @date: 2023-09-20 10:44:24
     */
    @Override
-   public ResultPage<MenuRespVo> queryMenuList(MenuListReqVo menu){
+   public List<MenuRespVo> queryMenuList(){
 
-        return menuBiz.queryMenuList(menu);
+        return menuBiz.queryMenuList();
    }
 
 }

@@ -1,10 +1,8 @@
 package com.example.springboottpl.service;
 
-import java.util.Map;
+import java.util.List;
 
-import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.MenuReqVo;
-import com.example.springboottpl.vo.req.MenuListReqVo;
 import com.example.springboottpl.vo.req.MenuAddReqVo;
 import com.example.springboottpl.vo.req.MenuDeleteReqVo;
 import com.example.springboottpl.vo.req.MenuUpdateReqVo;
@@ -60,11 +58,10 @@ public interface MenuService {
    /**
     * 查询菜单信息列表
     *
-    * @param menu 请求参数
     * @return ResultPage<MenuResp>
     * @author 刘飞华
     * @date: 2023-09-20 10:44:24
     */
-   ResultPage<MenuRespVo> queryMenuList(MenuListReqVo menu);
+   List<MenuRespVo> queryMenuList();
 
 }

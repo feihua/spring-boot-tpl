@@ -104,24 +104,24 @@
             <if test="id != null">
                 and id = #{ id}
             </if>
-            <if test="roleName != null">
-                and role_name = #{ roleName}
-            </if>
-            <if test="statusId != null">
-                and status_id = #{ statusId}
-            </if>
-            <if test="sort != null">
-                and sort = #{ sort}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
+<!--            <if test="roleName != null">-->
+<!--                and role_name = #{ roleName}-->
+<!--            </if>-->
+<!--            <if test="statusId != null">-->
+<!--                and status_id = #{ statusId}-->
+<!--            </if>-->
+<!--            <if test="sort != null">-->
+<!--                and sort = #{ sort}-->
+<!--            </if>-->
+<!--            <if test="remark != null">-->
+<!--                and remark = #{ remark}-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                and create_time = #{ createTime}-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                and update_time = #{ updateTime}-->
+<!--            </if>-->
         </where>
     </update>
 
@@ -162,12 +162,12 @@
           <!--<if test="id != null">-->
           <!--    and id = #{ id}-->
           <!--</if>-->
-          <!--<if test="roleName != null">-->
-          <!--    and role_name = #{ roleName}-->
-          <!--</if>-->
-          <!--<if test="statusId != null">-->
-          <!--    and status_id = #{ statusId}-->
-          <!--</if>-->
+          <if test="roleName != null">
+              and role_name = #{ roleName}
+          </if>
+          <if test="statusId != null">
+              and status_id = #{ statusId}
+          </if>
           <!--<if test="sort != null">-->
           <!--    and sort = #{ sort}-->
           <!--</if>-->

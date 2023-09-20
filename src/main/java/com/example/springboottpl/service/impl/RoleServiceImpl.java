@@ -3,12 +3,17 @@ package com.example.springboottpl.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboottpl.enums.ExceptionEnum;
+import com.example.springboottpl.enums.RoleEnum;
+import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.RoleReqVo;
 import com.example.springboottpl.vo.req.RoleListReqVo;
 import com.example.springboottpl.vo.req.RoleAddReqVo;
 import com.example.springboottpl.vo.req.RoleDeleteReqVo;
 import com.example.springboottpl.vo.req.RoleUpdateReqVo;
+import com.example.springboottpl.vo.req.UpdateRoleMenuListReqVo;
+import com.example.springboottpl.vo.resp.RoleMenuRespVo;
 import com.example.springboottpl.vo.resp.RoleRespVo;
 import com.example.springboottpl.biz.RoleBiz;
 import com.example.springboottpl.service.RoleService;
@@ -93,4 +98,32 @@ public class RoleServiceImpl implements RoleService {
         return roleBiz.queryRoleList(role);
    }
 
+   /**
+    * 查询角色菜单信息列表
+    *
+    * @param roleId 请求参数
+    * @return RoleResp
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+   @Override
+   public RoleMenuRespVo queryRoleMenuList(Integer roleId) {
+      return roleBiz.queryRoleMenuList(roleId);
+   }
+
+   /**
+    * 更新角色菜单信息列表
+    *
+    * @param record 请求参数
+    * @return RoleResp
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+   @Override
+   public Integer updateRoleMenuList(UpdateRoleMenuListReqVo record) {
+      if (record.getRoleId() == RoleEnum.ADMIN_ROLE.getCode()) {
+         throw new TplException(ExceptionEnum.ADMIN_PERMISSIONS_ERROR);
+      }
+      return roleBiz.updateRoleMenuList(record);
+   }
 }

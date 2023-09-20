@@ -36,32 +36,12 @@ public class RoleListReqVo implements Serializable {
     @NotNull(message = "pageSize每页的数量不能为空")
     private Integer pageSize;
 
-	@ApiModelProperty(value = "主键")
-	//@NotBlank(message = "id主键不能为空")
-	private int id;
 
 	@ApiModelProperty(value = "名称")
-	//@NotBlank(message = "roleName名称不能为空")
 	private String roleName;
 
 	@ApiModelProperty(value = "状态(1:正常，0:禁用)")
-	//@NotBlank(message = "statusId状态(1:正常，0:禁用)不能为空")
-	private int statusId;
+	private Integer statusId;
 
-	@ApiModelProperty(value = "排序")
-	//@NotBlank(message = "sort排序不能为空")
-	private int sort;
-
-	@ApiModelProperty(value = "备注")
-	//@NotBlank(message = "remark备注不能为空")
-	private String remark;
-
-	@ApiModelProperty(value = "创建时间")
-	//@NotBlank(message = "createTime创建时间不能为空")
-	private Date createTime;
-
-	@ApiModelProperty(value = "修改时间")
-	//@NotBlank(message = "updateTime修改时间不能为空")
-	private Date updateTime;
 
 }

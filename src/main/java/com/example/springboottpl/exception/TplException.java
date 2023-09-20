@@ -1,12 +1,11 @@
 package com.example.springboottpl.exception;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import com.example.springboottpl.enums.ExceptionEnum;
 
 @Data
-public class ApiException extends RuntimeException {
+public class TplException extends RuntimeException {
 	private int code;
 
 	/**
@@ -16,7 +15,7 @@ public class ApiException extends RuntimeException {
 	 * @author 刘飞华
 	 * @date: 2023/2/22 14:24
 	 */
-	public ApiException(ExceptionEnum exceptionEnum) {
+	public TplException(ExceptionEnum exceptionEnum) {
 		super(exceptionEnum.getMsg());
 		this.code = exceptionEnum.getCode();
 	}
@@ -29,7 +28,7 @@ public class ApiException extends RuntimeException {
 	 * @author 刘飞华
 	 * @date 2023/2/22 14:22
 	 */
-	public ApiException(int code, String message) {
+	public TplException(int code, String message) {
 		super(message);
 		this.code = code;
 	}

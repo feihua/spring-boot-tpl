@@ -26,12 +26,12 @@ public interface UserRoleDao {
    /**
     * 删除角色用户关联表
     *
-    * @param ids 请求参数
+    * @param userId 请求参数
     * @return int
     * @author 刘飞华
     * @date: 2023-09-20 10:44:26
     */
-   int deleteUserRole(List<Integer> ids);
+   int deleteUserRole(Integer userId);
 
    /**
     * 更新角色用户关联表

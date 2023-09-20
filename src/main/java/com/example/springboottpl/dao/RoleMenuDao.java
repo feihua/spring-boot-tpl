@@ -26,12 +26,12 @@ public interface RoleMenuDao {
    /**
     * 删除菜单角色关联表
     *
-    * @param ids 请求参数
+    * @param roleId 请求参数
     * @return int
     * @author 刘飞华
     * @date: 2023-09-20 10:44:25
     */
-   int deleteRoleMenu(List<Integer> ids);
+   int deleteRoleMenu(Integer roleId);
 
    /**
     * 更新菜单角色关联表

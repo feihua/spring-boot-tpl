@@ -23,7 +23,7 @@ public class RoleBean implements Serializable {
   //名称
   private String roleName; 
   //状态(1:正常，0:禁用)
-  private int statusId; 
+  private Integer statusId;
   //排序
   private int sort; 
   //备注

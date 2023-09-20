@@ -26,32 +26,20 @@ import lombok.NoArgsConstructor;
 @ApiModel("角色信息请求addVo")
 public class RoleAddReqVo implements Serializable {
 
-	@ApiModelProperty(value = "主键", required = true)
-	//@NotBlank(message = "id主键不能为空")
-	private int id;
-
 	@ApiModelProperty(value = "名称", required = true)
-	//@NotBlank(message = "roleName名称不能为空")
+	@NotBlank(message = "roleName名称不能为空")
 	private String roleName;
 
 	@ApiModelProperty(value = "状态(1:正常，0:禁用)", required = true)
-	//@NotBlank(message = "statusId状态(1:正常，0:禁用)不能为空")
+	@NotNull(message = "statusId状态(1:正常，0:禁用)不能为空")
 	private int statusId;
 
 	@ApiModelProperty(value = "排序", required = true)
-	//@NotBlank(message = "sort排序不能为空")
+	@NotNull(message = "sort排序不能为空")
 	private int sort;
 
-	@ApiModelProperty(value = "备注", required = true)
-	//@NotBlank(message = "remark备注不能为空")
+	@ApiModelProperty(value = "备注")
 	private String remark;
 
-	@ApiModelProperty(value = "创建时间", required = true)
-	//@NotBlank(message = "createTime创建时间不能为空")
-	private Date createTime;
-
-	@ApiModelProperty(value = "修改时间", required = true)
-	//@NotBlank(message = "updateTime修改时间不能为空")
-	private Date updateTime;
 
 }

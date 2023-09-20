@@ -3,7 +3,7 @@ package com.example.springboottpl.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboottpl.util.Result;
-import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.MenuReqVo;
-import com.example.springboottpl.vo.req.MenuListReqVo;
 import com.example.springboottpl.vo.req.MenuAddReqVo;
 import com.example.springboottpl.vo.req.MenuDeleteReqVo;
 import com.example.springboottpl.vo.req.MenuUpdateReqVo;
@@ -95,15 +93,14 @@ public class MenuController {
    /**
     * 查询菜单信息列表
     *
-    * @param record 请求参数
     * @return MenuResp
     * @author 刘飞华
     * @date: 2023-09-20 10:44:24
     */
    @ApiOperation("查询菜单信息列表")
    @PostMapping("/queryMenuList")
-   public Result<ResultPage<MenuRespVo>> queryMenuList(@RequestBody @Valid MenuListReqVo record){
-        return Result.success(menuService.queryMenuList(record));
+   public Result<List<MenuRespVo>> queryMenuList(){
+        return Result.success(menuService.queryMenuList());
    }
 
 }

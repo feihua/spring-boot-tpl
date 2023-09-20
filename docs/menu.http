@@ -1,5 +1,5 @@
 ###登录 login
-POST {{host}}/api/login
+POST {{host}}/user/login
 Content-Type: application/json
 
 {
@@ -10,56 +10,51 @@ Content-Type: application/json
 
 
 ###菜单列表 menu_list
-POST {{host}}/api/menu_list
+POST {{host}}/menu/queryMenuList
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-{
-  "menu_name": ""
-}
 ###新增菜单 menu_save
-POST {{host}}/api/menu_save
+POST {{host}}/menu/saveMenu
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "api_url": "/auth/ping",
-  "icon": "FrownOutlined",
-  "label": "test4",
-  "menu_name": "test4",
-  "menu_type": 1,
-  "menu_url": "test4",
-  "parent_id": 0,
-  "remark": "test",
+  "menuName": "测试123123",
+  "menuType": 2,
+  "statusId": 1,
   "sort": 1,
-  "status_id": 1
+  "parentId": 0,
+  "menuUrl": "/abc12",
+  "apiUrl": "",
+  "menuIcon": "Setting",
+  "remark": ""
 }
 
 ###删除菜单 menu_delete
-POST {{host}}/api/menu_delete
+POST {{host}}/menu/deleteMenu
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "ids": [100]
+  "ids": [102]
 }
 ###更新菜单 menu_update
-POST {{host}}/api/menu_update
+POST {{host}}/menu/updateMenu
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "api_url": "/auth/ping123",
-  "icon": "FrownOutlined",
-  "id": 35,
-  "label": "test4",
-  "menu_name": "test4",
-  "menu_type": 1,
-  "menu_url": "test4",
-  "parent_id": 0,
-  "remark": "test",
+  "id": 102,
+  "menuName": "测试kk",
+  "menuType": 2,
+  "statusId": 1,
   "sort": 1,
-  "status_id": 1
+  "parentId": 0,
+  "menuUrl": "/abc",
+  "apiUrl": "",
+  "menuIcon": "Setting",
+  "remark": ""
 }
 
 

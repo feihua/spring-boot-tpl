@@ -154,39 +154,39 @@
             <if test="id != null">
                 and id = #{ id}
             </if>
-            <if test="menuName != null">
-                and menu_name = #{ menuName}
-            </if>
-            <if test="menuType != null">
-                and menu_type = #{ menuType}
-            </if>
-            <if test="statusId != null">
-                and status_id = #{ statusId}
-            </if>
-            <if test="sort != null">
-                and sort = #{ sort}
-            </if>
-            <if test="parentId != null">
-                and parent_id = #{ parentId}
-            </if>
-            <if test="menuUrl != null">
-                and menu_url = #{ menuUrl}
-            </if>
-            <if test="apiUrl != null">
-                and api_url = #{ apiUrl}
-            </if>
-            <if test="menuIcon != null">
-                and menu_icon = #{ menuIcon}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
+<!--            <if test="menuName != null">-->
+<!--                and menu_name = #{ menuName}-->
+<!--            </if>-->
+<!--            <if test="menuType != null">-->
+<!--                and menu_type = #{ menuType}-->
+<!--            </if>-->
+<!--            <if test="statusId != null">-->
+<!--                and status_id = #{ statusId}-->
+<!--            </if>-->
+<!--            <if test="sort != null">-->
+<!--                and sort = #{ sort}-->
+<!--            </if>-->
+<!--            <if test="parentId != null">-->
+<!--                and parent_id = #{ parentId}-->
+<!--            </if>-->
+<!--            <if test="menuUrl != null">-->
+<!--                and menu_url = #{ menuUrl}-->
+<!--            </if>-->
+<!--            <if test="apiUrl != null">-->
+<!--                and api_url = #{ apiUrl}-->
+<!--            </if>-->
+<!--            <if test="menuIcon != null">-->
+<!--                and menu_icon = #{ menuIcon}-->
+<!--            </if>-->
+<!--            <if test="remark != null">-->
+<!--                and remark = #{ remark}-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                and create_time = #{ createTime}-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                and update_time = #{ updateTime}-->
+<!--            </if>-->
         </where>
     </update>
 

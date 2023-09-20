@@ -1,5 +1,5 @@
 ###登录 login
-POST {{host}}/api/login
+POST {{host}}/user/login
 Content-Type: application/json
 
 {
@@ -9,59 +9,57 @@ Content-Type: application/json
 > {% client.global.set("token", response.body.data); %}
 
 ###查询角色菜单 query_role_menu
-POST {{host}}/api/query_role_menu
+GET {{host}}/role/queryRoleMenuList?roleId=3
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-{
-  "role_id": 3
-}
+
 ###更新角色菜单 update_role_menu
-POST {{host}}/api/update_role_menu
+POST {{host}}/role/updateRoleMenuList
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "role_id": 1,
-  "menu_ids": [1,2,3]
+  "roleId": 3,
+  "menuIds": [1,2,3,8]
 }
 ###角色列表 role_list
-POST {{host}}/api/role_list
+POST {{host}}/role/queryRoleList
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "current": 1,
+  "pageNum": 1,
   "pageSize": 10
 }
 ###新增角色 role_save
-POST {{host}}/api/role_save
+POST {{host}}/role/saveRole
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "remark": "test",
-  "role_name": "test",
+  "roleName": "test1",
+  "statusId": 1,
   "sort": 1,
-  "status_id": 1
+  "remark": "1"
 }
 ###删除角色 role_delete
-POST {{host}}/api/role_delete
+POST {{host}}/role/deleteRole
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "ids": [100]
+  "ids": [8]
 }
 ###更新角色 role_update
-POST {{host}}/api/role_update
+POST {{host}}/role/updateRole
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "id": 7,
-  "remark": "test123",
-  "role_name": "test123",
+  "id": 8,
+  "roleName": "testsfsf",
+  "statusId": 1,
   "sort": 1,
-  "status_id": 1
+  "remark": "tst"
 }

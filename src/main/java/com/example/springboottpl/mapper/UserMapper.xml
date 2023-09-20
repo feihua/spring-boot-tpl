@@ -15,6 +15,33 @@
     
     </resultMap>
 
+    <resultMap id="MenuResultMap" type="com.example.springboottpl.entity.MenuBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menu_type" property="menuType" jdbcType="TINYINT"/>
+        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
+        <result column="api_url" property="apiUrl" jdbcType="VARCHAR"/>
+        <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+
+    <resultMap id="RoleResultMap" type="com.example.springboottpl.entity.RoleBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
     <sql id="Base_Column_List">
         id, mobile, user_name, password, status_id, sort, remark, create_time, update_time
     </sql>
@@ -124,30 +151,30 @@
             <if test="id != null">
                 and id = #{ id}
             </if>
-            <if test="mobile != null">
-                and mobile = #{ mobile}
-            </if>
-            <if test="userName != null">
-                and user_name = #{ userName}
-            </if>
-            <if test="password != null">
-                and password = #{ password}
-            </if>
-            <if test="statusId != null">
-                and status_id = #{ statusId}
-            </if>
-            <if test="sort != null">
-                and sort = #{ sort}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
+<!--            <if test="mobile != null">-->
+<!--                and mobile = #{ mobile}-->
+<!--            </if>-->
+<!--            <if test="userName != null">-->
+<!--                and user_name = #{ userName}-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                and password = #{ password}-->
+<!--            </if>-->
+<!--            <if test="statusId != null">-->
+<!--                and status_id = #{ statusId}-->
+<!--            </if>-->
+<!--            <if test="sort != null">-->
+<!--                and sort = #{ sort}-->
+<!--            </if>-->
+<!--            <if test="remark != null">-->
+<!--                and remark = #{ remark}-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                and create_time = #{ createTime}-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                and update_time = #{ updateTime}-->
+<!--            </if>-->
         </where>
     </update>
 
@@ -159,9 +186,9 @@
         <!--<if test="id != null">-->
         <!--    and id = #{ id}-->
         <!--</if>-->
-        <!--<if test="mobile != null">-->
-        <!--    and mobile = #{ mobile}-->
-        <!--</if>-->
+        <if test="mobile != null">
+            and mobile = #{ mobile}
+        </if>
         <!--<if test="userName != null">-->
         <!--    and user_name = #{ userName}-->
         <!--</if>-->
@@ -194,18 +221,18 @@
           <!--<if test="id != null">-->
           <!--    and id = #{ id}-->
           <!--</if>-->
-          <!--<if test="mobile != null">-->
-          <!--    and mobile = #{ mobile}-->
-          <!--</if>-->
-          <!--<if test="userName != null">-->
-          <!--    and user_name = #{ userName}-->
-          <!--</if>-->
+          <if test="mobile != null">
+              and mobile = #{ mobile}
+          </if>
+          <if test="userName != null">
+              and user_name = #{ userName}
+          </if>
           <!--<if test="password != null">-->
           <!--    and password = #{ password}-->
           <!--</if>-->
-          <!--<if test="statusId != null">-->
-          <!--    and status_id = #{ statusId}-->
-          <!--</if>-->
+          <if test="statusId != null">
+              and status_id = #{ statusId}
+          </if>
           <!--<if test="sort != null">-->
           <!--    and sort = #{ sort}-->
           <!--</if>-->
@@ -219,5 +246,22 @@
           <!--    and update_time = #{ updateTime}-->
           <!--</if>-->
         </where>
+    </select>
+
+    <select id="queryUserMenus" resultMap="MenuResultMap">
+        select distinct u.*
+        from sys_user_role t
+        left join sys_role usr on t.role_id = usr.id
+        left join sys_role_menu usrm on usr.id = usrm.role_id
+        left join sys_menu u on usrm.menu_id = u.id
+        where t.user_id = #{userId} and u.menu_name is not null
+        order by u.sort asc
+    </select>
+
+    <select id="queryUserRoles" resultMap="RoleResultMap">
+        select distinct usr.*
+        from sys_user_role t
+        left join sys_role usr on t.role_id = usr.id
+        where t.user_id = #{userId}
     </select>
 </mapper>

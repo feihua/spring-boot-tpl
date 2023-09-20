@@ -1,6 +1,6 @@
 
 ###登录 login
-POST {{host}}/api/login
+POST {{host}}/user/login
 Content-Type: application/json
 
 {
@@ -10,51 +10,67 @@ Content-Type: application/json
 > {% client.global.set("token", response.body.data); %}
 
 ###查询用户菜单 query_user_menu
-GET {{host}}/api/query_user_menu
+GET {{host}}/user/queryUserMenu
+#Authorization: Bearer {{token}}
+userId: 1
+
+###查询用户角色 query_user_role
+GET {{host}}/user/queryUserRole?userId=3
+Content-Type: application/json
 Authorization: Bearer {{token}}
 
+###更新用户角色 update_user_role
+POST {{host}}/user/updateUserRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 3,
+  "roleIds": [3,4,5]
+}
 
 ###用户列表 user_list
-POST {{host}}/api/user_list
+POST {{host}}/user/queryUserList
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "current": 1,
-  "pageSize": 10,
-  "mobile": "18613030352",
-  "status_id": 1
+  "pageNum": 1,
+  "pageSize": 10
 }
 ###新增用户 user_save
-POST {{host}}/api/user_save
+POST {{host}}/user/saveUser
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "mobile": "18613030351",
-  "user_name": "test",
-  "remark": "test"
+  "mobile": "18613030322",
+  "userName": "超级管理员22",
+  "statusId": 1,
+  "sort": 1,
+  "remark": "超级管理员2"
 }
 ###删除用户 user_delete
-POST {{host}}/api/user_delete
+POST {{host}}/user/deleteUser
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "ids": [13]
+  "ids": [16]
 }
 ###更新用户 user_update
-POST {{host}}/api/user_update
+POST {{host}}/user/updateUser
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "id": 17,
-  "mobile": "18613030351",
-  "user_name": "test123",
-  "remark": "test123",
+  "id": 16,
+  "mobile": "18613031252",
+  "userName": "超级管理员2",
+  "password": "123456",
+  "statusId": 1,
   "sort": 1,
-  "status_id": 1
+  "remark": "超级管理员2"
 }
 
 

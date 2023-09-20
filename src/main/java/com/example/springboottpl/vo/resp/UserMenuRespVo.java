@@ -12,20 +12,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 描述：菜单角色关联表
+ * 描述：用户菜单
  * 作者：刘飞华
- * 日期：2023-09-20 10:44:25
+ * 日期：2023/3/29 17:18
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("菜单角色关联表响应vo")
-public class RoleMenuRespVo implements Serializable {
+@ApiModel("用户菜单响应vo")
+public class UserMenuRespVo implements Serializable {
 
-	@ApiModelProperty("菜单ID")
-	private List<Integer> menuIds;
+	@ApiModelProperty("按钮权限")
+	private List<String> btnPaths;
 
-	@ApiModelProperty("所有菜单")
-	private List<MenuRespVo> menuList;
+	@ApiModelProperty("左侧菜单数据")
+	private List<MenuRespVo> leftMenuData;
+
 }

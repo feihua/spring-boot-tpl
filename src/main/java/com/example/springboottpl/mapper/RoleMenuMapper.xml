@@ -68,11 +68,7 @@
     </insert>
 
     <delete id="deleteRoleMenu">
-        delete from sys_role_menu where id in
-        <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
-            #{id}
-        </foreach>
+        delete from sys_role_menu where role_id = #{roleId}
     </delete>
 
     <update id="updateRoleMenu" parameterType="com.example.springboottpl.entity.RoleMenuBean">
@@ -162,9 +158,9 @@
           <!--<if test="id != null">-->
           <!--    and id = #{ id}-->
           <!--</if>-->
-          <!--<if test="roleId != null">-->
-          <!--    and role_id = #{ roleId}-->
-          <!--</if>-->
+          <if test="roleId != null">
+              and role_id = #{ roleId}
+          </if>
           <!--<if test="menuId != null">-->
           <!--    and menu_id = #{ menuId}-->
           <!--</if>-->

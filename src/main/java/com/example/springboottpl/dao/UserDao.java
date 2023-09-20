@@ -3,6 +3,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+import com.example.springboottpl.entity.MenuBean;
+import com.example.springboottpl.entity.RoleBean;
 import com.example.springboottpl.entity.UserBean;
 
 /**
@@ -63,4 +65,23 @@ public interface UserDao {
     */
    List<UserBean> queryUserList(UserBean user);
 
+   /**
+    * 查询用户菜单
+    *
+    * @param userId 用户id
+    * @return List<SysMenu>
+    * @author 刘飞华
+    * @date: 2023/9/20 14:14
+    */
+   List<MenuBean> queryUserMenus(int userId);
+
+   /**
+    * 查询用户角色
+    *
+    * @param userId 用户id
+    * @return List<SysMenu>
+    * @author 刘飞华
+    * @date: 2023/3/29 18:10
+    */
+   List<RoleBean> queryUserRoles(Integer userId);
 }
