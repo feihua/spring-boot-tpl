@@ -31,7 +31,7 @@ public class SwaggerConfig {
 	@Bean
 	public ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Swagger Test App Restful API").description("swagger test app restful api")
-				.termsOfServiceUrl("https://github.com/geekxingyun")
+				.termsOfServiceUrl("https://github.com/feihua")
 				.contact(new Contact("koobe", "https://www.test.net", "1002219331@qq.com")).version("1.0").build();
 	}
 

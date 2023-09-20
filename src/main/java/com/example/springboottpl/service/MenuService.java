@@ -3,38 +3,19 @@ package com.example.springboottpl.service;
 import java.util.Map;
 
 import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.MenuReq;
-import com.example.springboottpl.vo.req.MenuListReq;
-import com.example.springboottpl.vo.req.MenuAddReq;
-import com.example.springboottpl.vo.req.MenuUpdateReq;
-import com.example.springboottpl.vo.resp.MenuResp;
+import com.example.springboottpl.vo.req.MenuReqVo;
+import com.example.springboottpl.vo.req.MenuListReqVo;
+import com.example.springboottpl.vo.req.MenuAddReqVo;
+import com.example.springboottpl.vo.req.MenuDeleteReqVo;
+import com.example.springboottpl.vo.req.MenuUpdateReqVo;
+import com.example.springboottpl.vo.resp.MenuRespVo;
 
 /**
  * 描述：菜单信息
  * 作者：刘飞华
- * 日期：2023/02/23 13:42:32
+ * 日期：2023-09-20 10:44:24
  */
 public interface MenuService {
-
-   /**
-    * 查询菜单信息
-    *
-    * @param menu 请求参数
-    * @return MenuResp
-    * @author 刘飞华
-    * @date: 2023/02/23 13:42:32
-    */
-   MenuResp query(MenuReq menu);
-
-   /**
-    * 查询菜单信息列表
-    *
-    * @param menu 请求参数
-    * @return ResultPage<MenuResp>
-    * @author 刘飞华
-    * @date: 2023/02/23 13:42:32
-    */
-   ResultPage<MenuResp> queryMenuList(MenuListReq menu);
 
    /**
     * 添加菜单信息
@@ -42,19 +23,19 @@ public interface MenuService {
     * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:32
+    * @date: 2023-09-20 10:44:24
     */
-   int insert(MenuAddReq menu);
+   int saveMenu(MenuAddReqVo menu);
 
    /**
     * 删除菜单信息
     *
-    * @param ids 请求参数
+    * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:32
+    * @date: 2023-09-20 10:44:24
     */
-   int delete(String ids);
+   int deleteMenu(MenuDeleteReqVo menu);
 
    /**
     * 更新菜单信息
@@ -62,8 +43,28 @@ public interface MenuService {
     * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:32
+    * @date: 2023-09-20 10:44:24
     */
-   int update(MenuUpdateReq menu);
+   int updateMenu(MenuUpdateReqVo menu);
+
+   /**
+    * 查询菜单信息
+    *
+    * @param menu 请求参数
+    * @return MenuResp
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:24
+    */
+   MenuRespVo queryMenu(MenuReqVo menu);
+
+   /**
+    * 查询菜单信息列表
+    *
+    * @param menu 请求参数
+    * @return ResultPage<MenuResp>
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:24
+    */
+   ResultPage<MenuRespVo> queryMenuList(MenuListReqVo menu);
 
 }

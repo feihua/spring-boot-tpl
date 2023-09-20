@@ -3,64 +3,64 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-import com.example.springboottpl.entity.User;
+import com.example.springboottpl.entity.UserBean;
 
 /**
- * 描述：后台用户信息
+ * 描述：用户信息
  * 作者：刘飞华
- * 日期：2023/02/23 13:42:26
+ * 日期：2023-09-20 10:44:25
  */
 @Mapper
 public interface UserDao {
 
    /**
-    * 查询后台用户信息
-    *
-    * @param user 请求参数
-    * @return User
-    * @author 刘飞华
-    * @date: 2023/02/23 13:42:26
-    */
-   User query(User user);
-
-   /**
-    * 查询后台用户信息列表
-    *
-    * @param user 请求参数
-    * @return List<User>
-    * @author 刘飞华
-    * @date: 2023/02/23 13:42:26
-    */
-   List<User> queryUserList(User user);
-
-   /**
-    * 添加后台用户信息
+    * 添加用户信息
     *
     * @param user 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:26
+    * @date: 2023-09-20 10:44:25
     */
-   int insert(User user);
+   int saveUser(UserBean user);
 
    /**
-    * 删除后台用户信息
+    * 删除用户信息
     *
     * @param ids 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:26
+    * @date: 2023-09-20 10:44:25
     */
-   int delete(List<Integer> ids);
+   int deleteUser(List<Integer> ids);
 
    /**
-    * 更新后台用户信息
+    * 更新用户信息
     *
     * @param user 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023/02/23 13:42:26
+    * @date: 2023-09-20 10:44:25
     */
-   int update(User user);
+   int updateUser(UserBean user);
+
+   /**
+    * 查询用户信息
+    *
+    * @param user 请求参数
+    * @return User
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+   UserBean queryUser(UserBean user);
+
+   /**
+    * 查询用户信息列表
+    *
+    * @param user 请求参数
+    * @return List<User>
+    * @author 刘飞华
+    * @date: 2023-09-20 10:44:25
+    */
+   List<UserBean> queryUserList(UserBean user);
 
 }
