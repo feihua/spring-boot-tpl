@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springboottpl.annotation.OperateLog;
 import com.example.springboottpl.service.UserService;
 import com.example.springboottpl.util.Result;
 import com.example.springboottpl.util.ResultPage;
@@ -51,6 +52,7 @@ public class UserController {
 	 */
 	@ApiOperation("添加用户信息")
 	@PostMapping("/saveUser")
+	@OperateLog(description = "【用户管理】添加用户信息")
 	public Result<Integer> saveUser(@RequestBody @Valid UserAddReqVo record) {
 		return Result.success(userService.saveUser(record));
 	}
