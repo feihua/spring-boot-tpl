@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.example.springboottpl.enums.ExceptionEnum.ROLE_IS_EXIST_ERROR;
+import static com.example.springboottpl.enums.ExceptionEnum.ROLE_IS_NOT_EXIST_ERROR;
+
 import com.example.springboottpl.biz.MenuBiz;
 import com.example.springboottpl.biz.RoleBiz;
 import com.example.springboottpl.biz.RoleMenuBiz;
 import com.example.springboottpl.dao.RoleDao;
 import com.example.springboottpl.entity.RoleBean;
+import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.util.TplConstant;
 import com.example.springboottpl.vo.req.RoleAddReqVo;
@@ -54,6 +58,10 @@ public class RoleBizImpl implements RoleBiz {
 	public int saveRole(RoleAddReqVo role) {
 		RoleBean bean = new RoleBean();
 		bean.setRoleName(role.getRoleName());
+
+		if (roleDao.queryRole(bean)!=null) {
+			throw new TplException(ROLE_IS_EXIST_ERROR);
+		}
 		bean.setStatusId(role.getStatusId());
 		bean.setSort(role.getSort());
 		bean.setRemark(role.getRemark());
@@ -86,6 +94,9 @@ public class RoleBizImpl implements RoleBiz {
 	public int updateRole(RoleUpdateReqVo role) {
 		RoleBean bean = new RoleBean();
 		bean.setId(role.getId());
+		if (roleDao.queryRole(bean)==null) {
+			throw new TplException(ROLE_IS_NOT_EXIST_ERROR);
+		}
 		bean.setRoleName(role.getRoleName());
 		bean.setStatusId(role.getStatusId());
 		bean.setSort(role.getSort());

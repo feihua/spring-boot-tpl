@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import static com.example.springboottpl.enums.ExceptionEnum.USER_NAME_EXIST_ERROR;
 import static com.example.springboottpl.enums.ExceptionEnum.USER_NOT_EXIST_ERROR;
 import static com.example.springboottpl.enums.ExceptionEnum.USER_PASSWORD_ERROR;
 import static com.example.springboottpl.enums.StatusEnum.enable;
@@ -82,6 +83,9 @@ public class UserBizImpl implements UserBiz {
 	public int saveUser(UserAddReqVo user) {
 		UserBean bean = new UserBean();
 		bean.setMobile(user.getMobile());
+		if (userDao.queryUser(bean)!=null) {
+			throw new TplException(USER_NAME_EXIST_ERROR);
+		}
 		bean.setUserName(user.getUserName());
 		bean.setPassword(TplConstant.INITIALIZE_PASSWORD);
 		bean.setStatusId(user.getStatusId());
@@ -116,6 +120,9 @@ public class UserBizImpl implements UserBiz {
 	public int updateUser(UserUpdateReqVo user) {
 		UserBean bean = new UserBean();
 		bean.setId(user.getId());
+		if (userDao.queryUser(bean)==null) {
+			throw new TplException(USER_NOT_EXIST_ERROR);
+		}
 		bean.setMobile(user.getMobile());
 		bean.setUserName(user.getUserName());
 		//bean.setPassword(user.getPassword());

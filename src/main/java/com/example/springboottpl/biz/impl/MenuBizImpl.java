@@ -6,9 +6,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.example.springboottpl.enums.ExceptionEnum.MENU_IS_EXIST_ERROR;
+import static com.example.springboottpl.enums.ExceptionEnum.MENU_IS_NOT_EXIST_ERROR;
+
 import com.example.springboottpl.biz.MenuBiz;
 import com.example.springboottpl.dao.MenuDao;
 import com.example.springboottpl.entity.MenuBean;
+import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.vo.req.MenuAddReqVo;
 import com.example.springboottpl.vo.req.MenuDeleteReqVo;
 import com.example.springboottpl.vo.req.MenuReqVo;
@@ -36,8 +40,14 @@ public class MenuBizImpl implements MenuBiz {
 	 */
 	@Override
 	public int saveMenu(MenuAddReqVo menu) {
+
 		MenuBean bean = new MenuBean();
 		bean.setMenuName(menu.getMenuName());
+
+		if (menuDao.queryMenu(bean) != null) {
+			throw new TplException(MENU_IS_EXIST_ERROR);
+		}
+
 		bean.setMenuType(menu.getMenuType());
 		bean.setStatusId(menu.getStatusId());
 		bean.setSort(menu.getSort());
@@ -75,6 +85,11 @@ public class MenuBizImpl implements MenuBiz {
 	public int updateMenu(MenuUpdateReqVo menu) {
 		MenuBean bean = new MenuBean();
 		bean.setId(menu.getId());
+
+		if (menuDao.queryMenu(bean)==null) {
+			throw new TplException(MENU_IS_NOT_EXIST_ERROR);
+		}
+
 		bean.setMenuName(menu.getMenuName());
 		bean.setMenuType(menu.getMenuType());
 		bean.setStatusId(menu.getStatusId());
@@ -118,12 +133,12 @@ public class MenuBizImpl implements MenuBiz {
 	}
 
 	/**
-     * 查询菜单信息列表
-     *
-     * @return MenuResp
-     * @author 刘飞华
-     * @date: 2023-09-20 10:44:24
-     */
+	 * 查询菜单信息列表
+	 *
+	 * @return MenuResp
+	 * @author 刘飞华
+	 * @date: 2023-09-20 10:44:24
+	 */
 	@Override
 	public List<MenuRespVo> queryMenuList() {
 

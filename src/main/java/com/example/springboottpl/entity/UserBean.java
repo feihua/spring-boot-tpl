@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserBean implements Serializable {
   //主键
-  private int id; 
+  private Integer id;
   //手机
   private String mobile; 
   //姓名

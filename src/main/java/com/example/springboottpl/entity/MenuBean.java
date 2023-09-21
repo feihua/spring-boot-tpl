@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MenuBean implements Serializable {
   //主键
-  private int id; 
+  private Integer id;
   //菜单名称
   private String menuName; 
   //菜单类型(1：目录   2：菜单   3：按钮)

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RoleBean implements Serializable {
   //主键
-  private int id; 
+  private Integer id;
   //名称
   private String roleName; 
   //状态(1:正常，0:禁用)

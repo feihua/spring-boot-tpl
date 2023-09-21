@@ -20,6 +20,13 @@ public enum ExceptionEnum {
 
 	ADMIN_PERMISSIONS_ERROR(20006, "不能修改超级管理员的权限!"),
 	USER_ID_IS_NULL_ERROR(20007, "用户id不能为空!"),
+
+	ROLE_IS_EXIST_ERROR(21001, "角色名称已存在!"),
+	ROLE_IS_NOT_EXIST_ERROR(210021, "角色不存在!"),
+
+	MENU_IS_EXIST_ERROR(22001, "菜单名称已存在!"),
+	MENU_IS_NOT_EXIST_ERROR(22002, "菜单不存在!"),
+
 	;
 
 	private final int code;
