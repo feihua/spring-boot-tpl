@@ -15,18 +15,27 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
+import com.example.springboottpl.config.TplConfig;
 import com.example.springboottpl.util.Result;
 import com.example.springboottpl.util.TplConstant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Component
+//@Component
 @Slf4j
 public class LoggingFilter implements Filter {
+
+	@Autowired
+	private TplConfig tplConfig;
+
+	@Value("${not.intercept.urls}")
+	public String notInterceptUrls;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -45,7 +54,7 @@ public class LoggingFilter implements Filter {
 
 		log.info("LoggingFilter - {} {} {} {}", requestURI, method, queryString, remoteAddr);
 
-		if ("/tpl/user/login".equals(requestURI)) {
+		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("swagger")) {
 			chain.doFilter(request, response);
 			return;
 		}

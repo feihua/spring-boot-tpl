@@ -24,3 +24,8 @@ server:
   port: 6666
   servlet:
     context-path: /tpl
+
+# 不需要拦截的url
+not:
+  intercept:
+    urls: /tpl/user/login,/tpl/swagger-ui/index.html,/tpl/v3/api-docs

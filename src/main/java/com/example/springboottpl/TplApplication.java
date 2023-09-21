@@ -1,8 +1,10 @@
 package com.example.springboottpl;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
@@ -12,10 +14,15 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  */
 @EnableOpenApi
 @SpringBootApplication
-public class TplApplication {
+@Slf4j
+public class TplApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TplApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) {
+		log.info("tpl server is running");
+	}
 }
