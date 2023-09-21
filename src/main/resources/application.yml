@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://139.159.180.129:3306/rustdb?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://139.159.180.129:3306/tpl?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: ad879037-c7a4-4063-9236-6bfc35d54b7d
     driver-class-name: com.mysql.cj.jdbc.Driver

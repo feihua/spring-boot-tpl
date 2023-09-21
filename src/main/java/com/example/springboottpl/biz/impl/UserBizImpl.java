@@ -242,7 +242,7 @@ public class UserBizImpl implements UserBiz {
 		List<MenuBean> menuList = isAdmin ? menuBiz.queryMenuListMenuBean() : userDao.queryUserMenus(user.getId());
 
 		List<String> apiUrls = menuList.stream().map(MenuBean::getApiUrl).filter(Objects::nonNull)
-				.collect(Collectors.toList());
+				.filter(x -> !x.isEmpty()).collect(Collectors.toList());
 
 		String token = createToken(user, apiUrls);
 

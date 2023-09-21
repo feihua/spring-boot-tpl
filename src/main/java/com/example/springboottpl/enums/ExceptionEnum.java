@@ -19,6 +19,7 @@ public enum ExceptionEnum {
 	USER_NOT_CONFIRM_PASSWORD_ERROR(20005, "新密码错误!"),
 
 	ADMIN_PERMISSIONS_ERROR(20006, "不能修改超级管理员的权限!"),
+	USER_ID_IS_NULL_ERROR(20007, "用户id不能为空!"),
 	;
 
 	private final int code;

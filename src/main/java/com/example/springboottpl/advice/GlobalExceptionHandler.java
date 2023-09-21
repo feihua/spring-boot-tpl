@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.extern.slf4j.Slf4j;
-
 import static com.example.springboottpl.enums.ExceptionEnum.INTERNAL_SERVER_ERROR;
 
 import com.example.springboottpl.exception.TplException;
