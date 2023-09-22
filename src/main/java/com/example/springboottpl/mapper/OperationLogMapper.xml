@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.OperationLogDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.OperationLogBean">
+      <result column="id" property="id" jdbcType="BIGINT"/>
+      <result column="user_id" property="userId" jdbcType="BIGINT"/>
+      <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+      <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
+      <result column="operation_url" property="operationUrl" jdbcType="VARCHAR"/>
+      <result column="operation_method" property="operationMethod" jdbcType="VARCHAR"/>
+      <result column="operation_desc" property="operationDesc" jdbcType="VARCHAR"/>
+      <result column="request_params" property="requestParams" jdbcType="VARCHAR"/>
+      <result column="response_params" property="responseParams" jdbcType="VARCHAR"/>
+      <result column="err_message" property="errMessage" jdbcType="VARCHAR"/>
+      <result column="err_message_detail" property="errMessageDetail" jdbcType="VARCHAR"/>
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_id, user_name, ip_address, operation_url, operation_method, operation_desc, request_params, response_params, err_message, err_message_detail, create_time
+    </sql>
+
+    <insert id="saveOperationLog" parameterType="com.example.springboottpl.entity.OperationLogBean">
+        insert into sys_operation_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="ipAddress != null">
+                ip_address,
+            </if>
+            <if test="operationUrl != null">
+                operation_url,
+            </if>
+            <if test="operationMethod != null">
+                operation_method,
+            </if>
+            <if test="operationDesc != null">
+                operation_desc,
+            </if>
+            <if test="requestParams != null">
+                request_params,
+            </if>
+            <if test="responseParams != null">
+                response_params,
+            </if>
+            <if test="errMessage != null">
+                err_message,
+            </if>
+            <if test="errMessageDetail != null">
+                err_message_detail,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType=BIGINT },
+            </if>
+            <if test="userId != null">
+                #{ userId,jdbcType=BIGINT },
+            </if>
+            <if test="userName != null">
+                #{ userName,jdbcType=VARCHAR },
+            </if>
+            <if test="ipAddress != null">
+                #{ ipAddress,jdbcType=VARCHAR },
+            </if>
+            <if test="operationUrl != null">
+                #{ operationUrl,jdbcType=VARCHAR },
+            </if>
+            <if test="operationMethod != null">
+                #{ operationMethod,jdbcType=VARCHAR },
+            </if>
+            <if test="operationDesc != null">
+                #{ operationDesc,jdbcType=VARCHAR },
+            </if>
+            <if test="requestParams != null">
+                #{ requestParams,jdbcType=VARCHAR },
+            </if>
+            <if test="responseParams != null">
+                #{ responseParams,jdbcType=VARCHAR },
+            </if>
+            <if test="errMessage != null">
+                #{ errMessage,jdbcType=VARCHAR },
+            </if>
+            <if test="errMessageDetail != null">
+                #{ errMessageDetail,jdbcType=VARCHAR },
+            </if>
+            <if test="createTime != null">
+                #{ createTime,jdbcType=TIMESTAMP },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteOperationLog">
+        delete from sys_operation_log where id in
+        <foreach collection="list" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="queryOperationLogList" parameterType="com.example.springboottpl.entity.OperationLogBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_operation_log
+        <where>
+          <if test="userId != null">
+              and user_id = #{ userId}
+          </if>
+          <if test="userName != null">
+              and user_name = #{ userName}
+          </if>
+          <if test="ipAddress != null">
+              and ip_address = #{ ipAddress}
+          </if>
+          <if test="operationUrl != null">
+              and operation_url = #{ operationUrl}
+          </if>
+          <if test="operationMethod != null">
+              and operation_method = #{ operationMethod}
+          </if>
+          <if test="operationDesc != null">
+              and operation_desc = #{ operationDesc}
+          </if>
+        </where>
+    </select>
+</mapper>

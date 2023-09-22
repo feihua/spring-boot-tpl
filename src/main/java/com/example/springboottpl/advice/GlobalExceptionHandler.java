@@ -54,6 +54,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
 	public Result<String> exceptionHandler(HttpServletRequest req, Exception e) {
+		log.error("处理其他异常: {}", ExceptionUtil.stackTrace(e));
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getMsg());
 	}
 

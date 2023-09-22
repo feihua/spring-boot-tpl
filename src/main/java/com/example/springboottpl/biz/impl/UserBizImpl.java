@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import static com.example.springboottpl.enums.ExceptionEnum.USER_NOT_EXIST_ERROR
 import static com.example.springboottpl.enums.ExceptionEnum.USER_PASSWORD_ERROR;
 import static com.example.springboottpl.enums.StatusEnum.enable;
 
+import com.example.springboottpl.biz.LoginLogBiz;
 import com.example.springboottpl.biz.MenuBiz;
 import com.example.springboottpl.biz.RoleBiz;
 import com.example.springboottpl.biz.UserBiz;
@@ -32,6 +35,7 @@ import com.example.springboottpl.enums.MenuTypeEnum;
 import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.util.TplConstant;
+import com.example.springboottpl.vo.req.LoginLogAddReqVo;
 import com.example.springboottpl.vo.req.RoleListReqVo;
 import com.example.springboottpl.vo.req.UserAddReqVo;
 import com.example.springboottpl.vo.req.UserDeleteReqVo;
@@ -71,6 +75,11 @@ public class UserBizImpl implements UserBiz {
 	@Autowired
 	private RoleBiz roleBiz;
 
+	@Autowired
+	private LoginLogBiz loginLogBiz;
+
+	@Autowired(required = false)
+	private HttpServletRequest request;
 	/**
 	 * 添加用户信息
 	 *
@@ -259,6 +268,12 @@ public class UserBizImpl implements UserBiz {
 		loginRespVo.setUserName(user.getUserName());
 		loginRespVo.setToken(token);
 
+		LoginLogAddReqVo logAddReqVo = new LoginLogAddReqVo();
+		logAddReqVo.setUserId(user.getId());
+		logAddReqVo.setUserName(user.getUserName());
+		logAddReqVo.setIpAddress(request.getRemoteAddr());
+
+		loginLogBiz.saveLoginLog(logAddReqVo);
 		return loginRespVo;
 	}
 

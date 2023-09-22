@@ -12,11 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,10 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.OperationLogService;
 import com.example.springboottpl.util.ExceptionUtil;
 import com.example.springboottpl.util.JsonUtil;
+import com.example.springboottpl.vo.req.OperationLogAddReqVo;
 
 /**
  * 描述：切面
@@ -40,12 +40,13 @@ import com.example.springboottpl.util.JsonUtil;
 public class LogAspect {
 
 	private static final ThreadLocal<Date> beginTimeThreadLocal = new NamedThreadLocal<>("ThreadLocal beginTime");
-	// TODO: 2023/9/21 做业务的时候 打开下面注释)
-	//private static final ThreadLocal<AuditLogAddReqVo> logThreadLocal = new NamedThreadLocal<>("ThreadLocal log");
-	private static final ThreadLocal<String> resultThreadLocal = new NamedThreadLocal<>("ThreadLocal result");
+	private static final ThreadLocal<OperationLogAddReqVo> logThreadLocal = new NamedThreadLocal<>("ThreadLocal log");
 
 	@Autowired(required = false)
 	private HttpServletRequest request;
+
+	@Autowired
+	private OperationLogService logService;
 
 	/**
 	 * Controller层切点 注解拦截
@@ -54,75 +55,48 @@ public class LogAspect {
 	public void operateAspect() {
 	}
 
-	/**
-	 * 前置通知 用于拦截Controller层记录用户的操作的开始时间
-	 *
-	 * @param joinPoint 切点
-	 *
-	 * @author 刘飞华
-	 * @date: 2023/5/11 13:46
-	 */
-	@Before("operateAspect()")
-	public void doBefore(JoinPoint joinPoint) {
-		Date beginTime = new Date();
-		beginTimeThreadLocal.set(beginTime);
-		String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(beginTime);
-		log.debug("开始计时: {}, URI: {}", format, request.getRequestURI());
-	}
-
 	@Around("operateAspect()")
 	public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
-		Object result = point.proceed();
-		resultThreadLocal.set(JsonUtil.toJson(result));
-		return result;
-	}
+		Date beginTime = new Date();
+		String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(beginTime);
+		log.info("开始计时: {}, URI: {}", startTime, request.getRequestURI());
 
-	/**
-	 * 后置通知 用于拦截Controller层记录用户的操作
-	 *
-	 * @param joinPoint 切点
-	 * @author 刘飞华
-	 * @date: 2023/5/11 14:54
-	 */
-	@After("operateAspect()")
-	public void doAfter(JoinPoint joinPoint) throws Throwable {
-		//String userId = request.getHeader("userId");
-		//if (StringUtils.isEmpty(userId)) {
-		//	return;
-		//}
+		String userIdStr = request.getHeader("userId");
+		String userName = request.getHeader("userName");
 
-		Object[] args = joinPoint.getArgs();
+		Object[] args = point.getArgs();
 
 		String desc = "";
-		//String type = "info";                       //日志类型(info:入库,error:错误)
 		String remoteAddr = request.getRemoteAddr();//请求的IP
 		String requestUri = request.getRequestURI();//请求的Uri
 		String method = request.getMethod();        //请求的方法类型(post/get)
 
 		try {
-			desc = getControllerMethodDescription(request, joinPoint);
+			desc = getDesc(request, point);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		long beginTime = beginTimeThreadLocal.get().getTime();
 		long endTime = System.currentTimeMillis();
 
-		String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime);
-		log.debug(
-				"计时结束：{}  URI: {}  耗时： {}   最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
-				format, request.getRequestURI(), endTime - beginTime, Runtime.getRuntime().maxMemory() / 1024 / 1024,
-				Runtime.getRuntime().totalMemory() / 1024 / 1024, Runtime.getRuntime().freeMemory() / 1024 / 1024,
-				(Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime()
-						.freeMemory()) / 1024 / 1024);
+		OperationLogAddReqVo logAddReqVo = new OperationLogAddReqVo();
+		if (null != userIdStr && !"".equals(userIdStr)) {
+			logAddReqVo.setUserId(Integer.parseInt(userIdStr));
+		}
+		logAddReqVo.setUserName(userName);
+		logAddReqVo.setIpAddress(remoteAddr);
+		logAddReqVo.setOperationUrl(requestUri);
+		logAddReqVo.setOperationMethod(method);
+		logAddReqVo.setOperationDesc(desc);
+		logAddReqVo.setRequestParams(JsonUtil.toJson(args));
+		logAddReqVo.setResponseParams("error");
 
-		String result = resultThreadLocal.get();
+		logThreadLocal.set(logAddReqVo);
+		Object result = point.proceed();
 
-		log.info("请求参数:{} {} {} {} {} {}", requestUri, method, JsonUtil.toJson(args), desc, result, remoteAddr);
-
-		// TODO: 2023/9/21 添加数据库
-		// TODO: 2023/9/21 把数据传到AfterThrowing,出异常的时候更新
-		//logThreadLocal.set(logAddReqVo);
+		logAddReqVo.setResponseParams(JsonUtil.toJson(result));
+		logService.saveOperationLog(logAddReqVo);
+		return result;
 	}
 
 	/**
@@ -133,11 +107,11 @@ public class LogAspect {
 	 */
 	@AfterThrowing(pointcut = "operateAspect()", throwing = "e")
 	public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-		log.error(ExceptionUtil.stackTrace(e));
-		//e.printStackTrace();
-		// TODO: 2023/9/21 获取参数 logThreadLocal.get()
-		// TODO: 2023/9/21 提取异常 e
-		// TODO: 2023/9/21 更新数据库
+		OperationLogAddReqVo result = logThreadLocal.get();
+		result.setErrMessage(e.getMessage());
+		result.setErrMessageDetail(ExceptionUtil.stackTrace(e));
+		logService.saveOperationLog(result);
+		log.error("{}-{}", e.getMessage(), ExceptionUtil.stackTrace(e));
 	}
 
 	/**
@@ -148,7 +122,7 @@ public class LogAspect {
 	 * @author 刘飞华
 	 * @date: 2023/9/21 16:13
 	 */
-	public static String getControllerMethodDescription(HttpServletRequest request, JoinPoint joinPoint) {
+	public String getDesc(HttpServletRequest request, JoinPoint joinPoint) {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		Method method = signature.getMethod();
 		OperateLog operateLog = method.getAnnotation(OperateLog.class);
