@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springboottpl.annotation.OperateLog;
 import com.example.springboottpl.service.MenuService;
 import com.example.springboottpl.util.Result;
 import com.example.springboottpl.vo.req.MenuAddReqVo;
@@ -44,6 +45,7 @@ public class MenuController {
     */
    @ApiOperation("添加菜单信息")
    @PostMapping("/saveMenu")
+   @OperateLog(description = "【菜单管理】添加菜单信息")
    public Result<Integer> saveMenu(@RequestBody @Valid MenuAddReqVo record){
         return Result.success(menuService.saveMenu(record));
    }
@@ -58,6 +60,7 @@ public class MenuController {
     */
    @ApiOperation("删除菜单信息")
    @PostMapping("/deleteMenu")
+   @OperateLog(description = "【菜单管理】删除菜单信息")
    public Result<Integer> deleteMenu(@RequestBody @Valid MenuDeleteReqVo record){
         return Result.success(menuService.deleteMenu(record));
    }
@@ -72,6 +75,7 @@ public class MenuController {
     */
    @ApiOperation("更新菜单信息")
    @PostMapping("/updateMenu")
+   @OperateLog(description = "【菜单管理】更新菜单信息")
    public Result<Integer> updateMenu(@RequestBody @Valid MenuUpdateReqVo record){
         return Result.success(menuService.updateMenu(record));
    }
@@ -86,6 +90,7 @@ public class MenuController {
     */
    @ApiOperation("查询菜单信息")
    @PostMapping("/queryMenu")
+   @OperateLog(description = "【菜单管理】查询菜单信息")
    public MenuRespVo query(@RequestBody @Valid MenuReqVo record){
        return menuService.queryMenu(record);
    }
@@ -99,6 +104,7 @@ public class MenuController {
     */
    @ApiOperation("查询菜单信息列表")
    @PostMapping("/queryMenuList")
+   @OperateLog(description = "【菜单管理】查询菜单信息列表")
    public Result<List<MenuRespVo>> queryMenuList(){
         return Result.success(menuService.queryMenuList());
    }

@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import static com.example.springboottpl.enums.ExceptionEnum.INTERNAL_SERVER_ERROR;
 
 import com.example.springboottpl.exception.TplException;
+import com.example.springboottpl.util.ExceptionUtil;
 import com.example.springboottpl.util.Result;
 
 /**
@@ -37,8 +38,7 @@ public class GlobalExceptionHandler {
 	 */
 	@ExceptionHandler(value = TplException.class)
 	@ResponseBody
-	public Result<String> apiExceptionHandler(HttpServletRequest req, TplException e) {
-		log.error("{}", e.getMessage());
+	public Result<String> tplExceptionHandler(HttpServletRequest req, TplException e) {
 		return Result.error(e.getCode(), e.getMessage());
 	}
 
@@ -54,7 +54,6 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
 	public Result<String> exceptionHandler(HttpServletRequest req, Exception e) {
-		log.error("{}", e.getMessage());
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getMsg());
 	}
 
@@ -91,7 +90,6 @@ public class GlobalExceptionHandler {
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
 			errorMessage.append(fieldError.getDefaultMessage()).append("!, ");
 		}
-		log.error("{}", errorMessage);
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), errorMessage.toString());
 	}
 
@@ -105,7 +103,6 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = UnexpectedTypeException.class)
 	public Result<String> handleUnexpectedTypeException(UnexpectedTypeException e) {
-		log.error("{}", e.getMessage());
 		return Result.error(INTERNAL_SERVER_ERROR.getCode(), e.getMessage());
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springboottpl.annotation.OperateLog;
 import com.example.springboottpl.service.RoleService;
 import com.example.springboottpl.util.Result;
 import com.example.springboottpl.util.ResultPage;
@@ -48,6 +49,7 @@ public class RoleController {
 	 */
 	@ApiOperation("添加角色信息")
 	@PostMapping("/saveRole")
+	@OperateLog(description = "【角色管理】添加角色信息")
 	public Result<Integer> saveRole(@RequestBody @Valid RoleAddReqVo record) {
 		return Result.success(roleService.saveRole(record));
 	}
@@ -62,6 +64,7 @@ public class RoleController {
 	 */
 	@ApiOperation("删除角色信息")
 	@PostMapping("/deleteRole")
+	@OperateLog(description = "【角色管理】删除角色信息")
 	public Result<Integer> deleteRole(@RequestBody @Valid RoleDeleteReqVo record) {
 		return Result.success(roleService.deleteRole(record));
 	}
@@ -76,6 +79,7 @@ public class RoleController {
 	 */
 	@ApiOperation("更新角色信息")
 	@PostMapping("/updateRole")
+	@OperateLog(description = "【角色管理】更新角色信息")
 	public Result<Integer> updateRole(@RequestBody @Valid RoleUpdateReqVo record) {
 		return Result.success(roleService.updateRole(record));
 	}
@@ -90,6 +94,7 @@ public class RoleController {
 	 */
 	@ApiOperation("查询角色信息")
 	@PostMapping("/queryRole")
+	@OperateLog(description = "【角色管理】查询角色信息")
 	public RoleRespVo query(@RequestBody @Valid RoleReqVo record) {
 		return roleService.queryRole(record);
 	}
@@ -104,6 +109,7 @@ public class RoleController {
 	 */
 	@ApiOperation("查询角色信息列表")
 	@PostMapping("/queryRoleList")
+	@OperateLog(description = "【角色管理】查询角色信息列表")
 	public Result<ResultPage<RoleRespVo>> queryRoleList(@RequestBody @Valid RoleListReqVo record) {
 		return Result.success(roleService.queryRoleList(record));
 	}
@@ -118,6 +124,7 @@ public class RoleController {
 	 */
 	@ApiOperation("查询角色信息列表")
 	@GetMapping("/queryRoleMenuList")
+	@OperateLog(description = "【角色管理】查询角色信息列表")
 	public Result<RoleMenuRespVo> queryRoleMenuList(@RequestParam(value = "roleId") Integer roleId) {
 		return Result.success(roleService.queryRoleMenuList(roleId));
 	}
@@ -130,8 +137,9 @@ public class RoleController {
 	 * @author 刘飞华
 	 * @date: 2023-09-20 10:44:25
 	 */
-	@ApiOperation("查询角色信息列表")
+	@ApiOperation("更新角色菜单信息列表")
 	@PostMapping("/updateRoleMenuList")
+	@OperateLog(description = "【角色管理】更新角色菜单信息列表")
 	public Result<Integer> updateRoleMenuList(@RequestBody @Valid UpdateRoleMenuListReqVo record) {
 		return Result.success(roleService.updateRoleMenuList(record));
 	}

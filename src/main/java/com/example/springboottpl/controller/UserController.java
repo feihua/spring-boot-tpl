@@ -67,6 +67,7 @@ public class UserController {
 	 */
 	@ApiOperation("删除用户信息")
 	@PostMapping("/deleteUser")
+	@OperateLog(description = "【用户管理】删除用户信息")
 	public Result<Integer> deleteUser(@RequestBody @Valid UserDeleteReqVo record) {
 		return Result.success(userService.deleteUser(record));
 	}
@@ -81,6 +82,7 @@ public class UserController {
 	 */
 	@ApiOperation("更新用户信息")
 	@PostMapping("/updateUser")
+	@OperateLog(description = "【用户管理】更新用户信息")
 	public Result<Integer> updateUser(@RequestBody @Valid UserUpdateReqVo record) {
 		return Result.success(userService.updateUser(record));
 	}
@@ -95,6 +97,7 @@ public class UserController {
 	 */
 	@ApiOperation("查询用户信息")
 	@PostMapping("/queryUser")
+	@OperateLog(description = "【用户管理】查询用户信息")
 	public UserRespVo query(@RequestBody @Valid UserReqVo record) {
 		return userService.queryUser(record);
 	}
@@ -109,6 +112,7 @@ public class UserController {
 	 */
 	@ApiOperation("查询用户信息列表")
 	@PostMapping("/queryUserList")
+	@OperateLog(description = "【用户管理】查询用户信息列表")
 	public Result<ResultPage<UserRespVo>> queryUserList(@RequestBody @Valid UserListReqVo record) {
 		return Result.success(userService.queryUserList(record));
 	}
@@ -121,7 +125,7 @@ public class UserController {
 	 * @author 刘飞华
 	 * @date: 2023-09-20 10:44:26
 	 */
-	@ApiOperation("添加用户信息")
+	@ApiOperation("用户登录")
 	@PostMapping("/login")
 	public Result<UserLoginRespVo> login(@RequestBody @Valid UserLoginReqVo record) {
 		return Result.success(userService.login(record));
@@ -136,6 +140,7 @@ public class UserController {
 	 */
 	@ApiOperation("查询用户菜单")
 	@GetMapping("/queryUserMenu")
+	@OperateLog(description = "【用户管理】查询用户菜单")
 	public Result<UserMenuRespVo> queryUserMenu() {
 		return Result.success(userService.queryUserMenu());
 	}
@@ -150,6 +155,7 @@ public class UserController {
 	 */
 	@ApiOperation("查询用户角色")
 	@GetMapping("/queryUserRole")
+	@OperateLog(description = "【用户管理】查询用户角色")
 	public Result<UserRoleRespVo> queryUserRole(@RequestParam(value = "userId") Integer userId) {
 		return Result.success(userService.queryUserRole(userId));
 	}
@@ -164,6 +170,7 @@ public class UserController {
 	 */
 	@ApiOperation("更新用户角色")
 	@PostMapping("/updateUserRole")
+	@OperateLog(description = "【用户管理】更新用户角色")
 	public Result<Integer> updateUserRole(@RequestBody @Valid UserRoleUpdateReqVo record) {
 		return Result.success(userService.updateUserRole(record));
 	}

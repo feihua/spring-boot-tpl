@@ -54,7 +54,7 @@ public class LoggingFilter implements Filter {
 
 		log.info("LoggingFilter - {} {} {} {}", requestURI, method, queryString, remoteAddr);
 
-		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("swagger")) {
+		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("webjars")||requestURI.contains("swagger")) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -78,7 +78,6 @@ public class LoggingFilter implements Filter {
 		try {
 			String token = request.getHeader("Authorization");
 			String requestURI = request.getRequestURI();
-			log.info("token:{}", token);
 			if (!StringUtils.hasText(token) || !token.startsWith("Bearer ")) {
 				setResult(httpServletResponse, "Authorization参数缺失或者格式不正确");
 				return;

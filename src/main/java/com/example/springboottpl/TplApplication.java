@@ -5,14 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.extern.slf4j.Slf4j;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * 描述：启动入口
  * 作者：刘飞华
  * 日期：2023/2/22 13:52
  */
-@EnableOpenApi
 @SpringBootApplication
 @Slf4j
 public class TplApplication implements CommandLineRunner {
