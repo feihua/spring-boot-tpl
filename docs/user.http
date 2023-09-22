@@ -63,7 +63,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "id": 16,
+  "id": 12,
   "mobile": "18613031252",
   "userName": "超级管理员2",
   "password": "123456",

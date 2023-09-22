@@ -45,6 +45,8 @@ public class OperationLogRespVo implements Serializable {
 	private String errMessage;
 	@ApiModelProperty(value = "详细的异常信息")
 	private String errMessageDetail;
+	@ApiModelProperty(value = "耗时")
+	private Integer useTime;
 	@ApiModelProperty("操作时间")
 	private Date createTime;
 }

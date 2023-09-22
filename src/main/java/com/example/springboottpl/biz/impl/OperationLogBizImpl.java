@@ -55,6 +55,7 @@ public class OperationLogBizImpl implements OperationLogBiz {
         bean.setResponseParams(operationLog.getResponseParams());
         bean.setErrMessage(operationLog.getErrMessage());
         bean.setErrMessageDetail(operationLog.getErrMessageDetail());
+        bean.setUseTime(operationLog.getUseTime());
         bean.setCreateTime(new Date());
 
         return operationLogDao.saveOperationLog(bean);
@@ -108,6 +109,9 @@ public class OperationLogBizImpl implements OperationLogBiz {
             resp.setOperationDesc(x.getOperationDesc());
             resp.setRequestParams(x.getRequestParams());
             resp.setResponseParams(x.getResponseParams());
+            resp.setErrMessage(x.getErrMessage());
+            resp.setErrMessageDetail(x.getErrMessageDetail());
+            resp.setUseTime(x.getUseTime());
             resp.setCreateTime(x.getCreateTime());
 		   return resp;
 	    }).collect(Collectors.toList());

@@ -40,6 +40,8 @@ public class OperationLogBean implements Serializable {
   private String errMessage;
   //详细的异常信息
   private String errMessageDetail;
+  //耗时
+  private Integer useTime;
   //操作时间
   private Date createTime; 
 }

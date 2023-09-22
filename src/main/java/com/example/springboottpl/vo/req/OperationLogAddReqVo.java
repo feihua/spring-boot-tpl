@@ -62,4 +62,7 @@ public class OperationLogAddReqVo implements Serializable {
 	@ApiModelProperty(value = "详细的异常信息")
 	private String errMessageDetail;
 
+	@ApiModelProperty(value = "耗时")
+	private Integer useTime;
+
 }

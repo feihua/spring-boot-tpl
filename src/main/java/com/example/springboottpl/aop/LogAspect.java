@@ -58,6 +58,7 @@ public class LogAspect {
 	@Around("operateAspect()")
 	public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
 		Date beginTime = new Date();
+		beginTimeThreadLocal.set(beginTime);
 		String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(beginTime);
 		log.info("开始计时: {}, URI: {}", startTime, request.getRequestURI());
 
@@ -77,8 +78,6 @@ public class LogAspect {
 			e.printStackTrace();
 		}
 
-		long endTime = System.currentTimeMillis();
-
 		OperationLogAddReqVo logAddReqVo = new OperationLogAddReqVo();
 		if (null != userIdStr && !"".equals(userIdStr)) {
 			logAddReqVo.setUserId(Integer.parseInt(userIdStr));
@@ -95,6 +94,10 @@ public class LogAspect {
 		Object result = point.proceed();
 
 		logAddReqVo.setResponseParams(JsonUtil.toJson(result));
+		long endTime = System.currentTimeMillis();
+		String endTimeStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime);
+		log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), endTime - beginTime.getTime());
+		logAddReqVo.setUseTime(endTime - beginTime.getTime());
 		logService.saveOperationLog(logAddReqVo);
 		return result;
 	}
@@ -110,6 +113,13 @@ public class LogAspect {
 		OperationLogAddReqVo result = logThreadLocal.get();
 		result.setErrMessage(e.getMessage());
 		result.setErrMessageDetail(ExceptionUtil.stackTrace(e));
+
+		long endTime = System.currentTimeMillis();
+		String endTimeStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime);
+		long useTime = endTime - beginTimeThreadLocal.get().getTime();
+		log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), useTime);
+
+		result.setUseTime(useTime);
 		logService.saveOperationLog(result);
 		log.error("{}-{}", e.getMessage(), ExceptionUtil.stackTrace(e));
 	}
