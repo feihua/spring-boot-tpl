@@ -55,5 +55,5 @@ public class OperationLogListReqVo implements Serializable {
 	private String operationDesc;
 
 	@ApiModelProperty(value = "耗时")
-	private Integer useTime;
+	private long useTime;
 }

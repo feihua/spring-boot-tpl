@@ -63,6 +63,6 @@ public class OperationLogAddReqVo implements Serializable {
 	private String errMessageDetail;
 
 	@ApiModelProperty(value = "耗时")
-	private Integer useTime;
+	private long useTime;
 
 }
