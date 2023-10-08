@@ -1,6 +1,6 @@
 create table sys_login_log
 (
-    audit_log_id bigint auto_increment comment '主键'
+    id bigint auto_increment comment '主键'
         primary key,
     user_id      bigint      null comment '用户ID',
     user_name    varchar(32) null comment '用户姓名',
