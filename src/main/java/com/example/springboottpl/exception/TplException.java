@@ -1,12 +1,15 @@
 package com.example.springboottpl.exception;
 
-import lombok.Data;
 
 import com.example.springboottpl.enums.ExceptionEnum;
 
-@Data
+
 public class TplException extends RuntimeException {
 	private int code;
+
+	public int getCode() {
+		return code;
+	}
 
 	/**
 	 * 服务自定义异常构造方法

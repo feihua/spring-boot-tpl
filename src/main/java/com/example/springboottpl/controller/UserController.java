@@ -6,8 +6,10 @@ import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,7 +68,7 @@ public class UserController {
 	 * @date: 2023-09-20 10:44:26
 	 */
 	@ApiOperation("删除用户信息")
-	@PostMapping("/deleteUser")
+	@DeleteMapping("/deleteUser")
 	@OperateLog(description = "【用户管理】删除用户信息")
 	public Result<Integer> deleteUser(@RequestBody @Valid UserDeleteReqVo record) {
 		return Result.success(userService.deleteUser(record));
@@ -81,7 +83,7 @@ public class UserController {
 	 * @date: 2023-09-20 10:44:26
 	 */
 	@ApiOperation("更新用户信息")
-	@PostMapping("/updateUser")
+	@PutMapping("/updateUser")
 	@OperateLog(description = "【用户管理】更新用户信息")
 	public Result<Integer> updateUser(@RequestBody @Valid UserUpdateReqVo record) {
 		return Result.success(userService.updateUser(record));

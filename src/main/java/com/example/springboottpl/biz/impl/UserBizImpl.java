@@ -80,6 +80,7 @@ public class UserBizImpl implements UserBiz {
 
 	@Autowired(required = false)
 	private HttpServletRequest request;
+
 	/**
 	 * 添加用户信息
 	 *
@@ -92,7 +93,7 @@ public class UserBizImpl implements UserBiz {
 	public int saveUser(UserAddReqVo user) {
 		UserBean bean = new UserBean();
 		bean.setMobile(user.getMobile());
-		if (userDao.queryUser(bean)!=null) {
+		if (userDao.queryUser(bean) != null) {
 			throw new TplException(USER_NAME_EXIST_ERROR);
 		}
 		bean.setUserName(user.getUserName());
@@ -129,7 +130,7 @@ public class UserBizImpl implements UserBiz {
 	public int updateUser(UserUpdateReqVo user) {
 		UserBean bean = new UserBean();
 		bean.setId(user.getId());
-		if (userDao.queryUser(bean)==null) {
+		if (userDao.queryUser(bean) == null) {
 			throw new TplException(USER_NOT_EXIST_ERROR);
 		}
 		bean.setMobile(user.getMobile());
@@ -183,7 +184,7 @@ public class UserBizImpl implements UserBiz {
 		bean.setUserName(user.getUserName());
 		bean.setStatusId(user.getStatusId());
 
-		PageHelper.startPage(user.getPageNum(), user.getPageSize());
+		PageHelper.startPage(user.getPageNo(), user.getPageSize());
 		List<UserBean> query = userDao.queryUserList(bean);
 		PageInfo<UserBean> pageInfo = new PageInfo<>(query);
 
@@ -321,13 +322,16 @@ public class UserBizImpl implements UserBiz {
 				.collect(Collectors.toList());
 
 		//菜单
-		List<MenuRespVo> leftMenuData = list.stream().map(x -> {
-			MenuRespVo menuData = MenuRespVo.builder().build();
-			BeanUtils.copyProperties(x, menuData);
-			return menuData;
-		}).collect(Collectors.toList());
+		List<MenuRespVo> leftMenuData = list.stream().filter(x -> x.getMenuType() != MenuTypeEnum.button.getCode())
+				.map(x -> {
+					MenuRespVo menuData = MenuRespVo.builder().build();
+					BeanUtils.copyProperties(x, menuData);
+					return menuData;
+				}).collect(Collectors.toList());
 
-		return UserMenuRespVo.builder().btnPaths(btnPaths).leftMenuData(leftMenuData).build();
+		String avatar = "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png";
+		String name = request.getHeader("userName");
+		return UserMenuRespVo.builder().btnPaths(btnPaths).leftMenuData(leftMenuData).avatar(avatar).name(name).build();
 	}
 
 	/**
@@ -348,7 +352,7 @@ public class UserBizImpl implements UserBiz {
 		List<Integer> userRoleIds = userRoleList.stream().map(RoleRespVo::getId).collect(Collectors.toList());
 
 		//查询所有角色
-		RoleListReqVo role = RoleListReqVo.builder().pageNum(1).pageSize(1000).build();
+		RoleListReqVo role = RoleListReqVo.builder().pageNo(1).pageSize(1000).build();
 		List<RoleRespVo> allRoleList = roleBiz.queryRoleList(role).getList();
 
 		return UserRoleRespVo.builder().roleIds(userRoleIds).allRoleList(allRoleList).userRoleList(userRoleList)

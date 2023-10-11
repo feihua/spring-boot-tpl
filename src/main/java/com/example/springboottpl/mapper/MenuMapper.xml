@@ -103,11 +103,7 @@
     </insert>
 
     <delete id="deleteMenu">
-        delete from sys_menu where id in
-        <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
-            #{id}
-        </foreach>
+        delete from sys_menu where id =#{id}
     </delete>
 
     <update id="updateMenu" parameterType="com.example.springboottpl.entity.MenuBean">

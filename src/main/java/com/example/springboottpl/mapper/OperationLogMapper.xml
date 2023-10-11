@@ -10,6 +10,7 @@
       <result column="operation_url" property="operationUrl" jdbcType="VARCHAR"/>
       <result column="operation_method" property="operationMethod" jdbcType="VARCHAR"/>
       <result column="operation_desc" property="operationDesc" jdbcType="VARCHAR"/>
+      <result column="operation_status" property="operationStatus" jdbcType="VARCHAR"/>
       <result column="request_params" property="requestParams" jdbcType="VARCHAR"/>
       <result column="response_params" property="responseParams" jdbcType="VARCHAR"/>
       <result column="err_message" property="errMessage" jdbcType="VARCHAR"/>
@@ -20,7 +21,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_id, user_name, ip_address, operation_url, operation_method, operation_desc, request_params, response_params, err_message, err_message_detail, create_time, create_time
+        id, user_id, user_name, ip_address, operation_url, operation_method, operation_desc, operation_status, request_params, response_params, err_message, err_message_detail, use_time, create_time
     </sql>
 
     <insert id="saveOperationLog" parameterType="com.example.springboottpl.entity.OperationLogBean">
@@ -46,6 +47,9 @@
             </if>
             <if test="operationDesc != null">
                 operation_desc,
+            </if>
+            <if test="operationStatus != null">
+                operation_status,
             </if>
             <if test="requestParams != null">
                 request_params,
@@ -87,6 +91,9 @@
             </if>
             <if test="operationDesc != null">
                 #{ operationDesc,jdbcType=VARCHAR },
+            </if>
+            <if test="operationStatus != null">
+                #{ operationStatus,jdbcType=INTEGER },
             </if>
             <if test="requestParams != null">
                 #{ requestParams,jdbcType=VARCHAR },
@@ -140,6 +147,10 @@
           <if test="operationDesc != null">
               and operation_desc = #{ operationDesc}
           </if>
+            <if test="operationStatus != null">
+                and operation_status = #{ operationStatus}
+            </if>
         </where>
+        order by create_time desc
     </select>
 </mapper>

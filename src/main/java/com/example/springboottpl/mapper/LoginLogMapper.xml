@@ -80,5 +80,6 @@
               and ip_address = #{ ipAddress}
           </if>
         </where>
+        order by create_time desc
     </select>
 </mapper>

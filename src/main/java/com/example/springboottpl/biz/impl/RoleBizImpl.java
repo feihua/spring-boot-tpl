@@ -143,7 +143,7 @@ public class RoleBizImpl implements RoleBiz {
 		bean.setRoleName(role.getRoleName());
 		bean.setStatusId(role.getStatusId());
 
-		PageHelper.startPage(role.getPageNum(), role.getPageSize());
+		PageHelper.startPage(role.getPageNo(), role.getPageSize());
 		List<RoleBean> query = roleDao.queryRoleList(bean);
 		PageInfo<RoleBean> pageInfo = new PageInfo<>(query);
 

@@ -23,12 +23,12 @@ import lombok.NoArgsConstructor;
 @ApiModel("角色用户关联表响应vo")
 public class UserRoleRespVo implements Serializable {
 
-	@ApiModelProperty("角色拥有的角色ids")
+	@ApiModelProperty(value = "角色拥有的角色ids")
 	private List<Integer> roleIds;
 
-	@ApiModelProperty("角色拥有的角色")
+	@ApiModelProperty(value = "角色拥有的角色")
 	private List<RoleRespVo> userRoleList;
 
-	@ApiModelProperty("所有的角色")
+	@ApiModelProperty(value = "所有的角色")
 	private List<RoleRespVo> allRoleList;
 }

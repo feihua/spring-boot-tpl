@@ -23,9 +23,9 @@ import lombok.NoArgsConstructor;
 @ApiModel("菜单角色关联表响应vo")
 public class RoleMenuRespVo implements Serializable {
 
-	@ApiModelProperty("菜单ID")
+	@ApiModelProperty(value = "菜单ID")
 	private List<Integer> menuIds;
 
-	@ApiModelProperty("所有菜单")
+	@ApiModelProperty(value = "所有菜单")
 	private List<MenuRespVo> menuList;
 }

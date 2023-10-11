@@ -29,7 +29,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "pageNum": 1,
+  "pageNo": 1,
   "pageSize": 10
 }
 ###新增角色 role_save
@@ -44,7 +44,7 @@ Authorization: Bearer {{token}}
   "remark": "1"
 }
 ###删除角色 role_delete
-POST {{host}}/role/deleteRole
+DELETE {{host}}/role/deleteRole
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

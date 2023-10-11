@@ -23,10 +23,16 @@ import lombok.NoArgsConstructor;
 @ApiModel("用户菜单响应vo")
 public class UserMenuRespVo implements Serializable {
 
-	@ApiModelProperty("按钮权限")
+	@ApiModelProperty(value = "按钮权限")
 	private List<String> btnPaths;
 
-	@ApiModelProperty("左侧菜单数据")
+	@ApiModelProperty(value = "左侧菜单数据")
 	private List<MenuRespVo> leftMenuData;
+
+	@ApiModelProperty(value = "姓名")
+	private String name;
+
+	@ApiModelProperty(value = "图像地址")
+	private String avatar;
 
 }

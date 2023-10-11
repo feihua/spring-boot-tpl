@@ -108,7 +108,7 @@ public class UserRoleBizImpl implements UserRoleBiz {
 		//bean.setCreateTime(userRole.getCreateTime());
 		//bean.setUpdateTime(userRole.getUpdateTime());
 
-		PageHelper.startPage(userRole.getPageNum(), userRole.getPageSize());
+		PageHelper.startPage(userRole.getPageNo(), userRole.getPageSize());
 		List<UserRoleBean> query = userRoleDao.queryUserRoleList(bean);
 		PageInfo<UserRoleBean> pageInfo = new PageInfo<>(query);
 

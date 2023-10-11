@@ -3,8 +3,6 @@ package com.example.springboottpl.util;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.springframework.validation.FieldError;
-
 /**
  * 描述：异常处理
  * 作者：刘飞华

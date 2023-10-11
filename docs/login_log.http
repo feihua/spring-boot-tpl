@@ -1,0 +1,41 @@
+###登录 login
+POST {{host}}/user/login
+Content-Type: application/json
+
+{
+  "mobile": "18613030352",
+  "password": "123456"
+}
+> {% client.global.set("token", response.body.data.token); %}
+
+
+###菜单列表 loginLog_list
+POST {{host}}/loginLog/queryLoginLogList
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "pageNo": 1,
+  "pageSize": 10
+}
+
+###新增菜单 loginLog_save
+POST {{host}}/loginLog/saveLoginLog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 1,
+  "userName": "超级管理员",
+  "ipAddress": "10.168.96.23"
+}
+
+###删除菜单 loginLog_delete
+DELETE {{host}}/loginLog/deleteLoginLog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "ids": [102]
+}
+

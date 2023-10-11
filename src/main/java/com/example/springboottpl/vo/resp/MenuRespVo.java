@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 描述：菜单信息
  * 作者：刘飞华
@@ -23,28 +25,30 @@ import lombok.NoArgsConstructor;
 @ApiModel("菜单信息响应vo")
 public class MenuRespVo implements Serializable {
 
-	@ApiModelProperty("主键")
+	@ApiModelProperty(value = "主键")
 	private int id;
-	@ApiModelProperty("菜单名称")
+	@ApiModelProperty(value = "菜单名称")
 	private String menuName;
-	@ApiModelProperty("菜单类型(1：目录   2：菜单   3：按钮)")
+	@ApiModelProperty(value = "菜单类型(1：目录   2：菜单   3：按钮)")
 	private int menuType;
-	@ApiModelProperty("状态(1:正常，0:禁用)")
+	@ApiModelProperty(value = "状态(1:正常，0:禁用)")
 	private int statusId;
-	@ApiModelProperty("排序")
+	@ApiModelProperty(value = "排序")
 	private int sort;
-	@ApiModelProperty("父ID")
+	@ApiModelProperty(value = "父ID")
 	private int parentId;
-	@ApiModelProperty("路由路径")
+	@ApiModelProperty(value = "路由路径")
 	private String menuUrl;
-	@ApiModelProperty("接口URL")
+	@ApiModelProperty(value = "接口URL")
 	private String apiUrl;
-	@ApiModelProperty("菜单图标")
+	@ApiModelProperty(value = "菜单图标")
 	private String menuIcon;
-	@ApiModelProperty("备注")
+	@ApiModelProperty(value = "备注")
 	private String remark;
-	@ApiModelProperty("创建时间")
+	@ApiModelProperty(value = "创建时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
-	@ApiModelProperty("修改时间")
+	@ApiModelProperty(value = "修改时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date updateTime;
 }

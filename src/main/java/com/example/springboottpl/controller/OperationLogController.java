@@ -3,25 +3,22 @@ package com.example.springboottpl.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springboottpl.service.OperationLogService;
 import com.example.springboottpl.util.Result;
 import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.OperationLogReqVo;
-import com.example.springboottpl.vo.req.OperationLogListReqVo;
 import com.example.springboottpl.vo.req.OperationLogAddReqVo;
 import com.example.springboottpl.vo.req.OperationLogDeleteReqVo;
-import com.example.springboottpl.vo.req.OperationLogUpdateReqVo;
+import com.example.springboottpl.vo.req.OperationLogListReqVo;
 import com.example.springboottpl.vo.resp.OperationLogRespVo;
-import com.example.springboottpl.service.OperationLogService;
 
 /**
  * 描述：操作日志
@@ -59,7 +56,7 @@ public class OperationLogController {
     * @date: 2023-09-22 09:54:29
     */
    @ApiOperation("删除操作日志")
-   @PostMapping("/deleteOperationLog")
+   @DeleteMapping("/deleteOperationLog")
    public Result<Integer> deleteOperationLog(@RequestBody @Valid OperationLogDeleteReqVo record){
         return Result.success(operationLogService.deleteOperationLog(record));
    }

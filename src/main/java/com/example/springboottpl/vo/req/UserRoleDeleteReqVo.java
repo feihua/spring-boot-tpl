@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @ApiModel("角色用户关联表请求vo")
 public class UserRoleDeleteReqVo implements Serializable {
 
-	@ApiModelProperty("主键数组")
+	@ApiModelProperty(value = "主键数组")
 	private List<Integer> ids;
 }
 

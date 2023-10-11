@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoginLogBean implements Serializable {
   //主键
-  private int id; 
+  private Integer id;
   //用户ID
-  private int userId; 
+  private Integer userId;
   //用户姓名
   private String userName; 
   //用户IP地址

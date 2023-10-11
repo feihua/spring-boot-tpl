@@ -1,0 +1,50 @@
+###登录 login
+POST {{host}}/user/login
+Content-Type: application/json
+
+{
+  "mobile": "18613030352",
+  "password": "123456"
+}
+> {% client.global.set("token", response.body.data.token); %}
+
+
+###菜单列表 operationLog_list
+POST {{host}}/operationLog/queryOperationLogList
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "pageNo": 1,
+  "pageSize": 10
+}
+
+###新增菜单 operationLog_save
+POST {{host}}/operationLog/saveOperationLog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 1,
+  "userName": "超级管理员",
+  "ipAddress": "127.0.0.1",
+  "operationUrl": "/tpl/user/queryUserList",
+  "operationMethod": "POST",
+  "operationDesc": "【用户管理】查询用户信息列表",
+  "requestParams": "[{\"pageNum\":1,\"pageSize\":10}]",
+  "responseParams": "{\"code\":200,\"msg\":\"成功!\",\"data\":{\"list\":[{\"id\":1,\"mobile\":\"18613030352\",\"userName\":\"超级管理员\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"超级管理员\",\"createTime\":\"Mar 31, 2018 11:22:37 AM\",\"updateTime\":\"Aug 4, 2022 11:38:34 PM\"},{\"id\":2,\"mobile\":\"13800000000\",\"userName\":\"普通用户\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"演示权限\",\"createTime\":\"Dec 28, 2018 4:57:47 PM\",\"updateTime\":\"Dec 28, 2018 4:57:47 PM\"},{\"id\":3,\"mobile\":\"18613030353\",\"userName\":\"koobe\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"测试\",\"createTime\":\"Jul 14, 2022 1:54:15 PM\",\"updateTime\":\"Jul 14, 2022 1:54:15 PM\"},{\"id\":4,\"mobile\":\"18613030350\",\"userName\":\"11\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"11\",\"createTime\":\"Jul 14, 2022 1:56:54 PM\",\"updateTime\":\"Jul 14, 2022 1:56:54 PM\"},{\"id\":5,\"mobile\":\"18613030341\",\"userName\":\"22334\",\"password\":\"123456\",\"statusId\":0,\"sort\":1,\"remark\":\"22334\",\"createTime\":\"Jul 14, 2022 1:58:20 PM\",\"updateTime\":\"Jul 15, 2022 4:13:38 PM\"},{\"id\":11,\"mobile\":\"18613030452\",\"userName\":\"1234\",\"password\":\"123456\",\"statusId\":0,\"sort\":1,\"remark\":\"1233\",\"createTime\":\"Jul 14, 2022 3:18:12 PM\",\"updateTime\":\"Jul 19, 2022 9:14:36 AM\"},{\"id\":12,\"mobile\":\"18615200352\",\"userName\":\"test\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"test\",\"createTime\":\"Jul 26, 2022 4:00:08 PM\",\"updateTime\":\"Jul 26, 2022 4:00:08 PM\"},{\"id\":13,\"mobile\":\"18615050520\",\"userName\":\"2\",\"password\":\"11\",\"statusId\":1,\"sort\":12,\"remark\":\"123\",\"createTime\":\"Jul 26, 2022 4:06:07 PM\",\"updateTime\":\"Jul 26, 2022 8:21:34 PM\"},{\"id\":14,\"mobile\":\"18613030322\",\"userName\":\"超级管理员22\",\"password\":\"123456\",\"statusId\":1,\"sort\":1,\"remark\":\"超级管理员2\",\"createTime\":\"Sep 21, 2023 11:17:34 AM\",\"updateTime\":\"Sep 21, 2023 11:17:34 AM\"}],\"pageNum\":1,\"pageSize\":10,\"total\":9}}",
+  "errMessage": null,
+  "errMessageDetail": null,
+  "useTime": 0
+}
+
+###删除菜单 operationLog_delete
+DELETE {{host}}/operationLog/deleteoperationLog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "ids": [102]
+}
+
+

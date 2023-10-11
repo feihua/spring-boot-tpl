@@ -34,7 +34,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "pageNum": 1,
+  "pageNo": 1,
   "pageSize": 10
 }
 ###新增用户 user_save
@@ -50,7 +50,7 @@ Authorization: Bearer {{token}}
   "remark": "超级管理员2"
 }
 ###删除用户 user_delete
-POST {{host}}/user/deleteUser
+DELETE {{host}}/user/deleteUser
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

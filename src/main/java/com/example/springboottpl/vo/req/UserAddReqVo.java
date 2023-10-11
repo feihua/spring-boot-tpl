@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 @ApiModel("用户信息请求addVo")
 public class UserAddReqVo implements Serializable {
 
-
 	@ApiModelProperty(value = "手机", required = true)
 	@NotBlank(message = "mobile手机不能为空")
 	private String mobile;
@@ -41,6 +40,5 @@ public class UserAddReqVo implements Serializable {
 
 	@ApiModelProperty(value = "备注")
 	private String remark;
-
 
 }

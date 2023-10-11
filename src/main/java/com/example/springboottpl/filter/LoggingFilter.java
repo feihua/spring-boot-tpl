@@ -6,20 +6,13 @@ import io.jsonwebtoken.Jwts;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import com.example.springboottpl.config.TplConfig;
@@ -54,7 +47,7 @@ public class LoggingFilter implements Filter {
 
 		log.info("LoggingFilter - {} {} {} {}", requestURI, method, queryString, remoteAddr);
 
-		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("webjars")||requestURI.contains("swagger")) {
+		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("webjars")||requestURI.contains("api-docs")) {
 			chain.doFilter(request, response);
 			return;
 		}

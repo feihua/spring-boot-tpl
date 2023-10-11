@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 描述：操作日志
  * 作者：刘飞华
@@ -23,23 +25,25 @@ import lombok.NoArgsConstructor;
 @ApiModel("操作日志响应vo")
 public class OperationLogRespVo implements Serializable {
 
-	@ApiModelProperty("主键")
+	@ApiModelProperty(value = "主键")
 	private int id;
-	@ApiModelProperty("操作者 ID")
+	@ApiModelProperty(value = "操作者 ID")
 	private int userId;
-	@ApiModelProperty("操作者姓名")
+	@ApiModelProperty(value = "操作者姓名")
 	private String userName;
-	@ApiModelProperty("IP 地址")
+	@ApiModelProperty(value = "IP 地址")
 	private String ipAddress;
-	@ApiModelProperty("操作url")
+	@ApiModelProperty(value = "操作url")
 	private String operationUrl;
-	@ApiModelProperty("操作方法")
+	@ApiModelProperty(value = "操作方法")
 	private String operationMethod;
-	@ApiModelProperty("操作类型")
+	@ApiModelProperty(value = "操作描述")
 	private String operationDesc;
-	@ApiModelProperty("请求参数")
+	@ApiModelProperty(value = "操作状态")
+	private int operationStatus;
+	@ApiModelProperty(value = "请求参数")
 	private String requestParams;
-	@ApiModelProperty("操作结果")
+	@ApiModelProperty(value = "操作结果")
 	private String responseParams;
 	@ApiModelProperty(value = "异常消息")
 	private String errMessage;
@@ -47,6 +51,7 @@ public class OperationLogRespVo implements Serializable {
 	private String errMessageDetail;
 	@ApiModelProperty(value = "耗时")
 	private long useTime;
-	@ApiModelProperty("操作时间")
+	@ApiModelProperty(value = "操作时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
 }

@@ -3,6 +3,7 @@ package com.example.springboottpl.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.springboottpl.entity.MenuBean;
 
@@ -27,12 +28,12 @@ public interface MenuDao {
    /**
     * 删除菜单信息
     *
-    * @param ids 请求参数
+    * @param id 请求参数
     * @return int
     * @author 刘飞华
     * @date: 2023-09-20 10:44:24
     */
-   int deleteMenu(List<Integer> ids);
+   int deleteMenu(@Param("id") Integer id);
 
    /**
     * 更新菜单信息

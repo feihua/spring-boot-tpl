@@ -94,6 +94,7 @@ public class LogAspect {
 		Object result = point.proceed();
 
 		logAddReqVo.setResponseParams(JsonUtil.toJson(result));
+		logAddReqVo.setOperationStatus(1);
 		long endTime = System.currentTimeMillis();
 		String endTimeStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime);
 		log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), endTime - beginTime.getTime());
@@ -119,6 +120,7 @@ public class LogAspect {
 		long useTime = endTime - beginTimeThreadLocal.get().getTime();
 		log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), useTime);
 
+		result.setOperationStatus(0);
 		result.setUseTime(useTime);
 		logService.saveOperationLog(result);
 		log.error("{}-{}", e.getMessage(), ExceptionUtil.stackTrace(e));

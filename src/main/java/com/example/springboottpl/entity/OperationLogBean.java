@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OperationLogBean implements Serializable {
   //主键
-  private int id; 
+  private Integer id;
   //操作者 ID
-  private int userId; 
+  private Integer userId;
   //操作者姓名
   private String userName; 
   //IP 地址
@@ -30,8 +30,10 @@ public class OperationLogBean implements Serializable {
   private String operationUrl; 
   //操作方法
   private String operationMethod; 
-  //操作类型
-  private String operationDesc; 
+  //操作描述
+  private String operationDesc;
+  //操作状态
+  private Integer operationStatus;
   //请求参数
   private String requestParams; 
   //操作结果

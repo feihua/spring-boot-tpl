@@ -12,6 +12,7 @@ import static com.example.springboottpl.enums.ExceptionEnum.SUCCESS;
 public class Result<T> {
 	private int code;
 	private String msg;
+	private boolean success = true;
 	private T data;
 
 	public static Result<String> success() {

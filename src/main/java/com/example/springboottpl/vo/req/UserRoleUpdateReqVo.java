@@ -25,11 +25,11 @@ import lombok.NoArgsConstructor;
 @ApiModel("角色用户关联表请求updateVo")
 public class UserRoleUpdateReqVo implements Serializable {
 
-	@ApiModelProperty("用户ID")
+	@ApiModelProperty(value = "用户ID")
 	@NotNull(message = "userId用户ID不能为空")
 	private Integer userId;
 
-	@ApiModelProperty("角色IDs")
+	@ApiModelProperty(value = "角色IDs")
 	@NotNull(message = "roleId角色ID不能为空")
 	private List<Integer> roleIds;
 

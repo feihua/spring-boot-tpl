@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +22,7 @@ import lombok.NoArgsConstructor;
 @ApiModel("菜单信息请求vo")
 public class MenuDeleteReqVo implements Serializable {
 
-	@ApiModelProperty("主键数组")
-	private List<Integer> ids;
+	@ApiModelProperty(value = "菜单主键", required = true)
+	private Integer id;
 }
 

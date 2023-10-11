@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -46,9 +45,13 @@ public class OperationLogAddReqVo implements Serializable {
 	@NotBlank(message = "operationMethod操作方法不能为空")
 	private String operationMethod;
 
-	@ApiModelProperty(value = "操作类型", required = true)
-	@NotBlank(message = "operationDesc操作类型不能为空")
+	@ApiModelProperty(value = "操作描述", required = true)
+	@NotBlank(message = "operationDesc操作描述不能为空")
 	private String operationDesc;
+
+	@ApiModelProperty(value = "操作状态", required = true)
+	@NotBlank(message = "operationStatus操作状态不能为空")
+	private Integer operationStatus;
 
 	@ApiModelProperty(value = "请求参数", required = true)
 	private String requestParams;

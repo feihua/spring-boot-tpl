@@ -8,7 +8,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,7 +61,7 @@ public class MenuController {
     * @date: 2023-09-20 10:44:24
     */
    @ApiOperation("删除菜单信息")
-   @PostMapping("/deleteMenu")
+   @DeleteMapping("/deleteMenu")
    @OperateLog(description = "【菜单管理】删除菜单信息")
    public Result<Integer> deleteMenu(@RequestBody @Valid MenuDeleteReqVo record){
         return Result.success(menuService.deleteMenu(record));
@@ -74,7 +76,7 @@ public class MenuController {
     * @date: 2023-09-20 10:44:24
     */
    @ApiOperation("更新菜单信息")
-   @PostMapping("/updateMenu")
+   @PutMapping("/updateMenu")
    @OperateLog(description = "【菜单管理】更新菜单信息")
    public Result<Integer> updateMenu(@RequestBody @Valid MenuUpdateReqVo record){
         return Result.success(menuService.updateMenu(record));

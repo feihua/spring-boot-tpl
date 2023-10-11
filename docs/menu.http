@@ -32,7 +32,7 @@ Authorization: Bearer {{token}}
 }
 
 ###删除菜单 menu_delete
-POST {{host}}/menu/deleteMenu
+DELETE {{host}}/menu/deleteMenu
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

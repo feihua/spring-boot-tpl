@@ -1,25 +1,19 @@
 package com.example.springboottpl.biz.impl;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboottpl.biz.LoginLogBiz;
+import com.example.springboottpl.dao.LoginLogDao;
 import com.example.springboottpl.entity.LoginLogBean;
 import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.LoginLogReqVo;
-import com.example.springboottpl.vo.req.LoginLogListReqVo;
 import com.example.springboottpl.vo.req.LoginLogAddReqVo;
 import com.example.springboottpl.vo.req.LoginLogDeleteReqVo;
-import com.example.springboottpl.vo.req.LoginLogUpdateReqVo;
+import com.example.springboottpl.vo.req.LoginLogListReqVo;
 import com.example.springboottpl.vo.resp.LoginLogRespVo;
-import com.example.springboottpl.dao.LoginLogDao;
-import com.example.springboottpl.biz.LoginLogBiz;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -48,7 +42,6 @@ public class LoginLogBizImpl implements LoginLogBiz {
         bean.setUserId(loginLog.getUserId());
         bean.setUserName(loginLog.getUserName());
         bean.setIpAddress(loginLog.getIpAddress());
-        bean.setCreateTime(new Date());
 
         return loginLogDao.saveLoginLog(bean);
    }
@@ -83,7 +76,7 @@ public class LoginLogBizImpl implements LoginLogBiz {
         bean.setUserName(loginLog.getUserName());
         bean.setIpAddress(loginLog.getIpAddress());
 
-        PageHelper.startPage(loginLog.getPageNum(), loginLog.getPageSize());
+        PageHelper.startPage(loginLog.getPageNo(), loginLog.getPageSize());
 	    List<LoginLogBean> query = loginLogDao.queryLoginLogList(bean);
         PageInfo<LoginLogBean> pageInfo = new PageInfo<>(query);
 

@@ -25,11 +25,11 @@ import lombok.NoArgsConstructor;
 @ApiModel("分配角色菜单请求Vo")
 public class UpdateRoleMenuListReqVo implements Serializable {
 
-	@ApiModelProperty("角色ID")
+	@ApiModelProperty(value = "角色ID")
 	@NotNull(message = "roleId角色ID不能为空")
 	private Integer roleId;
 
-	@ApiModelProperty("菜单Ids")
+	@ApiModelProperty(value = "菜单Ids")
 	@NotNull(message = "menuIds不能为空")
 	private List<Integer> menuIds;
 

@@ -56,5 +56,4 @@ public class MenuAddReqVo implements Serializable {
 	@ApiModelProperty(value = "备注")
 	private String remark;
 
-
 }

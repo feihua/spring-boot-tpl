@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 描述：登录日志
  * 作者：刘飞华
@@ -23,14 +25,15 @@ import lombok.NoArgsConstructor;
 @ApiModel("登录日志响应vo")
 public class LoginLogRespVo implements Serializable {
 
-	@ApiModelProperty("主键")
+	@ApiModelProperty(value = "主键")
 	private int id;
-	@ApiModelProperty("用户ID")
+	@ApiModelProperty(value = "用户ID")
 	private int userId;
-	@ApiModelProperty("用户姓名")
+	@ApiModelProperty(value = "用户姓名")
 	private String userName;
-	@ApiModelProperty("用户IP地址")
+	@ApiModelProperty(value = "用户IP地址")
 	private String ipAddress;
-	@ApiModelProperty("操作时间")
+	@ApiModelProperty(value = "操作时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
 }

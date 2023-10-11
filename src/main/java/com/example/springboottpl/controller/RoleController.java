@@ -6,8 +6,10 @@ import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,7 +65,7 @@ public class RoleController {
 	 * @date: 2023-09-20 10:44:25
 	 */
 	@ApiOperation("删除角色信息")
-	@PostMapping("/deleteRole")
+	@DeleteMapping("/deleteRole")
 	@OperateLog(description = "【角色管理】删除角色信息")
 	public Result<Integer> deleteRole(@RequestBody @Valid RoleDeleteReqVo record) {
 		return Result.success(roleService.deleteRole(record));
@@ -78,7 +80,7 @@ public class RoleController {
 	 * @date: 2023-09-20 10:44:25
 	 */
 	@ApiOperation("更新角色信息")
-	@PostMapping("/updateRole")
+	@PutMapping("/updateRole")
 	@OperateLog(description = "【角色管理】更新角色信息")
 	public Result<Integer> updateRole(@RequestBody @Valid RoleUpdateReqVo record) {
 		return Result.success(roleService.updateRole(record));

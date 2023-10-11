@@ -70,7 +70,7 @@ public class MenuBizImpl implements MenuBiz {
 	 */
 	@Override
 	public int deleteMenu(MenuDeleteReqVo menu) {
-		return menuDao.deleteMenu(menu.getIds());
+		return menuDao.deleteMenu(menu.getId());
 	}
 
 	/**

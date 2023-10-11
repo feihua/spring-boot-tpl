@@ -1,25 +1,19 @@
 package com.example.springboottpl.biz.impl;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboottpl.biz.OperationLogBiz;
+import com.example.springboottpl.dao.OperationLogDao;
 import com.example.springboottpl.entity.OperationLogBean;
 import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.OperationLogReqVo;
-import com.example.springboottpl.vo.req.OperationLogListReqVo;
 import com.example.springboottpl.vo.req.OperationLogAddReqVo;
 import com.example.springboottpl.vo.req.OperationLogDeleteReqVo;
-import com.example.springboottpl.vo.req.OperationLogUpdateReqVo;
+import com.example.springboottpl.vo.req.OperationLogListReqVo;
 import com.example.springboottpl.vo.resp.OperationLogRespVo;
-import com.example.springboottpl.dao.OperationLogDao;
-import com.example.springboottpl.biz.OperationLogBiz;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -56,7 +50,7 @@ public class OperationLogBizImpl implements OperationLogBiz {
         bean.setErrMessage(operationLog.getErrMessage());
         bean.setErrMessageDetail(operationLog.getErrMessageDetail());
         bean.setUseTime(operationLog.getUseTime());
-        bean.setCreateTime(new Date());
+        bean.setOperationStatus(operationLog.getOperationStatus());
 
         return operationLogDao.saveOperationLog(bean);
    }
@@ -93,8 +87,9 @@ public class OperationLogBizImpl implements OperationLogBiz {
         bean.setOperationUrl(operationLog.getOperationUrl());
         bean.setOperationMethod(operationLog.getOperationMethod());
         bean.setOperationDesc(operationLog.getOperationDesc());
+        bean.setOperationStatus(operationLog.getOperationStatus());
 
-        PageHelper.startPage(operationLog.getPageNum(), operationLog.getPageSize());
+        PageHelper.startPage(operationLog.getPageNo(), operationLog.getPageSize());
 	    List<OperationLogBean> query = operationLogDao.queryOperationLogList(bean);
         PageInfo<OperationLogBean> pageInfo = new PageInfo<>(query);
 
@@ -113,6 +108,7 @@ public class OperationLogBizImpl implements OperationLogBiz {
             resp.setErrMessageDetail(x.getErrMessageDetail());
             resp.setUseTime(x.getUseTime());
             resp.setCreateTime(x.getCreateTime());
+            resp.setOperationStatus(x.getOperationStatus());
 		   return resp;
 	    }).collect(Collectors.toList());
 

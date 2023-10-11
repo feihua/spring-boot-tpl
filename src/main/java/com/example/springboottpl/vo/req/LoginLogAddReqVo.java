@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,7 +25,6 @@ import lombok.NoArgsConstructor;
 @ApiModel("登录日志请求addVo")
 public class LoginLogAddReqVo implements Serializable {
 
-
 	@ApiModelProperty(value = "用户ID", required = true)
 	@NotNull(message = "userId用户ID不能为空")
 	private Integer userId;
@@ -38,6 +36,5 @@ public class LoginLogAddReqVo implements Serializable {
 	@ApiModelProperty(value = "用户IP地址", required = true)
 	@NotBlank(message = "ipAddress用户IP地址不能为空")
 	private String ipAddress;
-
 
 }

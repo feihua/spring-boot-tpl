@@ -1,10 +1,9 @@
 package com.example.springboottpl.service.impl;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import static com.example.springboottpl.enums.ExceptionEnum.USER_ID_IS_NULL_ERROR;
 
