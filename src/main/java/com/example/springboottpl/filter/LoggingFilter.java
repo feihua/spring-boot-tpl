@@ -47,7 +47,7 @@ public class LoggingFilter implements Filter {
 
 		log.info("LoggingFilter - {} {} {} {}", requestURI, method, queryString, remoteAddr);
 
-		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("webjars")||requestURI.contains("api-docs")) {
+		if (tplConfig.notInterceptUrls.contains(requestURI)||requestURI.contains("webjars")||requestURI.contains("swagger")) {
 			chain.doFilter(request, response);
 			return;
 		}
