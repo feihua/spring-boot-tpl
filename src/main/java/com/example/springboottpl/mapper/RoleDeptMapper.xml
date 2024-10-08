@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.RoleDeptDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.RoleDeptBean">
+      <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+      <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
+    
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        role_id, dept_id
+    </sql>
+
+    <insert id="addRoleDept" parameterType="com.example.springboottpl.entity.RoleDeptBean">
+        insert into sys_role_dept
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{ roleId,jdbcType=BIGINT },
+            </if>
+            <if test="deptId != null">
+                #{ deptId,jdbcType=BIGINT },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteRoleDept">
+        delete from sys_role_dept where id in
+        <foreach collection="list" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateRoleDept" parameterType="com.example.springboottpl.entity.RoleDeptBean">
+        update sys_role_dept
+        <set>
+            <if test="roleId != null">
+                role_id = #{ roleId,jdbcType=BIGINT},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{ deptId,jdbcType=BIGINT},
+            </if>
+        </set>
+        <where> 
+            <if test="roleId != null">
+                and role_id = #{ roleId}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{ deptId}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateRoleDeptStatus" parameterType="com.example.springboottpl.entity.RoleDeptBean">
+        update sys_role_dept
+        <set>
+            <if test="roleId != null">
+                role_id = #{ roleId,jdbcType=BIGINT},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{ deptId,jdbcType=BIGINT},
+            </if>
+        </set>
+        <where> 
+            <if test="roleId != null">
+                and role_id = #{ roleId}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{ deptId}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryRoleDeptDetail" parameterType="com.example.springboottpl.entity.RoleDeptBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role_dept
+        <where>
+        <!--<if test="roleId != null">-->
+        <!--    and role_id = #{ roleId}-->
+        <!--</if>-->
+        <!--<if test="deptId != null">-->
+        <!--    and dept_id = #{ deptId}-->
+        <!--</if>-->
+        </where>
+    </select>
+
+    <select id="queryRoleDeptList" parameterType="com.example.springboottpl.entity.RoleDeptBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role_dept
+        <where>
+          <!--<if test="roleId != null">-->
+          <!--    and role_id = #{ roleId}-->
+          <!--</if>-->
+          <!--<if test="deptId != null">-->
+          <!--    and dept_id = #{ deptId}-->
+          <!--</if>-->
+        </where>
+    </select>
+</mapper>

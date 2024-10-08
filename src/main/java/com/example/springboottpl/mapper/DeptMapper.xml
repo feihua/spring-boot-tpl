@@ -138,11 +138,7 @@
     </insert>
 
     <delete id="deleteDept">
-        delete from sys_dept where id in
-        <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
-            #{id}
-        </foreach>
+        delete from sys_dept where id = #{id}
     </delete>
 
     <update id="updateDept" parameterType="com.example.springboottpl.entity.DeptBean">
@@ -484,7 +480,7 @@
     </select>
 
     <!-- 检查部门是否已存在   -->
-    <select id="checkDeptName" resultType="java.lang.Integer">
+    <select id="checkDeptNameUnique" resultType="java.lang.Integer">
         select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
     </select>
 
@@ -493,4 +489,18 @@
         select <include refid="Base_Column_List"/> from sys_dept where dept_id = #{deptId}
     </select>
 
+    <!-- 是否存在部门子节点   -->
+    <select id="hasChildByDeptId" resultType="java.lang.Integer">
+        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    </select>
+
+    <!-- 查询部门是否存在用户   -->
+    <select id="checkDeptExistUser" resultType="java.lang.Integer">
+        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    </select>
+
+    <!-- 校验部门是否有数据权限   -->
+    <select id="checkDeptDataScope" resultType="java.lang.Integer">
+        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    </select>
 </mapper>

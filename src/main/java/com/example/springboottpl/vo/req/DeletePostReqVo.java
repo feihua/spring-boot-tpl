@@ -17,19 +17,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 描述：部门
+ * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 14:26:31
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("删除部门请求vo")
-public class DeleteDeptReqVo implements Serializable {
+@ApiModel("删除岗位信息请求vo")
+public class DeletePostReqVo implements Serializable {
 
 	@ApiModelProperty(value = "主键", required = true)
-	@NotNull(message = "id主键不能为空")
-	private Long id;
+	@NotNull(message = "ids主键不能为空")
+	private List<Integer> ids;
 }
 

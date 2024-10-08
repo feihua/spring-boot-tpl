@@ -27,12 +27,12 @@ public interface DeptDao {
    /**
     * 删除部门
     *
-    * @param ids 请求参数
+    * @param id 请求参数
     * @return int
     * @author 刘飞华
     * @date: 2024-10-08 14:26:30
     */
-   int deleteDept(List<Integer> ids);
+   int deleteDept(@Param("id") Long id);
 
    /**
     * 更新部门
@@ -44,15 +44,15 @@ public interface DeptDao {
     */
    int updateDept(DeptBean dept);
 
-      /**
-       * 更新部门状态
-       *
-       * @param dept 请求参数
-       * @return int
-       * @author 刘飞华
-       * @date: 2024-10-08 14:26:30
-       */
-      int updateDeptStatus(DeptBean dept);
+   /**
+    * 更新部门状态
+    *
+    * @param dept 请求参数
+    * @return int
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:30
+    */
+   int updateDeptStatus(DeptBean dept);
 
    /**
     * 查询部门详情
@@ -76,13 +76,14 @@ public interface DeptDao {
 
    /**
     * 检查部门是否已存在
+    *
     * @param deptName 部门名称
     * @param parentId 父id
     * @return int
     * @author 刘飞华
     * @date: 2024/10/8 15:14
     */
-   int checkDeptName(@Param("deptName") String deptName, @Param("parentId")int parentId);
+   int checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId")int parentId);
 
    /**
     * 根据id查询部门详情
@@ -93,5 +94,34 @@ public interface DeptDao {
     * @date: 2024-10-08 14:26:30
     */
    DeptBean queryDeptById(@Param("deptId")int deptId);
+
+   /**
+    * 是否存在部门子节点
+    *
+    * @param deptId 部门ID
+    * @return 结果
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:30
+    */
+   int hasChildByDeptId(Long deptId);
+
+   /**
+    * 查询部门是否存在用户
+    *
+    * @param deptId 部门ID
+    * @return 结果 true 存在 false 不存在
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:30
+    */
+   int checkDeptExistUser(Long deptId);
+
+   /**
+    * 校验部门是否有数据权限
+    *
+    * @param deptId 部门id
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:30
+    */
+   int checkDeptDataScope(Long deptId);
 
 }

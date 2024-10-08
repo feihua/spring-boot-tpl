@@ -3,12 +3,12 @@ package com.example.springboottpl.biz.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.example.springboottpl.enums.ExceptionEnum.DEPT_IS_EXIST;
 import static com.example.springboottpl.enums.ExceptionEnum.DEPT_IS_STOP;
+import static com.example.springboottpl.enums.ExceptionEnum.ERROR;
 
 import com.example.springboottpl.biz.DeptBiz;
 import com.example.springboottpl.dao.DeptDao;
@@ -47,7 +47,7 @@ public class DeptBizImpl implements DeptBiz {
     @Override
     public int addDept(AddDeptReqVo dept) {
 
-        int count = deptDao.checkDeptName(dept.getDeptName(), dept.getParentId());
+        int count = deptDao.checkDeptNameUnique(dept.getDeptName(), dept.getParentId());
         if (count > 0) {
             throw new TplException(DEPT_IS_EXIST);
         }
@@ -84,7 +84,17 @@ public class DeptBizImpl implements DeptBiz {
      */
     @Override
     public int deleteDept(DeleteDeptReqVo dept) {
-        return deptDao.deleteDept(dept.getIds());
+        if (deptDao.hasChildByDeptId(dept.getId()) > 0) {
+            throw new TplException(ERROR.getCode(), "存在下级部门,不允许删除");
+        }
+        if (deptDao.checkDeptExistUser(dept.getId()) > 0) {
+            throw new TplException(ERROR.getCode(), "部门存在用户,不允许删除");
+        }
+        if (deptDao.checkDeptDataScope(dept.getId()) > 0) {
+            throw new TplException(ERROR.getCode(), "部门存在岗位,不允许删除");
+        }
+
+        return deptDao.deleteDept(dept.getId());
     }
 
     /**

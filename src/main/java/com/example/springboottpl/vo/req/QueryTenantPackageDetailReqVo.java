@@ -1,13 +1,12 @@
 package com.example.springboottpl.vo.req;
 
-import java.util.List;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -17,19 +16,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 描述：部门
+ * 描述：租户套餐
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 14:26:31
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("删除部门请求vo")
-public class DeleteDeptReqVo implements Serializable {
+@ApiModel("查询租户套餐详情请求Vo")
+public class QueryTenantPackageDetailReqVo implements Serializable {
 
-	@ApiModelProperty(value = "主键", required = true)
-	@NotNull(message = "id主键不能为空")
-	private Long id;
+	@ApiModelProperty(value = "租户套餐id", required = true)
+	@NotNull(message = "packageId租户套餐id不能为空")
+	private Integer packageId;
 }
-

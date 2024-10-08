@@ -26,21 +26,21 @@ import lombok.NoArgsConstructor;
 @ApiModel("添加字典数据请求Vo")
 public class AddDictDataReqVo implements Serializable {
 
-    @ApiModelProperty(value = "租户编号")
+    @ApiModelProperty(value = "租户编号", required = true)
     private String tenantId;
-    @ApiModelProperty(value = "字典排序")
+    @ApiModelProperty(value = "字典排序", required = true)
     private Integer dictSort;
-    @ApiModelProperty(value = "字典标签")
+    @ApiModelProperty(value = "字典标签", required = true)
     private String dictLabel;
-    @ApiModelProperty(value = "字典键值")
+    @ApiModelProperty(value = "字典键值", required = true)
     private String dictValue;
-    @ApiModelProperty(value = "字典类型")
+    @ApiModelProperty(value = "字典类型", required = true)
     private String dictType;
-    @ApiModelProperty(value = "样式属性（其他样式扩展）")
+    @ApiModelProperty(value = "样式属性（其他样式扩展）", required = true)
     private String cssClass;
-    @ApiModelProperty(value = "表格回显样式")
+    @ApiModelProperty(value = "表格回显样式", required = true)
     private String listClass;
-    @ApiModelProperty(value = "是否默认（Y是 N否）")
+    @ApiModelProperty(value = "是否默认（Y是 N否）", required = true)
     private String isDefault;
     @ApiModelProperty(value = "备注")
     private String remark;

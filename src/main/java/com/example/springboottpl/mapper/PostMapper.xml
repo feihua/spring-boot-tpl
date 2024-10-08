@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.PostDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.PostBean">
+      <result column="post_id" property="postId" jdbcType="BIGINT"/>
+      <result column="tenant_id" property="tenantId" jdbcType="VARCHAR"/>
+      <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
+      <result column="post_code" property="postCode" jdbcType="VARCHAR"/>
+      <result column="post_category" property="postCategory" jdbcType="VARCHAR"/>
+      <result column="post_name" property="postName" jdbcType="VARCHAR"/>
+      <result column="post_sort" property="postSort" jdbcType="INTEGER"/>
+      <result column="status" property="status" jdbcType="CHAR"/>
+      <result column="remark" property="remark" jdbcType="VARCHAR"/>
+      <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
+      <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+      <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        post_id, tenant_id, dept_id, post_code, post_category, post_name, post_sort, status, remark, create_dept, create_by, create_time, update_by, update_time
+    </sql>
+
+    <insert id="addPost" parameterType="com.example.springboottpl.entity.PostBean">
+        insert into sys_post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                post_id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="postCode != null">
+                post_code,
+            </if>
+            <if test="postCategory != null">
+                post_category,
+            </if>
+            <if test="postName != null">
+                post_name,
+            </if>
+            <if test="postSort != null">
+                post_sort,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createDept != null">
+                create_dept,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                #{ postId,jdbcType=BIGINT },
+            </if>
+            <if test="tenantId != null">
+                #{ tenantId,jdbcType=VARCHAR },
+            </if>
+            <if test="deptId != null">
+                #{ deptId,jdbcType=BIGINT },
+            </if>
+            <if test="postCode != null">
+                #{ postCode,jdbcType=VARCHAR },
+            </if>
+            <if test="postCategory != null">
+                #{ postCategory,jdbcType=VARCHAR },
+            </if>
+            <if test="postName != null">
+                #{ postName,jdbcType=VARCHAR },
+            </if>
+            <if test="postSort != null">
+                #{ postSort,jdbcType=INTEGER },
+            </if>
+            <if test="status != null">
+                #{ status,jdbcType=CHAR },
+            </if>
+            <if test="remark != null">
+                #{ remark,jdbcType=VARCHAR },
+            </if>
+            <if test="createDept != null">
+                #{ createDept,jdbcType=BIGINT },
+            </if>
+            <if test="createBy != null">
+                #{ createBy,jdbcType=BIGINT },
+            </if>
+            <if test="createTime != null">
+                #{ createTime,jdbcType=TIMESTAMP },
+            </if>
+            <if test="updateBy != null">
+                #{ updateBy,jdbcType=BIGINT },
+            </if>
+            <if test="updateTime != null">
+                #{ updateTime,jdbcType=TIMESTAMP },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deletePost">
+        delete from sys_post where id in
+        <foreach collection="list" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updatePost" parameterType="com.example.springboottpl.entity.PostBean">
+        update sys_post
+        <set>
+            <if test="postId != null">
+                post_id = #{ postId,jdbcType=BIGINT},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{ tenantId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{ deptId,jdbcType=BIGINT},
+            </if>
+            <if test="postCode != null">
+                post_code = #{ postCode,jdbcType=VARCHAR},
+            </if>
+            <if test="postCategory != null">
+                post_category = #{ postCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="postName != null">
+                post_name = #{ postName,jdbcType=VARCHAR},
+            </if>
+            <if test="postSort != null">
+                post_sort = #{ postSort,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{ status,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDept != null">
+                create_dept = #{ createDept,jdbcType=BIGINT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{ createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{ createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{ updateBy,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{ updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <where> 
+            <if test="postId != null">
+                and post_id = #{ postId}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{ tenantId}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{ deptId}
+            </if>
+            <if test="postCode != null">
+                and post_code = #{ postCode}
+            </if>
+            <if test="postCategory != null">
+                and post_category = #{ postCategory}
+            </if>
+            <if test="postName != null">
+                and post_name = #{ postName}
+            </if>
+            <if test="postSort != null">
+                and post_sort = #{ postSort}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+            <if test="remark != null">
+                and remark = #{ remark}
+            </if>
+            <if test="createDept != null">
+                and create_dept = #{ createDept}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{ createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{ createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{ updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{ updateTime}
+            </if>
+        </where>
+    </update>
+
+    <update id="updatePostStatus" parameterType="com.example.springboottpl.entity.PostBean">
+        update sys_post
+        <set>
+            <if test="postId != null">
+                post_id = #{ postId,jdbcType=BIGINT},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{ tenantId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{ deptId,jdbcType=BIGINT},
+            </if>
+            <if test="postCode != null">
+                post_code = #{ postCode,jdbcType=VARCHAR},
+            </if>
+            <if test="postCategory != null">
+                post_category = #{ postCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="postName != null">
+                post_name = #{ postName,jdbcType=VARCHAR},
+            </if>
+            <if test="postSort != null">
+                post_sort = #{ postSort,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{ status,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDept != null">
+                create_dept = #{ createDept,jdbcType=BIGINT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{ createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{ createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{ updateBy,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{ updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <where> 
+            <if test="postId != null">
+                and post_id = #{ postId}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{ tenantId}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{ deptId}
+            </if>
+            <if test="postCode != null">
+                and post_code = #{ postCode}
+            </if>
+            <if test="postCategory != null">
+                and post_category = #{ postCategory}
+            </if>
+            <if test="postName != null">
+                and post_name = #{ postName}
+            </if>
+            <if test="postSort != null">
+                and post_sort = #{ postSort}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+            <if test="remark != null">
+                and remark = #{ remark}
+            </if>
+            <if test="createDept != null">
+                and create_dept = #{ createDept}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{ createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{ createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{ updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{ updateTime}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryPostDetail" parameterType="com.example.springboottpl.entity.PostBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_post
+        <where>
+        <!--<if test="postId != null">-->
+        <!--    and post_id = #{ postId}-->
+        <!--</if>-->
+        <!--<if test="tenantId != null">-->
+        <!--    and tenant_id = #{ tenantId}-->
+        <!--</if>-->
+        <!--<if test="deptId != null">-->
+        <!--    and dept_id = #{ deptId}-->
+        <!--</if>-->
+        <!--<if test="postCode != null">-->
+        <!--    and post_code = #{ postCode}-->
+        <!--</if>-->
+        <!--<if test="postCategory != null">-->
+        <!--    and post_category = #{ postCategory}-->
+        <!--</if>-->
+        <!--<if test="postName != null">-->
+        <!--    and post_name = #{ postName}-->
+        <!--</if>-->
+        <!--<if test="postSort != null">-->
+        <!--    and post_sort = #{ postSort}-->
+        <!--</if>-->
+        <!--<if test="status != null">-->
+        <!--    and status = #{ status}-->
+        <!--</if>-->
+        <!--<if test="remark != null">-->
+        <!--    and remark = #{ remark}-->
+        <!--</if>-->
+        <!--<if test="createDept != null">-->
+        <!--    and create_dept = #{ createDept}-->
+        <!--</if>-->
+        <!--<if test="createBy != null">-->
+        <!--    and create_by = #{ createBy}-->
+        <!--</if>-->
+        <!--<if test="createTime != null">-->
+        <!--    and create_time = #{ createTime}-->
+        <!--</if>-->
+        <!--<if test="updateBy != null">-->
+        <!--    and update_by = #{ updateBy}-->
+        <!--</if>-->
+        <!--<if test="updateTime != null">-->
+        <!--    and update_time = #{ updateTime}-->
+        <!--</if>-->
+        </where>
+    </select>
+
+    <select id="queryPostList" parameterType="com.example.springboottpl.entity.PostBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_post
+        <where>
+          <!--<if test="postId != null">-->
+          <!--    and post_id = #{ postId}-->
+          <!--</if>-->
+          <!--<if test="tenantId != null">-->
+          <!--    and tenant_id = #{ tenantId}-->
+          <!--</if>-->
+          <!--<if test="deptId != null">-->
+          <!--    and dept_id = #{ deptId}-->
+          <!--</if>-->
+          <!--<if test="postCode != null">-->
+          <!--    and post_code = #{ postCode}-->
+          <!--</if>-->
+          <!--<if test="postCategory != null">-->
+          <!--    and post_category = #{ postCategory}-->
+          <!--</if>-->
+          <!--<if test="postName != null">-->
+          <!--    and post_name = #{ postName}-->
+          <!--</if>-->
+          <!--<if test="postSort != null">-->
+          <!--    and post_sort = #{ postSort}-->
+          <!--</if>-->
+          <!--<if test="status != null">-->
+          <!--    and status = #{ status}-->
+          <!--</if>-->
+          <!--<if test="remark != null">-->
+          <!--    and remark = #{ remark}-->
+          <!--</if>-->
+          <!--<if test="createDept != null">-->
+          <!--    and create_dept = #{ createDept}-->
+          <!--</if>-->
+          <!--<if test="createBy != null">-->
+          <!--    and create_by = #{ createBy}-->
+          <!--</if>-->
+          <!--<if test="createTime != null">-->
+          <!--    and create_time = #{ createTime}-->
+          <!--</if>-->
+          <!--<if test="updateBy != null">-->
+          <!--    and update_by = #{ updateBy}-->
+          <!--</if>-->
+          <!--<if test="updateTime != null">-->
+          <!--    and update_time = #{ updateTime}-->
+          <!--</if>-->
+        </where>
+    </select>
+</mapper>
