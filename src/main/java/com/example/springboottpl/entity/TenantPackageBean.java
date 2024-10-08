@@ -11,35 +11,35 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：租户套餐
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TenantPackageBean implements Serializable {
-  //租户套餐id
-  private Integer packageId; 
-  //套餐名称
-  private String packageName; 
-  //关联菜单id
-  private String menuIds; 
-  //菜单树选择项是否关联显示
-  private Integer menuCheckStrictly; 
-  //状态（0正常 1停用）
-  private String status; 
-  //删除标志（0代表存在 2代表删除）
-  private String delFlag; 
-  //备注
-  private String remark; 
-  //创建部门
-  private Integer createDept; 
-  //创建者
-  private Integer createBy; 
-  //创建时间
-  private Date createTime; 
-  //更新者
-  private Integer updateBy; 
-  //更新时间
-  private Date updateTime; 
+    //租户套餐id
+    private Long packageId;
+    //套餐名称
+    private String packageName;
+    //关联菜单id
+    private String menuIds;
+    //菜单树选择项是否关联显示
+    private Integer menuCheckStrictly;
+    //部门状态(1:正常，0:禁用)
+    private Integer status;
+    //删除标志（0代表存在 1代表删除）
+    private Integer delFlag;
+    //备注
+    private String remark;
+    //创建部门
+    private Long createDept;
+    //创建者
+    private Long createBy;
+    //创建时间
+    private Date createTime;
+    //更新者
+    private Long updateBy;
+    //更新时间
+    private Date updateTime;
 }

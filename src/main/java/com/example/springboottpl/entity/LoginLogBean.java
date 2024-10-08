@@ -11,21 +11,27 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：登录日志
  * 作者：刘飞华
- * 日期：2023-09-22 09:59:01
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginLogBean implements Serializable {
-  //主键
-  private Integer id;
-  //用户ID
-  private Integer userId;
-  //用户姓名
-  private String userName; 
-  //用户IP地址
-  private String ipAddress; 
-  //操作时间
-  private Date createTime; 
+    //编号
+    private Long id;
+    //用户名
+    private String userName;
+    //登录状态
+    private String loginStatus;
+    //IP地址
+    private String ipAddress;
+    //浏览器
+    private String browser;
+    //操作信息
+    private String os;
+    //登录失败信息
+    private String errorMsg;
+    //登录时间
+    private Date loginTime;
 }

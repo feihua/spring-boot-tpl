@@ -12,8 +12,8 @@ create table sys_user
     sex           char         default '0'               not null comment '用户性别（0男 1女 2未知）',
     avatar        varchar(200) default ''                not null comment '头像地址',
     password      varchar(100) default ''                not null comment '密码',
-    status        char         default '0'               not null comment '帐号状态（0正常 1停用）',
-    del_flag      char         default '0'               not null comment '删除标志（0代表存在 1代表删除）',
+    status        tinyint      default 1                 not null comment '部门状态(1:正常，0:禁用)',
+    del_flag      tinyint      default 1                 not null comment '删除标志（0代表存在 1代表删除）',
     login_os      varchar(64)  default ''                not null comment '最后登录操作系统',
     login_browser varchar(64)  default ''                not null comment '最后登录浏览器',
     login_ip      varchar(128) default ''                not null comment '最后登录IP',
@@ -22,13 +22,12 @@ create table sys_user
     create_dept   bigint                                 not null comment '创建部门',
     create_by     bigint                                 not null comment '创建者',
     create_time   timestamp    default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_by     bigint                                 null comment '更新者',
-    update_time   datetime                               null on update CURRENT_TIMESTAMP comment '更新时间'
-)
-    comment '用户信息表';
+    update_by     bigint null comment '更新者',
+    update_time   datetime null on update CURRENT_TIMESTAMP comment '更新时间'
+) comment '用户信息表';
 
 
 
 
-INSERT INTO sys_user (user_id, tenant_id, dept_id, user_name, nick_name, user_type, email, phone, sex, avatar, password, status, del_flag, login_os, login_browser, login_ip, login_time, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (1, '000000', 1, 'admin', '超级管理员', 'sys_user', '1002219331@qq.com', '18613030352', '0', 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png', '123456', '0', '0', 'windows11', 'Chrome', '127.0.0.1', sysdate(), '管理人员', 1, 1, sysdate(), null, null);
-INSERT INTO sys_user (user_id, tenant_id, dept_id, user_name, nick_name, user_type, email, phone, sex, avatar, password, status, del_flag, login_os, login_browser, login_ip, login_time, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (2, '000000', 1, 'test', '测试人员', 'sys_user', 'xxx@qq.com', '18613033333', '0', 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png', '123456', '0', '0', 'windows11', 'Chrome', '127.0.0.1', sysdate(), '测试人员', 1, 1, sysdate(), null, null);
+INSERT INTO sys_user (user_id, tenant_id, dept_id, user_name, nick_name, user_type, email, phone, sex, avatar, password, status, del_flag, login_os, login_browser, login_ip, login_time, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (1, '000000', 1, 'admin', '超级管理员', 'sys_user', '1002219331@qq.com', '18613030352', '0', 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png', '123456', 1, 0, 'windows11', 'Chrome', '127.0.0.1', sysdate(), '管理人员', 1, 1, sysdate(), null, null);
+INSERT INTO sys_user (user_id, tenant_id, dept_id, user_name, nick_name, user_type, email, phone, sex, avatar, password, status, del_flag, login_os, login_browser, login_ip, login_time, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (2, '000000', 1, 'test', '测试人员', 'sys_user', 'xxx@qq.com', '18613033333', '0', 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png', '123456', 1, 0, 'windows11', 'Chrome', '127.0.0.1', sysdate(), '测试人员', 1, 1, sysdate(), null, null);
