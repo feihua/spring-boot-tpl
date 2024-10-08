@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：租户
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -61,20 +61,20 @@ public class QueryTenantListReqVo implements Serializable {
     //@NotBlank(message = "domain域名不能为空")
     private String domain;
     @ApiModelProperty(value = "租户套餐编号")
-    //@NotNull(message = "packageId租户套餐编号不能为空")
-    private Integer packageId;
+    //@NotBlank(message = "packageId租户套餐编号不能为空")
+    private Long packageId;
     @ApiModelProperty(value = "过期时间")
     //@NotBlank(message = "expireTime过期时间不能为空")
     private Date expireTime;
     @ApiModelProperty(value = "用户数量（-1不限制）")
     //@NotNull(message = "accountCount用户数量（-1不限制）不能为空")
     private Integer accountCount;
-    @ApiModelProperty(value = "租户状态（0正常 1停用）")
-    //@NotBlank(message = "status租户状态（0正常 1停用）不能为空")
-    private String status;
-    @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）")
-    //@NotBlank(message = "delFlag删除标志（0代表存在 2代表删除）不能为空")
-    private String delFlag;
+    @ApiModelProperty(value = "部门状态(1:正常，0:禁用)")
+    //@NotNull(message = "status部门状态(1:正常，0:禁用)不能为空")
+    private Integer status;
+    @ApiModelProperty(value = "删除标志（0代表存在 1代表删除）")
+    //@NotNull(message = "delFlag删除标志（0代表存在 1代表删除）不能为空")
+    private Integer delFlag;
     @ApiModelProperty(value = "备注")
     //@NotBlank(message = "remark备注不能为空")
     private String remark;

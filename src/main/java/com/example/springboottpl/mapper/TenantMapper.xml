@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.TenantDao">
+<mapper namespace="com.example.springboottpl.dao.TenantDao">
 
     <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.TenantBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="tenant_id" property="tenantId" jdbcType="VARCHAR"/>
-      <result column="contact_user_name" property="contactUserName" jdbcType="VARCHAR"/>
-      <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
-      <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
-      <result column="license_number" property="licenseNumber" jdbcType="VARCHAR"/>
-      <result column="address" property="address" jdbcType="VARCHAR"/>
-      <result column="intro" property="intro" jdbcType="VARCHAR"/>
-      <result column="domain" property="domain" jdbcType="VARCHAR"/>
-      <result column="package_id" property="packageId" jdbcType="BIGINT"/>
-      <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP"/>
-      <result column="account_count" property="accountCount" jdbcType="INTEGER"/>
-      <result column="status" property="status" jdbcType="CHAR"/>
-      <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
-      <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="tenant_id" property="tenantId" jdbcType="VARCHAR"/>
+        <result column="contact_user_name" property="contactUserName" jdbcType="VARCHAR"/>
+        <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="license_number" property="licenseNumber" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="domain" property="domain" jdbcType="VARCHAR"/>
+        <result column="package_id" property="packageId" jdbcType="BIGINT"/>
+        <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP"/>
+        <result column="account_count" property="accountCount" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, tenant_id, contact_user_name, contact_phone, company_name, license_number, address, intro, domain, package_id, expire_time, account_count, status, del_flag, remark, create_dept, create_by, create_time, update_by, update_time
+        id, tenant_id, contact_user_name, contact_phone, company_name, license_number, address, intro, domain,
+        package_id, expire_time, account_count, status, del_flag, remark, create_dept, create_by, create_time,
+        update_by, update_time
     </sql>
 
     <insert id="addTenant" parameterType="com.example.springboottpl.entity.TenantBean">
@@ -161,7 +163,7 @@
     <delete id="deleteTenant">
         delete from sys_tenant where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
@@ -230,7 +232,7 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
@@ -358,7 +360,7 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
@@ -422,71 +424,72 @@
         </where>
     </update>
 
-    <select id="queryTenantDetail" parameterType="com.example.springboottpl.entity.TenantBean" resultMap="BaseResultMap">
+    <select id="queryTenantDetail" parameterType="com.example.springboottpl.entity.TenantBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_tenant
         <where>
-        <!--<if test="id != null">-->
-        <!--    and id = #{ id}-->
-        <!--</if>-->
-        <!--<if test="tenantId != null">-->
-        <!--    and tenant_id = #{ tenantId}-->
-        <!--</if>-->
-        <!--<if test="contactUserName != null">-->
-        <!--    and contact_user_name = #{ contactUserName}-->
-        <!--</if>-->
-        <!--<if test="contactPhone != null">-->
-        <!--    and contact_phone = #{ contactPhone}-->
-        <!--</if>-->
-        <!--<if test="companyName != null">-->
-        <!--    and company_name = #{ companyName}-->
-        <!--</if>-->
-        <!--<if test="licenseNumber != null">-->
-        <!--    and license_number = #{ licenseNumber}-->
-        <!--</if>-->
-        <!--<if test="address != null">-->
-        <!--    and address = #{ address}-->
-        <!--</if>-->
-        <!--<if test="intro != null">-->
-        <!--    and intro = #{ intro}-->
-        <!--</if>-->
-        <!--<if test="domain != null">-->
-        <!--    and domain = #{ domain}-->
-        <!--</if>-->
-        <!--<if test="packageId != null">-->
-        <!--    and package_id = #{ packageId}-->
-        <!--</if>-->
-        <!--<if test="expireTime != null">-->
-        <!--    and expire_time = #{ expireTime}-->
-        <!--</if>-->
-        <!--<if test="accountCount != null">-->
-        <!--    and account_count = #{ accountCount}-->
-        <!--</if>-->
-        <!--<if test="status != null">-->
-        <!--    and status = #{ status}-->
-        <!--</if>-->
-        <!--<if test="delFlag != null">-->
-        <!--    and del_flag = #{ delFlag}-->
-        <!--</if>-->
-        <!--<if test="remark != null">-->
-        <!--    and remark = #{ remark}-->
-        <!--</if>-->
-        <!--<if test="createDept != null">-->
-        <!--    and create_dept = #{ createDept}-->
-        <!--</if>-->
-        <!--<if test="createBy != null">-->
-        <!--    and create_by = #{ createBy}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateBy != null">-->
-        <!--    and update_by = #{ updateBy}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="tenantId != null">-->
+            <!--    and tenant_id = #{ tenantId}-->
+            <!--</if>-->
+            <!--<if test="contactUserName != null">-->
+            <!--    and contact_user_name = #{ contactUserName}-->
+            <!--</if>-->
+            <!--<if test="contactPhone != null">-->
+            <!--    and contact_phone = #{ contactPhone}-->
+            <!--</if>-->
+            <!--<if test="companyName != null">-->
+            <!--    and company_name = #{ companyName}-->
+            <!--</if>-->
+            <!--<if test="licenseNumber != null">-->
+            <!--    and license_number = #{ licenseNumber}-->
+            <!--</if>-->
+            <!--<if test="address != null">-->
+            <!--    and address = #{ address}-->
+            <!--</if>-->
+            <!--<if test="intro != null">-->
+            <!--    and intro = #{ intro}-->
+            <!--</if>-->
+            <!--<if test="domain != null">-->
+            <!--    and domain = #{ domain}-->
+            <!--</if>-->
+            <!--<if test="packageId != null">-->
+            <!--    and package_id = #{ packageId}-->
+            <!--</if>-->
+            <!--<if test="expireTime != null">-->
+            <!--    and expire_time = #{ expireTime}-->
+            <!--</if>-->
+            <!--<if test="accountCount != null">-->
+            <!--    and account_count = #{ accountCount}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createDept != null">-->
+            <!--    and create_dept = #{ createDept}-->
+            <!--</if>-->
+            <!--<if test="createBy != null">-->
+            <!--    and create_by = #{ createBy}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateBy != null">-->
+            <!--    and update_by = #{ updateBy}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 
@@ -495,66 +498,77 @@
         <include refid="Base_Column_List"/>
         from sys_tenant
         <where>
-          <!--<if test="id != null">-->
-          <!--    and id = #{ id}-->
-          <!--</if>-->
-          <!--<if test="tenantId != null">-->
-          <!--    and tenant_id = #{ tenantId}-->
-          <!--</if>-->
-          <!--<if test="contactUserName != null">-->
-          <!--    and contact_user_name = #{ contactUserName}-->
-          <!--</if>-->
-          <!--<if test="contactPhone != null">-->
-          <!--    and contact_phone = #{ contactPhone}-->
-          <!--</if>-->
-          <!--<if test="companyName != null">-->
-          <!--    and company_name = #{ companyName}-->
-          <!--</if>-->
-          <!--<if test="licenseNumber != null">-->
-          <!--    and license_number = #{ licenseNumber}-->
-          <!--</if>-->
-          <!--<if test="address != null">-->
-          <!--    and address = #{ address}-->
-          <!--</if>-->
-          <!--<if test="intro != null">-->
-          <!--    and intro = #{ intro}-->
-          <!--</if>-->
-          <!--<if test="domain != null">-->
-          <!--    and domain = #{ domain}-->
-          <!--</if>-->
-          <!--<if test="packageId != null">-->
-          <!--    and package_id = #{ packageId}-->
-          <!--</if>-->
-          <!--<if test="expireTime != null">-->
-          <!--    and expire_time = #{ expireTime}-->
-          <!--</if>-->
-          <!--<if test="accountCount != null">-->
-          <!--    and account_count = #{ accountCount}-->
-          <!--</if>-->
-          <!--<if test="status != null">-->
-          <!--    and status = #{ status}-->
-          <!--</if>-->
-          <!--<if test="delFlag != null">-->
-          <!--    and del_flag = #{ delFlag}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createDept != null">-->
-          <!--    and create_dept = #{ createDept}-->
-          <!--</if>-->
-          <!--<if test="createBy != null">-->
-          <!--    and create_by = #{ createBy}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateBy != null">-->
-          <!--    and update_by = #{ updateBy}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="tenantId != null">-->
+            <!--    and tenant_id = #{ tenantId}-->
+            <!--</if>-->
+            <!--<if test="contactUserName != null">-->
+            <!--    and contact_user_name = #{ contactUserName}-->
+            <!--</if>-->
+            <!--<if test="contactPhone != null">-->
+            <!--    and contact_phone = #{ contactPhone}-->
+            <!--</if>-->
+            <!--<if test="companyName != null">-->
+            <!--    and company_name = #{ companyName}-->
+            <!--</if>-->
+            <!--<if test="licenseNumber != null">-->
+            <!--    and license_number = #{ licenseNumber}-->
+            <!--</if>-->
+            <!--<if test="address != null">-->
+            <!--    and address = #{ address}-->
+            <!--</if>-->
+            <!--<if test="intro != null">-->
+            <!--    and intro = #{ intro}-->
+            <!--</if>-->
+            <!--<if test="domain != null">-->
+            <!--    and domain = #{ domain}-->
+            <!--</if>-->
+            <!--<if test="packageId != null">-->
+            <!--    and package_id = #{ packageId}-->
+            <!--</if>-->
+            <!--<if test="expireTime != null">-->
+            <!--    and expire_time = #{ expireTime}-->
+            <!--</if>-->
+            <!--<if test="accountCount != null">-->
+            <!--    and account_count = #{ accountCount}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createDept != null">-->
+            <!--    and create_dept = #{ createDept}-->
+            <!--</if>-->
+            <!--<if test="createBy != null">-->
+            <!--    and create_by = #{ createBy}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateBy != null">-->
+            <!--    and update_by = #{ updateBy}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
+    </select>
+
+    <!--  根据租户id查询租户列表  -->
+    <select id="queryTenantListByIds" parameterType="com.example.springboottpl.entity.TenantBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_tenant where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </select>
 </mapper>

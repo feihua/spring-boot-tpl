@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -26,21 +26,21 @@ import lombok.NoArgsConstructor;
 @ApiModel("添加字典数据请求Vo")
 public class AddDictDataReqVo implements Serializable {
 
-    @ApiModelProperty(value = "租户编号", required = true)
+    @ApiModelProperty(value = "租户编号")
     private String tenantId;
-    @ApiModelProperty(value = "字典排序", required = true)
+    @ApiModelProperty(value = "字典排序")
     private Integer dictSort;
-    @ApiModelProperty(value = "字典标签", required = true)
+    @ApiModelProperty(value = "字典标签")
     private String dictLabel;
-    @ApiModelProperty(value = "字典键值", required = true)
+    @ApiModelProperty(value = "字典键值")
     private String dictValue;
-    @ApiModelProperty(value = "字典类型", required = true)
+    @ApiModelProperty(value = "字典类型")
     private String dictType;
-    @ApiModelProperty(value = "样式属性（其他样式扩展）", required = true)
+    @ApiModelProperty(value = "样式属性（其他样式扩展）")
     private String cssClass;
-    @ApiModelProperty(value = "表格回显样式", required = true)
+    @ApiModelProperty(value = "表格回显样式")
     private String listClass;
-    @ApiModelProperty(value = "是否默认（Y是 N否）", required = true)
+    @ApiModelProperty(value = "是否默认（Y是 N否）")
     private String isDefault;
     @ApiModelProperty(value = "备注")
     private String remark;

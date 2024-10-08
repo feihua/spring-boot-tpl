@@ -31,7 +31,7 @@ public interface TenantPackageDao {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   int deleteTenantPackage(List<Integer> ids);
+   int deleteTenantPackage(List<Long> ids);
 
    /**
     * 更新租户套餐
@@ -43,15 +43,16 @@ public interface TenantPackageDao {
     */
    int updateTenantPackage(TenantPackageBean tenantPackage);
 
-      /**
-       * 更新租户套餐状态
-       *
-       * @param tenantPackage 请求参数
-       * @return int
-       * @author 刘飞华
-       * @date: 2024-10-08 14:26:31
-       */
-      int updateTenantPackageStatus(TenantPackageBean tenantPackage);
+   /**
+    * 更新租户套餐状态
+    *
+    * @param ids 主键
+    * @param status 状态
+    * @return int
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:31
+    */
+   int updateTenantPackageStatus(List<Long> ids, int status);
 
    /**
     * 查询租户套餐详情

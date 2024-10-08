@@ -1,20 +1,23 @@
 package com.example.springboottpl.biz.impl;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.entity.TenantBean;
-import com.example.springboottpl.vo.req.*;
-
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.dao.TenantDao;
 import com.example.springboottpl.biz.TenantBiz;
+import com.example.springboottpl.dao.TenantDao;
+import com.example.springboottpl.entity.TenantBean;
+import com.example.springboottpl.vo.req.AddTenantReqVo;
+import com.example.springboottpl.vo.req.DeleteTenantReqVo;
+import com.example.springboottpl.vo.req.QueryTenantDetailReqVo;
+import com.example.springboottpl.vo.req.QueryTenantListReqVo;
+import com.example.springboottpl.vo.req.UpdateTenantReqVo;
+import com.example.springboottpl.vo.req.UpdateTenantStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryTenantDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryTenantListRespVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -26,19 +29,20 @@ import com.github.pagehelper.PageInfo;
 @Service
 public class TenantBizImpl implements TenantBiz {
 
-   @Autowired
-   private TenantDao tenantDao;
+    @Autowired
+    private TenantDao tenantDao;
 
-   /**
-    * 添加租户
-    *
-    * @param tenant 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public int addTenant(AddTenantReqVo tenant){
+    /**
+     * 添加租户
+     *
+     * @param tenant 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public int addTenant(AddTenantReqVo tenant) {
+
         TenantBean bean = new TenantBean();
         bean.setTenantId(tenant.getTenantId());
         bean.setContactUserName(tenant.getContactUserName());
@@ -56,31 +60,31 @@ public class TenantBizImpl implements TenantBiz {
         bean.setRemark(tenant.getRemark());
 
         return tenantDao.addTenant(bean);
-   }
+    }
 
-   /**
-    * 删除租户
-    *
-    * @param tenant 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public int deleteTenant(DeleteTenantReqVo tenant){
-		return tenantDao.deleteTenant(tenant.getIds());
-   }
+    /**
+     * 删除租户
+     *
+     * @param tenant 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public int deleteTenant(DeleteTenantReqVo tenant) {
+        return tenantDao.deleteTenant(tenant.getIds());
+    }
 
-   /**
-    * 更新租户
-    *
-    * @param tenant 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public int updateTenant(UpdateTenantReqVo tenant){
+    /**
+     * 更新租户
+     *
+     * @param tenant 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public int updateTenant(UpdateTenantReqVo tenant) {
         TenantBean bean = new TenantBean();
         bean.setId(tenant.getId());
         bean.setTenantId(tenant.getTenantId());
@@ -98,18 +102,18 @@ public class TenantBizImpl implements TenantBiz {
         bean.setDelFlag(tenant.getDelFlag());
         bean.setRemark(tenant.getRemark());
         return tenantDao.updateTenant(bean);
-   }
+    }
 
-   /**
-    * 更新租户状态
-    *
-    * @param tenant 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public int updateTenantStatus(UpdateTenantStatusReqVo tenant){
+    /**
+     * 更新租户状态
+     *
+     * @param tenant 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public int updateTenantStatus(UpdateTenantStatusReqVo tenant) {
         TenantBean bean = new TenantBean();
         //bean.setId(tenant.getId());
         //bean.setTenantId(tenant.getTenantId());
@@ -127,18 +131,18 @@ public class TenantBizImpl implements TenantBiz {
         //bean.setDelFlag(tenant.getDelFlag());
 
         return tenantDao.updateTenantStatus(bean);
-   }
+    }
 
-   /**
-    * 查询租户详情
-    *
-    * @param tenant 请求参数
-    * @return TenantResp
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant){
+    /**
+     * 查询租户详情
+     *
+     * @param tenant 请求参数
+     * @return TenantResp
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {
         TenantBean bean = new TenantBean();
         bean.setId(tenant.getId());
         //bean.setTenantId(tenant.getTenantId());
@@ -158,18 +162,18 @@ public class TenantBizImpl implements TenantBiz {
         TenantBean query = tenantDao.queryTenantDetail(bean);
 
         return QueryTenantDetailRespVo.builder().build();
-   }
+    }
 
-   /**
-    * 查询租户列表
-    *
-    * @param tenant 请求参数
-    * @return TenantResp
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
-    */
-   @Override
-   public QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant){
+    /**
+     * 查询租户列表
+     *
+     * @param tenant 请求参数
+     * @return TenantResp
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant) {
         TenantBean bean = new TenantBean();
         //bean.setTenantId(tenant.getTenantId());
         //bean.setContactUserName(tenant.getContactUserName());
@@ -186,10 +190,10 @@ public class TenantBizImpl implements TenantBiz {
         //bean.setDelFlag(tenant.getDelFlag());
 
         PageHelper.startPage(tenant.getPageNum(), tenant.getPageSize());
-	    List<TenantBean> query = tenantDao.queryTenantList(bean);
+        List<TenantBean> query = tenantDao.queryTenantList(bean);
         PageInfo<TenantBean> pageInfo = new PageInfo<>(query);
 
-	    List<QueryTenantListRespVo> list = pageInfo.getList().stream().map(x -> {
+        List<QueryTenantListRespVo> list = pageInfo.getList().stream().map(x -> {
             QueryTenantListRespVo resp = new QueryTenantListRespVo();
             resp.setId(x.getId());
             resp.setTenantId(x.getTenantId());
@@ -211,11 +215,16 @@ public class TenantBizImpl implements TenantBiz {
             resp.setCreateTime(x.getCreateTime());
             resp.setUpdateBy(x.getUpdateBy());
             resp.setUpdateTime(x.getUpdateTime());
-		   return resp;
-	    }).collect(Collectors.toList());
+            return resp;
+        }).collect(Collectors.toList());
 
         //return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
         return null;
 
-   }
+    }
+
+    @Override
+    public List<TenantBean> queryTenantListByIds(List<Long> ids) {
+        return tenantDao.queryTenantListByIds(ids);
+    }
 }

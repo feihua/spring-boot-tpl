@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -29,5 +29,5 @@ public class QueryDeptDetailReqVo implements Serializable {
 
 	@ApiModelProperty(value = "部门id", required = true)
 	@NotNull(message = "deptId部门id不能为空")
-	private Integer deptId;
+	private Long deptId;
 }

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -28,16 +28,16 @@ public class UpdatePostReqVo implements Serializable {
 
 
     @ApiModelProperty(value = "岗位ID", required = true)
-    @NotNull(message = "postId岗位ID不能为空")
-    private Integer postId;
+    @NotBlank(message = "postId岗位ID不能为空")
+    private Long postId;
     
     @ApiModelProperty(value = "租户编号", required = true)
     @NotBlank(message = "tenantId租户编号不能为空")
     private String tenantId;
     
     @ApiModelProperty(value = "部门id", required = true)
-    @NotNull(message = "deptId部门id不能为空")
-    private Integer deptId;
+    @NotBlank(message = "deptId部门id不能为空")
+    private Long deptId;
     
     @ApiModelProperty(value = "岗位编码", required = true)
     @NotBlank(message = "postCode岗位编码不能为空")
@@ -55,9 +55,9 @@ public class UpdatePostReqVo implements Serializable {
     @NotNull(message = "postSort显示顺序不能为空")
     private Integer postSort;
     
-    @ApiModelProperty(value = "状态（0正常 1停用）", required = true)
-    @NotBlank(message = "status状态（0正常 1停用）不能为空")
-    private String status;
+    @ApiModelProperty(value = "状态(1:正常，0:禁用)", required = true)
+    @NotNull(message = "status状态(1:正常，0:禁用)不能为空")
+    private Integer status;
     
     @ApiModelProperty(value = "备注")
     private String remark;

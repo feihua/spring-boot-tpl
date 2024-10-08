@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：租户套餐
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -45,12 +45,12 @@ public class QueryTenantPackageListReqVo implements Serializable {
     @ApiModelProperty(value = "菜单树选择项是否关联显示")
     //@NotNull(message = "menuCheckStrictly菜单树选择项是否关联显示不能为空")
     private Integer menuCheckStrictly;
-    @ApiModelProperty(value = "状态（0正常 1停用）")
-    //@NotBlank(message = "status状态（0正常 1停用）不能为空")
-    private String status;
-    @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）")
-    //@NotBlank(message = "delFlag删除标志（0代表存在 2代表删除）不能为空")
-    private String delFlag;
+    @ApiModelProperty(value = "部门状态(1:正常，0:禁用)")
+    //@NotNull(message = "status部门状态(1:正常，0:禁用)不能为空")
+    private Integer status;
+    @ApiModelProperty(value = "删除标志（0代表存在 1代表删除）")
+    //@NotNull(message = "delFlag删除标志（0代表存在 1代表删除）不能为空")
+    private Integer delFlag;
     @ApiModelProperty(value = "备注")
     //@NotBlank(message = "remark备注不能为空")
     private String remark;

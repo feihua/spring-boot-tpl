@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -27,7 +27,7 @@ public class QueryDictDataListRespVo implements Serializable {
 
 
     @ApiModelProperty("字典编码")
-    private Integer dictCode;
+    private Long dictCode;
 
     @ApiModelProperty("租户编号")
     private String tenantId;
@@ -54,17 +54,17 @@ public class QueryDictDataListRespVo implements Serializable {
     private String isDefault;
 
     @ApiModelProperty("创建部门")
-    private Integer createDept;
+    private Long createDept;
 
     @ApiModelProperty("创建者")
-    private Integer createBy;
+    private Long createBy;
 
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     @ApiModelProperty("更新者")
-    private Integer updateBy;
+    private Long updateBy;
 
     @ApiModelProperty("更新时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

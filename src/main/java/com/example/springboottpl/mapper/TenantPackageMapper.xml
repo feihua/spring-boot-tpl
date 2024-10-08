@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.TenantPackageDao">
+<mapper namespace="com.example.springboottpl.dao.TenantPackageDao">
 
     <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.TenantPackageBean">
-      <result column="package_id" property="packageId" jdbcType="BIGINT"/>
-      <result column="package_name" property="packageName" jdbcType="VARCHAR"/>
-      <result column="menu_ids" property="menuIds" jdbcType="VARCHAR"/>
-      <result column="menu_check_strictly" property="menuCheckStrictly" jdbcType="TINYINT"/>
-      <result column="status" property="status" jdbcType="CHAR"/>
-      <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
-      <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+        <result column="package_id" property="packageId" jdbcType="BIGINT"/>
+        <result column="package_name" property="packageName" jdbcType="VARCHAR"/>
+        <result column="menu_ids" property="menuIds" jdbcType="VARCHAR"/>
+        <result column="menu_check_strictly" property="menuCheckStrictly" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        package_id, package_name, menu_ids, menu_check_strictly, status, del_flag, remark, create_dept, create_by, create_time, update_by, update_time
+        package_id, package_name, menu_ids, menu_check_strictly, status, del_flag, remark, create_dept, create_by,
+        create_time, update_by, update_time
     </sql>
 
     <insert id="addTenantPackage" parameterType="com.example.springboottpl.entity.TenantPackageBean">
@@ -105,7 +106,7 @@
     <delete id="deleteTenantPackage">
         delete from sys_tenant_package where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
@@ -150,7 +151,7 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="packageId != null">
                 and package_id = #{ packageId}
             </if>
@@ -190,171 +191,101 @@
         </where>
     </update>
 
-    <update id="updateTenantPackageStatus" parameterType="com.example.springboottpl.entity.TenantPackageBean">
-        update sys_tenant_package
-        <set>
-            <if test="packageId != null">
-                package_id = #{ packageId,jdbcType=BIGINT},
-            </if>
-            <if test="packageName != null">
-                package_name = #{ packageName,jdbcType=VARCHAR},
-            </if>
-            <if test="menuIds != null">
-                menu_ids = #{ menuIds,jdbcType=VARCHAR},
-            </if>
-            <if test="menuCheckStrictly != null">
-                menu_check_strictly = #{ menuCheckStrictly,jdbcType=TINYINT},
-            </if>
-            <if test="status != null">
-                status = #{ status,jdbcType=CHAR},
-            </if>
-            <if test="delFlag != null">
-                del_flag = #{ delFlag,jdbcType=CHAR},
-            </if>
-            <if test="remark != null">
-                remark = #{ remark,jdbcType=VARCHAR},
-            </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
-            </if>
-            <if test="createTime != null">
-                create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{ updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        <where> 
-            <if test="packageId != null">
-                and package_id = #{ packageId}
-            </if>
-            <if test="packageName != null">
-                and package_name = #{ packageName}
-            </if>
-            <if test="menuIds != null">
-                and menu_ids = #{ menuIds}
-            </if>
-            <if test="menuCheckStrictly != null">
-                and menu_check_strictly = #{ menuCheckStrictly}
-            </if>
-            <if test="status != null">
-                and status = #{ status}
-            </if>
-            <if test="delFlag != null">
-                and del_flag = #{ delFlag}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
-        </where>
+    <update id="updateTenantPackageStatus">
+        update sys_tenant_package set status = #{status,jdbcType=CHAR} where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </update>
 
-    <select id="queryTenantPackageDetail" parameterType="com.example.springboottpl.entity.TenantPackageBean" resultMap="BaseResultMap">
+    <select id="queryTenantPackageDetail" parameterType="com.example.springboottpl.entity.TenantPackageBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_tenant_package
         <where>
-        <!--<if test="packageId != null">-->
-        <!--    and package_id = #{ packageId}-->
-        <!--</if>-->
-        <!--<if test="packageName != null">-->
-        <!--    and package_name = #{ packageName}-->
-        <!--</if>-->
-        <!--<if test="menuIds != null">-->
-        <!--    and menu_ids = #{ menuIds}-->
-        <!--</if>-->
-        <!--<if test="menuCheckStrictly != null">-->
-        <!--    and menu_check_strictly = #{ menuCheckStrictly}-->
-        <!--</if>-->
-        <!--<if test="status != null">-->
-        <!--    and status = #{ status}-->
-        <!--</if>-->
-        <!--<if test="delFlag != null">-->
-        <!--    and del_flag = #{ delFlag}-->
-        <!--</if>-->
-        <!--<if test="remark != null">-->
-        <!--    and remark = #{ remark}-->
-        <!--</if>-->
-        <!--<if test="createDept != null">-->
-        <!--    and create_dept = #{ createDept}-->
-        <!--</if>-->
-        <!--<if test="createBy != null">-->
-        <!--    and create_by = #{ createBy}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateBy != null">-->
-        <!--    and update_by = #{ updateBy}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <if test="packageId != null">
+                and package_id = #{ packageId}
+            </if>
+            <if test="packageName != null">
+                and package_name = #{ packageName}
+            </if>
+            <!--<if test="menuIds != null">-->
+            <!--    and menu_ids = #{ menuIds}-->
+            <!--</if>-->
+            <!--<if test="menuCheckStrictly != null">-->
+            <!--    and menu_check_strictly = #{ menuCheckStrictly}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createDept != null">-->
+            <!--    and create_dept = #{ createDept}-->
+            <!--</if>-->
+            <!--<if test="createBy != null">-->
+            <!--    and create_by = #{ createBy}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateBy != null">-->
+            <!--    and update_by = #{ updateBy}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryTenantPackageList" parameterType="com.example.springboottpl.entity.TenantPackageBean" resultMap="BaseResultMap">
+    <select id="queryTenantPackageList" parameterType="com.example.springboottpl.entity.TenantPackageBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_tenant_package
         <where>
-          <!--<if test="packageId != null">-->
-          <!--    and package_id = #{ packageId}-->
-          <!--</if>-->
-          <!--<if test="packageName != null">-->
-          <!--    and package_name = #{ packageName}-->
-          <!--</if>-->
-          <!--<if test="menuIds != null">-->
-          <!--    and menu_ids = #{ menuIds}-->
-          <!--</if>-->
-          <!--<if test="menuCheckStrictly != null">-->
-          <!--    and menu_check_strictly = #{ menuCheckStrictly}-->
-          <!--</if>-->
-          <!--<if test="status != null">-->
-          <!--    and status = #{ status}-->
-          <!--</if>-->
-          <!--<if test="delFlag != null">-->
-          <!--    and del_flag = #{ delFlag}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createDept != null">-->
-          <!--    and create_dept = #{ createDept}-->
-          <!--</if>-->
-          <!--<if test="createBy != null">-->
-          <!--    and create_by = #{ createBy}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateBy != null">-->
-          <!--    and update_by = #{ updateBy}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <!--<if test="packageId != null">-->
+            <!--    and package_id = #{ packageId}-->
+            <!--</if>-->
+            <!--<if test="packageName != null">-->
+            <!--    and package_name = #{ packageName}-->
+            <!--</if>-->
+            <!--<if test="menuIds != null">-->
+            <!--    and menu_ids = #{ menuIds}-->
+            <!--</if>-->
+            <!--<if test="menuCheckStrictly != null">-->
+            <!--    and menu_check_strictly = #{ menuCheckStrictly}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createDept != null">-->
+            <!--    and create_dept = #{ createDept}-->
+            <!--</if>-->
+            <!--<if test="createBy != null">-->
+            <!--    and create_by = #{ createBy}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateBy != null">-->
+            <!--    and update_by = #{ updateBy}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 </mapper>

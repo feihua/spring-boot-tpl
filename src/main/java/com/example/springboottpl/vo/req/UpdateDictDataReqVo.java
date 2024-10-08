@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -28,8 +28,8 @@ public class UpdateDictDataReqVo implements Serializable {
 
 
     @ApiModelProperty(value = "字典编码", required = true)
-    @NotNull(message = "dictCode字典编码不能为空")
-    private Integer dictCode;
+    @NotBlank(message = "dictCode字典编码不能为空")
+    private Long dictCode;
     
     @ApiModelProperty(value = "租户编号", required = false)
     private String tenantId;

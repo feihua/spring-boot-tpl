@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：租户套餐
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -30,21 +30,20 @@ public class AddTenantPackageReqVo implements Serializable {
     @NotBlank(message = "packageName套餐名称不能为空")
     private String packageName;
     
-    @ApiModelProperty(value = "关联菜单id", required = true)
-    @NotBlank(message = "menuIds关联菜单id不能为空")
+    @ApiModelProperty(value = "关联菜单id")
     private String menuIds;
     
     @ApiModelProperty(value = "菜单树选择项是否关联显示", required = true)
     @NotNull(message = "menuCheckStrictly菜单树选择项是否关联显示不能为空")
     private Integer menuCheckStrictly;
     
-    @ApiModelProperty(value = "状态（0正常 1停用）", required = true)
-    @NotBlank(message = "status状态（0正常 1停用）不能为空")
-    private String status;
+    @ApiModelProperty(value = "部门状态(1:正常，0:禁用)", required = true)
+    @NotNull(message = "status部门状态(1:正常，0:禁用)不能为空")
+    private Integer status;
     
-    @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）", required = true)
-    @NotBlank(message = "delFlag删除标志（0代表存在 2代表删除）不能为空")
-    private String delFlag;
+    @ApiModelProperty(value = "删除标志（0代表存在 1代表删除）", required = true)
+    @NotNull(message = "delFlag删除标志（0代表存在 1代表删除）不能为空")
+    private Integer delFlag;
     
     @ApiModelProperty(value = "备注")
     private String remark;

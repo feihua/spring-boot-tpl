@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -27,13 +27,13 @@ public class QueryPostListRespVo implements Serializable {
 
 
     @ApiModelProperty("岗位ID")
-    private Integer postId;
+    private Long postId;
 
     @ApiModelProperty("租户编号")
     private String tenantId;
 
     @ApiModelProperty("部门id")
-    private Integer deptId;
+    private Long deptId;
 
     @ApiModelProperty("岗位编码")
     private String postCode;
@@ -47,24 +47,24 @@ public class QueryPostListRespVo implements Serializable {
     @ApiModelProperty("显示顺序")
     private Integer postSort;
 
-    @ApiModelProperty("状态（0正常 1停用）")
-    private String status;
+    @ApiModelProperty("状态(1:正常，0:禁用)")
+    private Integer status;
 
     @ApiModelProperty("备注")
     private String remark;
 
     @ApiModelProperty("创建部门")
-    private Integer createDept;
+    private Long createDept;
 
     @ApiModelProperty("创建者")
-    private Integer createBy;
+    private Long createBy;
 
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     @ApiModelProperty("更新者")
-    private Integer updateBy;
+    private Long updateBy;
 
     @ApiModelProperty("修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

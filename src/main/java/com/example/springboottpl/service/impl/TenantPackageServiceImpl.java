@@ -1,8 +1,14 @@
 package com.example.springboottpl.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboottpl.biz.TenantBiz;
+import com.example.springboottpl.entity.TenantBean;
+import com.example.springboottpl.enums.ExceptionEnum;
+import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 import com.example.springboottpl.biz.TenantPackageBiz;
@@ -18,6 +24,9 @@ public class TenantPackageServiceImpl implements TenantPackageService {
 
    @Autowired
    private TenantPackageBiz tenantPackageBiz;
+
+   @Autowired
+   private TenantBiz tenantBiz;
 
    /**
     * 添加租户套餐
@@ -43,7 +52,11 @@ public class TenantPackageServiceImpl implements TenantPackageService {
     */
    @Override
    public int deleteTenantPackage(DeleteTenantPackageReqVo tenantPackage){
-		return tenantPackageBiz.deleteTenantPackage(tenantPackage);
+       List<TenantBean> list = tenantBiz.queryTenantListByIds(tenantPackage.getIds());
+       if (!list.isEmpty()) {
+           throw new TplException(ExceptionEnum.ERROR.getCode(), "租户套餐已被使用");
+       }
+       return tenantPackageBiz.deleteTenantPackage(tenantPackage);
    }
 
    /**

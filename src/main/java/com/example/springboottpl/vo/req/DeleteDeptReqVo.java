@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class DeleteDeptReqVo implements Serializable {
 
 	@ApiModelProperty(value = "主键", required = true)
-	@NotNull(message = "id主键不能为空")
-	private Long id;
+	@NotNull(message = "ids主键不能为空")
+	private List<Integer> ids;
 }
 

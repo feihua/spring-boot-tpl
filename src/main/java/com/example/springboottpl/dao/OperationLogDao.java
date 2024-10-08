@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.springboottpl.entity.OperationLogBean;
-
 /**
  * 描述：操作日志
  * 作者：刘飞华

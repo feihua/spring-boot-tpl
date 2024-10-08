@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：租户套餐
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -29,5 +29,5 @@ public class QueryTenantPackageDetailReqVo implements Serializable {
 
 	@ApiModelProperty(value = "租户套餐id", required = true)
 	@NotNull(message = "packageId租户套餐id不能为空")
-	private Integer packageId;
+	private Long packageId;
 }

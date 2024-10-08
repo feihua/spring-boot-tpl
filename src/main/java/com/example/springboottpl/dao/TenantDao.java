@@ -73,4 +73,15 @@ public interface TenantDao {
     */
    List<TenantBean> queryTenantList(TenantBean tenant);
 
+
+   /**
+    * 根据租户id查询租户列表
+    *
+    * @param ids 请求参数
+    * @return int
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:31
+    */
+   List<TenantBean> queryTenantListByIds(List<Long> ids);
+
 }

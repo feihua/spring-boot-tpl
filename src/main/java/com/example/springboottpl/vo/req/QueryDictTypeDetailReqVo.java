@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -29,5 +29,5 @@ public class QueryDictTypeDetailReqVo implements Serializable {
 
 	@ApiModelProperty(value = "字典主键", required = true)
 	@NotNull(message = "dictId字典主键不能为空")
-	private Integer dictId;
+	private Long dictId;
 }

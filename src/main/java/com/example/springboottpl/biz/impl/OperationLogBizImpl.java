@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.springboottpl.biz.OperationLogBiz;
 import com.example.springboottpl.dao.OperationLogDao;
-import com.example.springboottpl.entity.OperationLogBean;
 import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.OperationLogAddReqVo;
 import com.example.springboottpl.vo.req.OperationLogDeleteReqVo;

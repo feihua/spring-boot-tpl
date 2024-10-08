@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -40,8 +40,8 @@ public class QueryDeptListReqVo implements Serializable {
     //@NotBlank(message = "tenantId租户编号不能为空")
     private String tenantId;
     @ApiModelProperty(value = "父部门id")
-    //@NotNull(message = "parentId父部门id不能为空")
-    private Integer parentId;
+    //@NotBlank(message = "parentId父部门id不能为空")
+    private Long parentId;
     @ApiModelProperty(value = "祖级列表")
     //@NotBlank(message = "parentIds祖级列表不能为空")
     private String parentIds;
@@ -55,19 +55,19 @@ public class QueryDeptListReqVo implements Serializable {
     //@NotNull(message = "orderNum显示顺序不能为空")
     private Integer orderNum;
     @ApiModelProperty(value = "负责人")
-    //@NotNull(message = "leader负责人不能为空")
-    private Integer leader;
+    //@NotBlank(message = "leader负责人不能为空")
+    private Long leader;
     @ApiModelProperty(value = "联系电话")
     //@NotBlank(message = "phone联系电话不能为空")
     private String phone;
     @ApiModelProperty(value = "邮箱")
     //@NotBlank(message = "email邮箱不能为空")
     private String email;
-    @ApiModelProperty(value = "部门状态（0正常 1停用）")
-    //@NotBlank(message = "status部门状态（0正常 1停用）不能为空")
-    private String status;
-    @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）")
-    //@NotBlank(message = "delFlag删除标志（0代表存在 2代表删除）不能为空")
-    private String delFlag;
+    @ApiModelProperty(value = "部门状态(1:正常，0:禁用)")
+    //@NotNull(message = "status部门状态(1:正常，0:禁用)不能为空")
+    private Integer status;
+    @ApiModelProperty(value = "删除标志（0代表存在 1代表删除）")
+    //@NotNull(message = "delFlag删除标志（0代表存在 1代表删除）不能为空")
+    private Integer delFlag;
 
 }

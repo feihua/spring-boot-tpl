@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2024-10-08 17:42:02
  */
 @Data
 @Builder
@@ -29,5 +29,5 @@ public class QueryPostDetailReqVo implements Serializable {
 
 	@ApiModelProperty(value = "岗位ID", required = true)
 	@NotNull(message = "postId岗位ID不能为空")
-	private Integer postId;
+	private Long postId;
 }

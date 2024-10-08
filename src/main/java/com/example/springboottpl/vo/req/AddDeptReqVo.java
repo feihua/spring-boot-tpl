@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2024-10-08 17:42:01
  */
 @Data
 @Builder
@@ -31,8 +31,8 @@ public class AddDeptReqVo implements Serializable {
     private String tenantId;
     
     @ApiModelProperty(value = "父部门id", required = true)
-    @NotNull(message = "parentId父部门id不能为空")
-    private Integer parentId;
+    @NotBlank(message = "parentId父部门id不能为空")
+    private Long parentId;
     
     @ApiModelProperty(value = "祖级列表", required = true)
     @NotBlank(message = "parentIds祖级列表不能为空")
@@ -51,8 +51,8 @@ public class AddDeptReqVo implements Serializable {
     private Integer orderNum;
     
     @ApiModelProperty(value = "负责人", required = true)
-    @NotNull(message = "leader负责人不能为空")
-    private Integer leader;
+    @NotBlank(message = "leader负责人不能为空")
+    private Long leader;
     
     @ApiModelProperty(value = "联系电话", required = true)
     @NotBlank(message = "phone联系电话不能为空")
@@ -62,13 +62,13 @@ public class AddDeptReqVo implements Serializable {
     @NotBlank(message = "email邮箱不能为空")
     private String email;
     
-    @ApiModelProperty(value = "部门状态（0正常 1停用）", required = true)
-    @NotBlank(message = "status部门状态（0正常 1停用）不能为空")
-    private String status;
+    @ApiModelProperty(value = "部门状态(1:正常，0:禁用)", required = true)
+    @NotNull(message = "status部门状态(1:正常，0:禁用)不能为空")
+    private Integer status;
     
-    @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）", required = true)
-    @NotBlank(message = "delFlag删除标志（0代表存在 2代表删除）不能为空")
-    private String delFlag;
+    @ApiModelProperty(value = "删除标志（0代表存在 1代表删除）", required = true)
+    @NotNull(message = "delFlag删除标志（0代表存在 1代表删除）不能为空")
+    private Integer delFlag;
     
 
 }
