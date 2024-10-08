@@ -1,5 +1,6 @@
 package com.example.springboottpl.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.example.springboottpl.vo.req.*;
@@ -73,4 +74,12 @@ public interface TenantPackageService {
     */
    QueryTenantPackageListRespVo queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage);
 
+   /**
+    * 查询租户套餐下拉选列表
+    *
+    * @return TenantPackageResp
+    * @author 刘飞华
+    * @date: 2024-10-08 14:26:31
+    */
+   List<QueryTenantPackageListRespVo> queryAllList();
 }

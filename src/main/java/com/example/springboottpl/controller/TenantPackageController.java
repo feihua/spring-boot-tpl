@@ -3,6 +3,7 @@ package com.example.springboottpl.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -120,5 +121,20 @@ public class TenantPackageController {
    public QueryTenantPackageListRespVo queryTenantPackageList(@RequestBody @Valid QueryTenantPackageListReqVo record){
         return tenantPackageService.queryTenantPackageList(record);
    }
+
+
+    /**
+     * 查询租户套餐下拉选列表
+     *
+     * @return list
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @ApiOperation("查询租户套餐下拉选列表")
+    @PostMapping("/queryAllList")
+    @OperateLog(description = "【租户套餐】查询租户套餐下拉选列表")
+    public List<QueryTenantPackageListRespVo> queryAllList(){
+        return tenantPackageService.queryAllList();
+    }
 
 }

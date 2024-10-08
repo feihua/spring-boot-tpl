@@ -28,7 +28,7 @@ public class UpdateTenantPackageStatusReqVo implements Serializable {
 
 	@ApiModelProperty(value = "主键数组", required = true)
 	@NotNull(message = "ids主键不能为空")
-	private List<Integer> ids;
+	private List<Long> ids;
 
     @ApiModelProperty(value = "状态", required = true)
     @NotNull(message = "status状态不能为空")

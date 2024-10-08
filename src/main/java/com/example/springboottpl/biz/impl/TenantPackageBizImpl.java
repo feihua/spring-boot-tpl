@@ -130,15 +130,24 @@ public class TenantPackageBizImpl implements TenantPackageBiz {
     public QueryTenantPackageDetailRespVo queryTenantPackageDetail(QueryTenantPackageDetailReqVo tenantPackage) {
         TenantPackageBean bean = new TenantPackageBean();
         bean.setPackageId(tenantPackage.getPackageId());
-        //bean.setPackageName(tenantPackage.getPackageName());
-        //bean.setMenuIds(tenantPackage.getMenuIds());
-        //bean.setMenuCheckStrictly(tenantPackage.getMenuCheckStrictly());
-        //bean.setStatus(tenantPackage.getStatus());
-        //bean.setDelFlag(tenantPackage.getDelFlag());
 
-        TenantPackageBean query = tenantPackageDao.queryTenantPackageDetail(bean);
+        TenantPackageBean detail = tenantPackageDao.queryTenantPackageDetail(bean);
 
-        return QueryTenantPackageDetailRespVo.builder().build();
+        QueryTenantPackageDetailRespVo respVo = new QueryTenantPackageDetailRespVo();
+        respVo.setPackageId(detail.getPackageId());
+        respVo.setPackageName(detail.getPackageName());
+        respVo.setMenuIds(detail.getMenuIds());
+        respVo.setMenuCheckStrictly(detail.getMenuCheckStrictly());
+        respVo.setStatus(detail.getStatus());
+        respVo.setDelFlag(detail.getDelFlag());
+        respVo.setRemark(detail.getRemark());
+        respVo.setCreateDept(detail.getCreateDept());
+        respVo.setCreateBy(detail.getCreateBy());
+        respVo.setCreateTime(detail.getCreateTime());
+        respVo.setUpdateBy(detail.getUpdateBy());
+        respVo.setUpdateTime(detail.getUpdateTime());
+
+        return respVo;
     }
 
     /**
@@ -182,5 +191,33 @@ public class TenantPackageBizImpl implements TenantPackageBiz {
         //return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
         return null;
 
+    }
+
+    /**
+     * 查询租户套餐下拉选列表
+     *
+     * @return TenantPackageResp
+     * @author 刘飞华
+     * @date: 2024-10-08 14:26:31
+     */
+    @Override
+    public List<QueryTenantPackageListRespVo> queryAllList() {
+
+        return tenantPackageDao.queryAllList().stream().map(x -> {
+            QueryTenantPackageListRespVo resp = new QueryTenantPackageListRespVo();
+            resp.setPackageId(x.getPackageId());
+            resp.setPackageName(x.getPackageName());
+            resp.setMenuIds(x.getMenuIds());
+            resp.setMenuCheckStrictly(x.getMenuCheckStrictly());
+            resp.setStatus(x.getStatus());
+            resp.setDelFlag(x.getDelFlag());
+            resp.setRemark(x.getRemark());
+            resp.setCreateDept(x.getCreateDept());
+            resp.setCreateBy(x.getCreateBy());
+            resp.setCreateTime(x.getCreateTime());
+            resp.setUpdateBy(x.getUpdateBy());
+            resp.setUpdateTime(x.getUpdateTime());
+            return resp;
+        }).collect(Collectors.toList());
     }
 }

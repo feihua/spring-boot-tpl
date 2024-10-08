@@ -288,4 +288,9 @@
             <!--</if>-->
         </where>
     </select>
+    <select id="queryAllList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_tenant_package
+    </select>
 </mapper>
