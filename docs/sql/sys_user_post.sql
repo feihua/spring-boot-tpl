@@ -1,4 +1,4 @@
-create table gozero2.sys_user_post
+create table sys_user_post
 (
     user_id bigint not null comment '用户ID',
     post_id bigint not null comment '岗位ID',
