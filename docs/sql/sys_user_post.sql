@@ -6,5 +6,3 @@ create table gozero2.sys_user_post
 )
     comment '用户与岗位关联表';
 
-
-
