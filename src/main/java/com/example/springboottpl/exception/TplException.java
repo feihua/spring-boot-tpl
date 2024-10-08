@@ -1,17 +1,16 @@
 package com.example.springboottpl.exception;
 
 
+import lombok.Getter;
+
 import com.example.springboottpl.enums.ExceptionEnum;
 
 
+@Getter
 public class TplException extends RuntimeException {
-	private int code;
+	private final int code;
 
-	public int getCode() {
-		return code;
-	}
-
-	/**
+    /**
 	 * 服务自定义异常构造方法
 	 *
 	 * @param exceptionEnum 异常代码

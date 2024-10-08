@@ -370,9 +370,9 @@
         <include refid="Base_Column_List"/>
         from sys_dept
         <where>
-        <!--<if test="deptId != null">-->
-        <!--    and dept_id = #{ deptId}-->
-        <!--</if>-->
+        <if test="deptId != null">
+            and dept_id = #{ deptId}
+        </if>
         <!--<if test="tenantId != null">-->
         <!--    and tenant_id = #{ tenantId}-->
         <!--</if>-->
@@ -435,15 +435,15 @@
           <!--<if test="tenantId != null">-->
           <!--    and tenant_id = #{ tenantId}-->
           <!--</if>-->
-          <!--<if test="parentId != null">-->
-          <!--    and parent_id = #{ parentId}-->
-          <!--</if>-->
+          <if test="parentId != null">
+              and parent_id = #{ parentId}
+          </if>
           <!--<if test="parentIds != null">-->
           <!--    and parent_ids = #{ parentIds}-->
           <!--</if>-->
-          <!--<if test="deptName != null">-->
-          <!--    and dept_name = #{ deptName}-->
-          <!--</if>-->
+          <if test="deptName != null">
+              and dept_name = #{ deptName}
+          </if>
           <!--<if test="deptCategory != null">-->
           <!--    and dept_category = #{ deptCategory}-->
           <!--</if>-->
@@ -482,4 +482,15 @@
           <!--</if>-->
         </where>
     </select>
+
+    <!-- 检查部门是否已存在   -->
+    <select id="checkDeptName" resultType="java.lang.Integer">
+        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    </select>
+
+    <!-- 根据id查询部门详情   -->
+    <select id="queryDeptById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from sys_dept where dept_id = #{deptId}
+    </select>
+
 </mapper>

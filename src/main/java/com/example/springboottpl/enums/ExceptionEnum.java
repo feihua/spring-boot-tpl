@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ExceptionEnum {
 	SUCCESS(200, "成功!"),
+	ERROR(11111, "系统异常!"),
+
 	INTERNAL_SERVER_ERROR(500, "服务器内部错误!"),
 	TOKEN_NOT_LOGIN(10001, "未登录!"),
 	TOKEN_EXPIRE_ERROR(10002, "token已经过期!"),
@@ -26,6 +28,9 @@ public enum ExceptionEnum {
 
 	MENU_IS_EXIST_ERROR(22001, "菜单名称已存在!"),
 	MENU_IS_NOT_EXIST_ERROR(22002, "菜单不存在!"),
+
+	DEPT_IS_EXIST(23001, "部门名称已存在!"),
+	DEPT_IS_STOP(23002, "部门停用，不允许新增!"),
 
 	;
 
