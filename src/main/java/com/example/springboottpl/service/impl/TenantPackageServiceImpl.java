@@ -11,6 +11,7 @@ import com.example.springboottpl.entity.TenantBean;
 import com.example.springboottpl.enums.ExceptionEnum;
 import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.service.TenantPackageService;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.AddTenantPackageReqVo;
 import com.example.springboottpl.vo.req.DeleteTenantPackageReqVo;
 import com.example.springboottpl.vo.req.QueryTenantPackageDetailReqVo;
@@ -116,7 +117,7 @@ public class TenantPackageServiceImpl implements TenantPackageService {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public QueryTenantPackageListRespVo queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage) {
+    public ResultPage<QueryTenantPackageListRespVo> queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage) {
 
         return tenantPackageBiz.queryTenantPackageList(tenantPackage);
     }
@@ -129,7 +130,7 @@ public class TenantPackageServiceImpl implements TenantPackageService {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public List<QueryTenantPackageListRespVo> queryAllList() {
+    public List<QueryTenantPackageDetailRespVo> queryAllList() {
         return tenantPackageBiz.queryAllList();
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 import com.example.springboottpl.service.TenantPackageService;
@@ -118,7 +119,7 @@ public class TenantPackageController {
    @ApiOperation("查询租户套餐列表")
    @PostMapping("/queryTenantPackageList")
    @OperateLog(description = "【租户套餐】查询租户套餐列表")
-   public QueryTenantPackageListRespVo queryTenantPackageList(@RequestBody @Valid QueryTenantPackageListReqVo record){
+   public ResultPage<QueryTenantPackageListRespVo> queryTenantPackageList(@RequestBody @Valid QueryTenantPackageListReqVo record){
         return tenantPackageService.queryTenantPackageList(record);
    }
 
@@ -133,7 +134,7 @@ public class TenantPackageController {
     @ApiOperation("查询租户套餐下拉选列表")
     @PostMapping("/queryAllList")
     @OperateLog(description = "【租户套餐】查询租户套餐下拉选列表")
-    public List<QueryTenantPackageListRespVo> queryAllList(){
+    public List<QueryTenantPackageDetailRespVo> queryAllList(){
         return tenantPackageService.queryAllList();
     }
 

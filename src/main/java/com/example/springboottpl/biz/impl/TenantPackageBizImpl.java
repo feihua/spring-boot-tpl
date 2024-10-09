@@ -13,6 +13,7 @@ import com.example.springboottpl.dao.TenantPackageDao;
 import com.example.springboottpl.entity.TenantPackageBean;
 import com.example.springboottpl.enums.ExceptionEnum;
 import com.example.springboottpl.exception.TplException;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.AddTenantPackageReqVo;
 import com.example.springboottpl.vo.req.DeleteTenantPackageReqVo;
 import com.example.springboottpl.vo.req.QueryTenantPackageDetailReqVo;
@@ -159,13 +160,10 @@ public class TenantPackageBizImpl implements TenantPackageBiz {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public QueryTenantPackageListRespVo queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage) {
+    public ResultPage<QueryTenantPackageListRespVo> queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage) {
         TenantPackageBean bean = new TenantPackageBean();
-        //bean.setPackageName(tenantPackage.getPackageName());
-        //bean.setMenuIds(tenantPackage.getMenuIds());
-        //bean.setMenuCheckStrictly(tenantPackage.getMenuCheckStrictly());
-        //bean.setStatus(tenantPackage.getStatus());
-        //bean.setDelFlag(tenantPackage.getDelFlag());
+        bean.setPackageName(tenantPackage.getPackageName());
+        bean.setStatus(tenantPackage.getStatus());
 
         PageHelper.startPage(tenantPackage.getPageNum(), tenantPackage.getPageSize());
         List<TenantPackageBean> query = tenantPackageDao.queryTenantPackageList(bean);
@@ -188,8 +186,7 @@ public class TenantPackageBizImpl implements TenantPackageBiz {
             return resp;
         }).collect(Collectors.toList());
 
-        //return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
-        return null;
+        return new ResultPage<>(list, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal());
 
     }
 
@@ -201,10 +198,10 @@ public class TenantPackageBizImpl implements TenantPackageBiz {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public List<QueryTenantPackageListRespVo> queryAllList() {
+    public List<QueryTenantPackageDetailRespVo> queryAllList() {
 
         return tenantPackageDao.queryAllList().stream().map(x -> {
-            QueryTenantPackageListRespVo resp = new QueryTenantPackageListRespVo();
+            QueryTenantPackageDetailRespVo resp = new QueryTenantPackageDetailRespVo();
             resp.setPackageId(x.getPackageId());
             resp.setPackageName(x.getPackageName());
             resp.setMenuIds(x.getMenuIds());

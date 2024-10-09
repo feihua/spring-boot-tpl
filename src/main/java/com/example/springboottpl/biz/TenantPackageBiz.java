@@ -1,8 +1,8 @@
 package com.example.springboottpl.biz;
 
 import java.util.List;
-import java.util.Map;
 
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 
@@ -71,7 +71,7 @@ public interface TenantPackageBiz {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   QueryTenantPackageListRespVo queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage);
+   ResultPage<QueryTenantPackageListRespVo> queryTenantPackageList(QueryTenantPackageListReqVo tenantPackage);
 
    /**
     * 查询租户套餐下拉选列表
@@ -80,5 +80,5 @@ public interface TenantPackageBiz {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   List<QueryTenantPackageListRespVo> queryAllList();
+   List<QueryTenantPackageDetailRespVo> queryAllList();
 }
