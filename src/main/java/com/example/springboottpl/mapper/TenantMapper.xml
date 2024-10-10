@@ -299,65 +299,8 @@
     <update id="updateTenantStatus" parameterType="com.example.springboottpl.entity.TenantBean">
         update sys_tenant
         <set>
-            <if test="id != null">
-                id = #{ id,jdbcType=BIGINT},
-            </if>
-            <if test="tenantId != null">
-                tenant_id = #{ tenantId,jdbcType=VARCHAR},
-            </if>
-            <if test="contactUserName != null">
-                contact_user_name = #{ contactUserName,jdbcType=VARCHAR},
-            </if>
-            <if test="contactPhone != null">
-                contact_phone = #{ contactPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="companyName != null">
-                company_name = #{ companyName,jdbcType=VARCHAR},
-            </if>
-            <if test="licenseNumber != null">
-                license_number = #{ licenseNumber,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
-                address = #{ address,jdbcType=VARCHAR},
-            </if>
-            <if test="intro != null">
-                intro = #{ intro,jdbcType=VARCHAR},
-            </if>
-            <if test="domain != null">
-                domain = #{ domain,jdbcType=VARCHAR},
-            </if>
-            <if test="packageId != null">
-                package_id = #{ packageId,jdbcType=BIGINT},
-            </if>
-            <if test="expireTime != null">
-                expire_time = #{ expireTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="accountCount != null">
-                account_count = #{ accountCount,jdbcType=INTEGER},
-            </if>
             <if test="status != null">
                 status = #{ status,jdbcType=CHAR},
-            </if>
-            <if test="delFlag != null">
-                del_flag = #{ delFlag,jdbcType=CHAR},
-            </if>
-            <if test="remark != null">
-                remark = #{ remark,jdbcType=VARCHAR},
-            </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
-            </if>
-            <if test="createTime != null">
-                create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         <where>
@@ -366,60 +309,6 @@
             </if>
             <if test="tenantId != null">
                 and tenant_id = #{ tenantId}
-            </if>
-            <if test="contactUserName != null">
-                and contact_user_name = #{ contactUserName}
-            </if>
-            <if test="contactPhone != null">
-                and contact_phone = #{ contactPhone}
-            </if>
-            <if test="companyName != null">
-                and company_name = #{ companyName}
-            </if>
-            <if test="licenseNumber != null">
-                and license_number = #{ licenseNumber}
-            </if>
-            <if test="address != null">
-                and address = #{ address}
-            </if>
-            <if test="intro != null">
-                and intro = #{ intro}
-            </if>
-            <if test="domain != null">
-                and domain = #{ domain}
-            </if>
-            <if test="packageId != null">
-                and package_id = #{ packageId}
-            </if>
-            <if test="expireTime != null">
-                and expire_time = #{ expireTime}
-            </if>
-            <if test="accountCount != null">
-                and account_count = #{ accountCount}
-            </if>
-            <if test="status != null">
-                and status = #{ status}
-            </if>
-            <if test="delFlag != null">
-                and del_flag = #{ delFlag}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
             </if>
         </where>
     </update>

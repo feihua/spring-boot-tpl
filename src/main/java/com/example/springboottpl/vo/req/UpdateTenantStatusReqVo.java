@@ -26,9 +26,13 @@ import lombok.NoArgsConstructor;
 @ApiModel("更新租户状态请求Vo")
 public class UpdateTenantStatusReqVo implements Serializable {
 
-	@ApiModelProperty(value = "主键数组", required = true)
-	@NotNull(message = "ids主键不能为空")
-	private List<Integer> ids;
+    @ApiModelProperty(value = "租户编号", required = true)
+    @NotBlank(message = "tenantId租户编号不能为空")
+    private String tenantId;
+
+    @ApiModelProperty(value = "主键", required = true)
+    @NotBlank(message = "id不能为空")
+    private Long id;
 
     @ApiModelProperty(value = "状态", required = true)
     @NotNull(message = "status状态不能为空")

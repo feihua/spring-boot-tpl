@@ -128,21 +128,13 @@ public class TenantBizImpl implements TenantBiz {
      */
     @Override
     public int updateTenantStatus(UpdateTenantStatusReqVo tenant) {
+        if (TplConstant.DEFAULT_TENANT_ID.equals(tenant.getTenantId())) {
+            throw new TplException(ExceptionEnum.ERROR.getCode(),"不允许操作管理租户");
+        }
         TenantBean bean = new TenantBean();
-        //bean.setId(tenant.getId());
-        //bean.setTenantId(tenant.getTenantId());
-        //bean.setContactUserName(tenant.getContactUserName());
-        //bean.setContactPhone(tenant.getContactPhone());
-        //bean.setCompanyName(tenant.getCompanyName());
-        //bean.setLicenseNumber(tenant.getLicenseNumber());
-        //bean.setAddress(tenant.getAddress());
-        //bean.setIntro(tenant.getIntro());
-        //bean.setDomain(tenant.getDomain());
-        //bean.setPackageId(tenant.getPackageId());
-        //bean.setExpireTime(tenant.getExpireTime());
-        //bean.setAccountCount(tenant.getAccountCount());
-        //bean.setStatus(tenant.getStatus());
-        //bean.setDelFlag(tenant.getDelFlag());
+        bean.setId(tenant.getId());
+        bean.setTenantId(tenant.getTenantId());
+        bean.setStatus(tenant.getStatus());
 
         return tenantDao.updateTenantStatus(bean);
     }
@@ -238,6 +230,13 @@ public class TenantBizImpl implements TenantBiz {
 
     }
 
+    /**
+     * 根据租户id查询租户列表
+     * @param ids 参数
+     * @return list
+     * @author 刘飞华
+     * @date: 2024/10/10 13:56
+     */
     @Override
     public List<TenantBean> queryTenantListByIds(List<Long> ids) {
         return tenantDao.queryTenantListByIds(ids);

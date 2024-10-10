@@ -28,7 +28,7 @@ public class UpdateTenantReqVo implements Serializable {
 
 
     @ApiModelProperty(value = "id", required = true)
-    @NotBlank(message = "idid不能为空")
+    @NotBlank(message = "id不能为空")
     private Long id;
     
     @ApiModelProperty(value = "租户编号", required = true)
