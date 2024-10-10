@@ -442,9 +442,9 @@
             <!--<if test="contactPhone != null">-->
             <!--    and contact_phone = #{ contactPhone}-->
             <!--</if>-->
-            <!--<if test="companyName != null">-->
-            <!--    and company_name = #{ companyName}-->
-            <!--</if>-->
+            <if test="companyName != null">
+                and company_name = #{ companyName}
+            </if>
             <!--<if test="licenseNumber != null">-->
             <!--    and license_number = #{ licenseNumber}-->
             <!--</if>-->

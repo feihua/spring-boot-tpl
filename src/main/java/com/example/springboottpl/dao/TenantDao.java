@@ -31,7 +31,7 @@ public interface TenantDao {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   int deleteTenant(List<Integer> ids);
+   int deleteTenant(List<Long> ids);
 
    /**
     * 更新租户

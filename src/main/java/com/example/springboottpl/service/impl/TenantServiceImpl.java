@@ -3,6 +3,7 @@ package com.example.springboottpl.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 import com.example.springboottpl.biz.TenantBiz;
@@ -97,7 +98,7 @@ public class TenantServiceImpl implements TenantService {
     * @date: 2024-10-08 14:26:31
     */
    @Override
-   public QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant){
+   public ResultPage<QueryTenantListRespVo> queryTenantList(QueryTenantListReqVo tenant){
 
         return tenantBiz.queryTenantList(tenant);
    }

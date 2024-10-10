@@ -1,6 +1,5 @@
 package com.example.springboottpl.biz.impl;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.example.springboottpl.biz.TenantBiz;
 import com.example.springboottpl.dao.TenantDao;
 import com.example.springboottpl.entity.TenantBean;
+import com.example.springboottpl.enums.ExceptionEnum;
+import com.example.springboottpl.exception.TplException;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.AddTenantReqVo;
 import com.example.springboottpl.vo.req.DeleteTenantReqVo;
 import com.example.springboottpl.vo.req.QueryTenantDetailReqVo;
@@ -42,6 +44,13 @@ public class TenantBizImpl implements TenantBiz {
      */
     @Override
     public int addTenant(AddTenantReqVo tenant) {
+
+        TenantBean packageBean = tenantDao.queryTenantDetail(TenantBean.builder()
+                .companyName(tenant.getCompanyName())
+                .build());
+        if (packageBean != null) {
+            throw new TplException(ExceptionEnum.ERROR.getCode(), "企业名称已存在");
+        }
 
         TenantBean bean = new TenantBean();
         bean.setTenantId(tenant.getTenantId());
@@ -173,21 +182,15 @@ public class TenantBizImpl implements TenantBiz {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant) {
+    public ResultPage<QueryTenantListRespVo> queryTenantList(QueryTenantListReqVo tenant) {
         TenantBean bean = new TenantBean();
-        //bean.setTenantId(tenant.getTenantId());
-        //bean.setContactUserName(tenant.getContactUserName());
-        //bean.setContactPhone(tenant.getContactPhone());
-        //bean.setCompanyName(tenant.getCompanyName());
-        //bean.setLicenseNumber(tenant.getLicenseNumber());
-        //bean.setAddress(tenant.getAddress());
-        //bean.setIntro(tenant.getIntro());
-        //bean.setDomain(tenant.getDomain());
-        //bean.setPackageId(tenant.getPackageId());
-        //bean.setExpireTime(tenant.getExpireTime());
-        //bean.setAccountCount(tenant.getAccountCount());
-        //bean.setStatus(tenant.getStatus());
-        //bean.setDelFlag(tenant.getDelFlag());
+        bean.setTenantId(tenant.getTenantId());
+        bean.setContactUserName(tenant.getContactUserName());
+        bean.setContactPhone(tenant.getContactPhone());
+        bean.setCompanyName(tenant.getCompanyName());
+        bean.setLicenseNumber(tenant.getLicenseNumber());
+        bean.setPackageId(tenant.getPackageId());
+        bean.setStatus(tenant.getStatus());
 
         PageHelper.startPage(tenant.getPageNum(), tenant.getPageSize());
         List<TenantBean> query = tenantDao.queryTenantList(bean);
@@ -218,8 +221,7 @@ public class TenantBizImpl implements TenantBiz {
             return resp;
         }).collect(Collectors.toList());
 
-        //return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
-        return null;
+        return new ResultPage<>(list, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal());
 
     }
 

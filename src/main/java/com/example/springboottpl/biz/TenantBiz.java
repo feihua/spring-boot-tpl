@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.springboottpl.entity.TenantBean;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 
@@ -72,7 +73,7 @@ public interface TenantBiz {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant);
+   ResultPage<QueryTenantListRespVo> queryTenantList(QueryTenantListReqVo tenant);
 
    /**
     * 根据租户id查询租户列表

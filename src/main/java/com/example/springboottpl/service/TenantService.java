@@ -2,6 +2,7 @@ package com.example.springboottpl.service;
 
 import java.util.Map;
 
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 
@@ -71,6 +72,6 @@ public interface TenantService {
     * @author 刘飞华
     * @date: 2024-10-08 14:26:31
     */
-   QueryTenantListRespVo queryTenantList(QueryTenantListReqVo tenant);
+   ResultPage<QueryTenantListRespVo> queryTenantList(QueryTenantListReqVo tenant);
 
 }

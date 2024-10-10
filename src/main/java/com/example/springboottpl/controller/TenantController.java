@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.util.ResultPage;
 import com.example.springboottpl.vo.req.*;
 import com.example.springboottpl.vo.resp.*;
 import com.example.springboottpl.service.TenantService;
@@ -117,7 +118,7 @@ public class TenantController {
    @ApiOperation("查询租户列表")
    @PostMapping("/queryTenantList")
    @OperateLog(description = "【租户】查询租户列表")
-   public QueryTenantListRespVo queryTenantList(@RequestBody @Valid QueryTenantListReqVo record){
+   public ResultPage<QueryTenantListRespVo> queryTenantList(@RequestBody @Valid QueryTenantListReqVo record){
         return tenantService.queryTenantList(record);
    }
 
