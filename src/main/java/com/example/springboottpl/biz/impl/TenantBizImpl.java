@@ -1,4 +1,5 @@
 package com.example.springboottpl.biz.impl;
+import java.util.Date;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -151,26 +152,33 @@ public class TenantBizImpl implements TenantBiz {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {
-        TenantBean bean = new TenantBean();
-        bean.setId(tenant.getId());
-        //bean.setTenantId(tenant.getTenantId());
-        //bean.setContactUserName(tenant.getContactUserName());
-        //bean.setContactPhone(tenant.getContactPhone());
-        //bean.setCompanyName(tenant.getCompanyName());
-        //bean.setLicenseNumber(tenant.getLicenseNumber());
-        //bean.setAddress(tenant.getAddress());
-        //bean.setIntro(tenant.getIntro());
-        //bean.setDomain(tenant.getDomain());
-        //bean.setPackageId(tenant.getPackageId());
-        //bean.setExpireTime(tenant.getExpireTime());
-        //bean.setAccountCount(tenant.getAccountCount());
-        //bean.setStatus(tenant.getStatus());
-        //bean.setDelFlag(tenant.getDelFlag());
+    public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {;
 
-        TenantBean query = tenantDao.queryTenantDetail(bean);
+        TenantBean bean = tenantDao.queryTenantDetail(TenantBean.builder().id(tenant.getId()).build());
 
-        return QueryTenantDetailRespVo.builder().build();
+        QueryTenantDetailRespVo resp = new QueryTenantDetailRespVo();
+        resp.setId(bean.getId());
+        resp.setTenantId(bean.getTenantId());
+        resp.setContactUserName(bean.getContactUserName());
+        resp.setContactPhone(bean.getContactPhone());
+        resp.setCompanyName(bean.getCompanyName());
+        resp.setLicenseNumber(bean.getLicenseNumber());
+        resp.setAddress(bean.getAddress());
+        resp.setIntro(bean.getIntro());
+        resp.setDomain(bean.getDomain());
+        resp.setPackageId(bean.getPackageId());
+        resp.setExpireTime(bean.getExpireTime());
+        resp.setAccountCount(bean.getAccountCount());
+        resp.setStatus(bean.getStatus());
+        resp.setDelFlag(bean.getDelFlag());
+        resp.setRemark(bean.getRemark());
+        resp.setCreateDept(bean.getCreateDept());
+        resp.setCreateBy(bean.getCreateBy());
+        resp.setCreateTime(bean.getCreateTime());
+        resp.setUpdateBy(bean.getUpdateBy());
+        resp.setUpdateTime(bean.getUpdateTime());
+
+        return resp;
     }
 
     /**

@@ -28,6 +28,6 @@ import lombok.NoArgsConstructor;
 public class QueryTenantDetailReqVo implements Serializable {
 
 	@ApiModelProperty(value = "id", required = true)
-	@NotNull(message = "idid不能为空")
+	@NotNull(message = "id不能为空")
 	private Long id;
 }
