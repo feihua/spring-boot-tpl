@@ -99,6 +99,18 @@ public class TenantBizImpl implements TenantBiz {
      */
     @Override
     public int updateTenant(UpdateTenantReqVo tenant) {
+        if (tenant.getTenantId().equals(TplConstant.DEFAULT_TENANT_ID)) {
+            throw new TplException(ExceptionEnum.ERROR.getCode(), "不允许操作管理租户");
+        }
+
+        TenantBean packageBean = tenantDao.queryTenantDetail(TenantBean.builder()
+                .companyName(tenant.getCompanyName())
+                .build());
+
+        if (packageBean != null && !packageBean.getTenantId().equals(tenant.getTenantId())) {
+            throw new TplException(ExceptionEnum.ERROR.getCode(), "企业名称已存在");
+        }
+
         TenantBean bean = new TenantBean();
         bean.setId(tenant.getId());
         bean.setTenantId(tenant.getTenantId());
@@ -129,7 +141,7 @@ public class TenantBizImpl implements TenantBiz {
     @Override
     public int updateTenantStatus(UpdateTenantStatusReqVo tenant) {
         if (TplConstant.DEFAULT_TENANT_ID.equals(tenant.getTenantId())) {
-            throw new TplException(ExceptionEnum.ERROR.getCode(),"不允许操作管理租户");
+            throw new TplException(ExceptionEnum.ERROR.getCode(), "不允许操作管理租户");
         }
         TenantBean bean = new TenantBean();
         bean.setId(tenant.getId());
@@ -149,8 +161,6 @@ public class TenantBizImpl implements TenantBiz {
      */
     @Override
     public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {
-        ;
-
         TenantBean bean = tenantDao.queryTenantDetail(TenantBean.builder().id(tenant.getId()).build());
 
         QueryTenantDetailRespVo resp = new QueryTenantDetailRespVo();
@@ -232,6 +242,7 @@ public class TenantBizImpl implements TenantBiz {
 
     /**
      * 根据租户id查询租户列表
+     *
      * @param ids 参数
      * @return list
      * @author 刘飞华
