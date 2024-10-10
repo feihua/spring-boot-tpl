@@ -1,5 +1,4 @@
 package com.example.springboottpl.biz.impl;
-import java.util.Date;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +12,7 @@ import com.example.springboottpl.entity.TenantBean;
 import com.example.springboottpl.enums.ExceptionEnum;
 import com.example.springboottpl.exception.TplException;
 import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.util.TplConstant;
 import com.example.springboottpl.vo.req.AddTenantReqVo;
 import com.example.springboottpl.vo.req.DeleteTenantReqVo;
 import com.example.springboottpl.vo.req.QueryTenantDetailReqVo;
@@ -82,6 +82,10 @@ public class TenantBizImpl implements TenantBiz {
      */
     @Override
     public int deleteTenant(DeleteTenantReqVo tenant) {
+        if (tenant.getIds().contains(TplConstant.SUPER_ADMIN_ID)) {
+            throw new TplException(ExceptionEnum.ERROR.getCode(), "超管租户不能删除");
+        }
+
         return tenantDao.deleteTenant(tenant.getIds());
     }
 
@@ -152,7 +156,8 @@ public class TenantBizImpl implements TenantBiz {
      * @date: 2024-10-08 14:26:31
      */
     @Override
-    public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {;
+    public QueryTenantDetailRespVo queryTenantDetail(QueryTenantDetailReqVo tenant) {
+        ;
 
         TenantBean bean = tenantDao.queryTenantDetail(TenantBean.builder().id(tenant.getId()).build());
 

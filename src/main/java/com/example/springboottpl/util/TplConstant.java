@@ -7,6 +7,9 @@ package com.example.springboottpl.util;
  */
 public class TplConstant {
 
+	/** 超级管理员ID */
+	public static final Long SUPER_ADMIN_ID = 1L;
+
 	/** 超级管理员角色的id */
 	public static final Integer ADMIN_ROLE_ID = 1;
 
