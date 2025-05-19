@@ -37,6 +37,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = TplException.class)
     @ResponseBody
     public Result<Integer> tplExceptionHandler(HttpServletRequest req, TplException e) {
+        log.error("处理业务异常: {}", ExceptionUtil.stackTrace(e));
         return Result.resp(e.getCode(), e.getMessage());
     }
 
@@ -53,7 +54,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result<Integer> exceptionHandler(HttpServletRequest req, Exception e) {
         log.error("处理其他异常: {}", ExceptionUtil.stackTrace(e));
-        return Result.resp(1, "系统繁忙");
+        return Result.error();
     }
 
     /**
@@ -91,7 +92,7 @@ public class GlobalExceptionHandler {
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
             errorMessage.append(fieldError.getDefaultMessage()).append("!, ");
         }
-        return Result.resp(1, errorMessage.toString());
+        return Result.error(errorMessage.toString());
     }
 
     /**
@@ -105,6 +106,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = UnexpectedTypeException.class)
     public Result<Integer> handleUnexpectedTypeException(UnexpectedTypeException e) {
-        return Result.resp(1, e.getMessage());
+        return Result.error(e.getMessage());
     }
 }

@@ -26,7 +26,7 @@ public class Result<T> {
     }
 
     public static <T> Result<T> error() {
-        return resp(ERROR.getCode(), ERROR.getMsg());
+        return error(ERROR);
     }
 
     public static <T> Result<T> error(String msg) {
