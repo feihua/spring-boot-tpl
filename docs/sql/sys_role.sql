@@ -1,27 +1,22 @@
 create table sys_role
 (
-    role_id             bigint                                 not null comment '角色ID'
+    id          bigint auto_increment comment '主键'
         primary key,
-    tenant_id           varchar(20)  default '000000'          not null comment '租户编号',
-    role_name           varchar(30)                            not null comment '角色名称',
-    role_key            varchar(100)                           not null comment '角色权限字符串',
-    role_sort           int                                    not null comment '显示顺序',
-    data_scope          char         default '1'               not null comment '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
-    menu_check_strictly tinyint(1) default 1 null comment '菜单树选择项是否关联显示',
-    dept_check_strictly tinyint(1) default 1 null comment '部门树选择项是否关联显示',
-    status              tinyint      default 1                 not null comment '部门状态(1:正常，0:禁用)',
-    del_flag            tinyint      default 1                 not null comment '删除标志（0代表存在 1代表删除）',
-    is_admin            tinyint      default 0                 not null comment '是否超级管理员:  0：否  1：是',
-    remark              varchar(500) default ''                not null comment '备注',
-    create_dept         bigint                                 not null comment '创建部门',
-    create_by           bigint                                 not null comment '创建者',
-    create_time         timestamp    default CURRENT_TIMESTAMP not null comment '创建时间',
-    update_by           bigint null comment '更新者',
-    update_time         datetime null on update CURRENT_TIMESTAMP comment '更新时间'
-) comment '角色信息表';
+    role_name   varchar(50)                            not null comment '名称',
+    role_key    varchar(100) default ''                not null comment '角色权限字符串',
+    data_scope  tinyint      default 1                 not null comment '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
+    status      tinyint      default 1                 not null comment '状态(1:正常，0:禁用)',
+    remark      varchar(255)                           not null comment '备注',
+    del_flag    tinyint      default 1                 not null comment '删除标志（0代表删除 1代表存在）',
+    create_time datetime     default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time datetime     default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '修改时间',
+    constraint role_name
+        unique (role_name)
+) comment '角色信息';
 
+create index name_status_index
+    on sys_role (role_name, status);
 
-
-INSERT INTO sys_role (role_id, tenant_id, role_name, role_key, role_sort, data_scope, menu_check_strictly, dept_check_strictly, status, del_flag, is_admin, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (1, '000000', '超级管理员', 'admin', 1, '1', 1, 1, 1, 0, 1, '演示角色', 100, 1, sysdate(), null, null);
-INSERT INTO sys_role (role_id, tenant_id, role_name, role_key, role_sort, data_scope, menu_check_strictly, dept_check_strictly, status, del_flag, is_admin, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (2, '000000', '开发人员', 'dev', 1, '1', 1, 1, 1, 0, 1, '演示角色', 100, 1, sysdate(), null, null);
-INSERT INTO sys_role (role_id, tenant_id, role_name, role_key, role_sort, data_scope, menu_check_strictly, dept_check_strictly, status, del_flag, is_admin, remark, create_dept, create_by, create_time, update_by, update_time) VALUES (3, '000000', '测试员', 'test', 1, '1', 1, 1, 1, 0, 1, '演示角色', 100, 1, sysdate(), null, null);
+INSERT INTO sys_role (id, role_name, role_key, status, remark) VALUES (1, '超级管理员', 'admin',1, '全部权限');
+INSERT INTO sys_role (id, role_name, role_key, status, remark) VALUES (2, '演示角色', 'query',1,  '仅有查看功能');
+INSERT INTO sys_role (id, role_name, role_key, status, remark) VALUES (3, '121', 'dev',0, '121211');
