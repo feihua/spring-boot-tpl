@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.RoleMenuDao">
+<mapper namespace="com.example.tpl.system.dao.RoleMenuDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.RoleMenuBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="role_id" property="roleId" jdbcType="BIGINT"/>
-      <result column="menu_id" property="menuId" jdbcType="BIGINT"/>
-      <result column="status_id" property="statusId" jdbcType="TINYINT"/>
-      <result column="sort" property="sort" jdbcType="INTEGER"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.RoleMenuBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="menu_id" property="menuId" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, role_id, menu_id, status_id, sort, create_time, update_time
+        id, role_id, menu_id, create_time
     </sql>
 
-    <insert id="saveRoleMenu" parameterType="com.example.springboottpl.entity.RoleMenuBean">
+    <insert id="addRoleMenu" parameterType="com.example.tpl.system.entity.RoleMenuBean">
         insert into sys_role_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -29,17 +26,8 @@
             <if test="menuId != null">
                 menu_id,
             </if>
-            <if test="statusId != null">
-                status_id,
-            </if>
-            <if test="sort != null">
-                sort,
-            </if>
             <if test="createTime != null">
                 create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -52,26 +40,21 @@
             <if test="menuId != null">
                 #{ menuId,jdbcType=BIGINT },
             </if>
-            <if test="statusId != null">
-                #{ statusId,jdbcType=TINYINT },
-            </if>
-            <if test="sort != null">
-                #{ sort,jdbcType=INTEGER },
-            </if>
             <if test="createTime != null">
                 #{ createTime,jdbcType=TIMESTAMP },
-            </if>
-            <if test="updateTime != null">
-                #{ updateTime,jdbcType=TIMESTAMP },
             </if>
         </trim>
     </insert>
 
     <delete id="deleteRoleMenu">
-        delete from sys_role_menu where role_id = #{roleId}
+        delete from sys_role_menu where role_id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </delete>
 
-    <update id="updateRoleMenu" parameterType="com.example.springboottpl.entity.RoleMenuBean">
+    <update id="updateRoleMenu" parameterType="com.example.tpl.system.entity.RoleMenuBean">
         update sys_role_menu
         <set>
             <if test="id != null">
@@ -83,20 +66,11 @@
             <if test="menuId != null">
                 menu_id = #{ menuId,jdbcType=BIGINT},
             </if>
-            <if test="statusId != null">
-                status_id = #{ statusId,jdbcType=TINYINT},
-            </if>
-            <if test="sort != null">
-                sort = #{ sort,jdbcType=INTEGER},
-            </if>
             <if test="createTime != null">
                 create_time = #{ createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updateTime != null">
-                update_time = #{ updateTime,jdbcType=TIMESTAMP},
-            </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
@@ -106,76 +80,92 @@
             <if test="menuId != null">
                 and menu_id = #{ menuId}
             </if>
-            <if test="statusId != null">
-                and status_id = #{ statusId}
-            </if>
-            <if test="sort != null">
-                and sort = #{ sort}
-            </if>
             <if test="createTime != null">
                 and create_time = #{ createTime}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
             </if>
         </where>
     </update>
 
-    <select id="queryRoleMenu" parameterType="com.example.springboottpl.entity.RoleMenuBean" resultMap="BaseResultMap">
+    <update id="updateRoleMenuStatus" parameterType="com.example.tpl.system.entity.RoleMenuBean">
+        update sys_role_menu
+        <set>
+            <if test="id != null">
+                id = #{ id,jdbcType=BIGINT},
+            </if>
+            <if test="roleId != null">
+                role_id = #{ roleId,jdbcType=BIGINT},
+            </if>
+            <if test="menuId != null">
+                menu_id = #{ menuId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{ createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <where>
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <if test="roleId != null">
+                and role_id = #{ roleId}
+            </if>
+            <if test="menuId != null">
+                and menu_id = #{ menuId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{ createTime}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryRoleMenuDetail" parameterType="com.example.tpl.system.entity.RoleMenuBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role_menu
         <where>
-        <!--<if test="id != null">-->
-        <!--    and id = #{ id}-->
-        <!--</if>-->
-        <!--<if test="roleId != null">-->
-        <!--    and role_id = #{ roleId}-->
-        <!--</if>-->
-        <!--<if test="menuId != null">-->
-        <!--    and menu_id = #{ menuId}-->
-        <!--</if>-->
-        <!--<if test="statusId != null">-->
-        <!--    and status_id = #{ statusId}-->
-        <!--</if>-->
-        <!--<if test="sort != null">-->
-        <!--    and sort = #{ sort}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="roleId != null">-->
+            <!--    and role_id = #{ roleId}-->
+            <!--</if>-->
+            <!--<if test="menuId != null">-->
+            <!--    and menu_id = #{ menuId}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryRoleMenuList" parameterType="com.example.springboottpl.entity.RoleMenuBean" resultMap="BaseResultMap">
+    <select id="queryRoleMenuList" parameterType="com.example.tpl.system.entity.RoleMenuBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role_menu
         <where>
-          <!--<if test="id != null">-->
-          <!--    and id = #{ id}-->
-          <!--</if>-->
-          <if test="roleId != null">
-              and role_id = #{ roleId}
-          </if>
-          <!--<if test="menuId != null">-->
-          <!--    and menu_id = #{ menuId}-->
-          <!--</if>-->
-          <!--<if test="statusId != null">-->
-          <!--    and status_id = #{ statusId}-->
-          <!--</if>-->
-          <!--<if test="sort != null">-->
-          <!--    and sort = #{ sort}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="roleId != null">-->
+            <!--    and role_id = #{ roleId}-->
+            <!--</if>-->
+            <!--<if test="menuId != null">-->
+            <!--    and menu_id = #{ menuId}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
         </where>
+    </select>
+
+    <!--查询菜单使用数量-->
+    <select id="countMenuByMenuId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select count(1) from sys_role_menu where menu_id= #{menuId}
+    </select>
+
+    <!--查询菜单使用数量-->
+    <select id="queryMenuByRoleId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select menu_id from sys_role_menu where role_id= #{roleId}
     </select>
 </mapper>

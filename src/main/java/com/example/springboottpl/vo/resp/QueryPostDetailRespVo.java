@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,59 +15,39 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:02
+ * 日期：2025-01-10 15:23:47
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("查询岗位信息详情响应vo")
+@Schema(description = "岗位信息响应vo")
 public class QueryPostDetailRespVo implements Serializable {
 
+    @Schema(description = "岗位id")
+    private Long id;
 
-    @ApiModelProperty("岗位ID")
-    private Long postId;
-
-    @ApiModelProperty("租户编号")
-    private String tenantId;
-
-    @ApiModelProperty("部门id")
-    private Long deptId;
-
-    @ApiModelProperty("岗位编码")
+    @Schema(description = "岗位编码")
     private String postCode;
 
-    @ApiModelProperty("岗位类别编码")
-    private String postCategory;
-
-    @ApiModelProperty("岗位名称")
+    @Schema(description = "岗位名称")
     private String postName;
 
-    @ApiModelProperty("显示顺序")
-    private Integer postSort;
+    @Schema(description = "显示顺序")
+    private Integer sort;
 
-    @ApiModelProperty("状态(1:正常，0:禁用)")
-    private Integer status;
+    @Schema(description = "岗位状态（0：停用，1:正常）")
+    private int status;
 
-    @ApiModelProperty("备注")
+    @Schema(description = "备注")
     private String remark;
 
-    @ApiModelProperty("创建部门")
-    private Long createDept;
-
-    @ApiModelProperty("创建者")
-    private Long createBy;
-
-    @ApiModelProperty("创建时间")
+    @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    @ApiModelProperty("更新者")
-    private Long updateBy;
-
-    @ApiModelProperty("修改时间")
+    @Schema(description = "更新时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
-
 
 }

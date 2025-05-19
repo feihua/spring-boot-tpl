@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.RoleDao">
+<mapper namespace="com.example.tpl.system.dao.RoleDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.RoleBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
-      <result column="status_id" property="statusId" jdbcType="TINYINT"/>
-      <result column="sort" property="sort" jdbcType="INTEGER"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.RoleBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_key" property="roleKey" jdbcType="VARCHAR"/>
+        <result column="data_scope" property="dataScope" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, role_name, status_id, sort, remark, create_time, update_time
+        id, role_name, role_key, data_scope, status, remark, del_flag, create_time, update_time
     </sql>
 
-    <insert id="saveRole" parameterType="com.example.springboottpl.entity.RoleBean">
+    <!--添加角色信息-->
+    <insert id="addRole" parameterType="com.example.tpl.system.entity.RoleBean">
         insert into sys_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -26,14 +29,20 @@
             <if test="roleName != null">
                 role_name,
             </if>
-            <if test="statusId != null">
-                status_id,
+            <if test="roleKey != null">
+                role_key,
             </if>
-            <if test="sort != null">
-                sort,
+            <if test="dataScope != null">
+                data_scope,
+            </if>
+            <if test="status != null">
+                status,
             </if>
             <if test="remark != null">
                 remark,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -49,14 +58,20 @@
             <if test="roleName != null">
                 #{ roleName,jdbcType=VARCHAR },
             </if>
-            <if test="statusId != null">
-                #{ statusId,jdbcType=TINYINT },
+            <if test="roleKey != null">
+                #{ roleKey,jdbcType=VARCHAR },
             </if>
-            <if test="sort != null">
-                #{ sort,jdbcType=INTEGER },
+            <if test="dataScope != null">
+                #{ dataScope,jdbcType=TINYINT },
+            </if>
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
             </if>
             <if test="remark != null">
                 #{ remark,jdbcType=VARCHAR },
+            </if>
+            <if test="delFlag != null">
+                #{ delFlag,jdbcType=TINYINT },
             </if>
             <if test="createTime != null">
                 #{ createTime,jdbcType=TIMESTAMP },
@@ -67,15 +82,17 @@
         </trim>
     </insert>
 
+    <!--删除角色信息-->
     <delete id="deleteRole">
         delete from sys_role where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <update id="updateRole" parameterType="com.example.springboottpl.entity.RoleBean">
+    <!--更新角色信息-->
+    <update id="updateRole" parameterType="com.example.tpl.system.entity.RoleBean">
         update sys_role
         <set>
             <if test="id != null">
@@ -84,14 +101,20 @@
             <if test="roleName != null">
                 role_name = #{ roleName,jdbcType=VARCHAR},
             </if>
-            <if test="statusId != null">
-                status_id = #{ statusId,jdbcType=TINYINT},
+            <if test="roleKey != null">
+                role_key = #{ roleKey,jdbcType=VARCHAR},
             </if>
-            <if test="sort != null">
-                sort = #{ sort,jdbcType=INTEGER},
+            <if test="dataScope != null">
+                data_scope = #{ dataScope,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{ status,jdbcType=TINYINT},
             </if>
             <if test="remark != null">
                 remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{ delFlag,jdbcType=TINYINT},
             </if>
             <if test="createTime != null">
                 create_time = #{ createTime,jdbcType=TIMESTAMP},
@@ -100,86 +123,123 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
-<!--            <if test="roleName != null">-->
-<!--                and role_name = #{ roleName}-->
-<!--            </if>-->
-<!--            <if test="statusId != null">-->
-<!--                and status_id = #{ statusId}-->
-<!--            </if>-->
-<!--            <if test="sort != null">-->
-<!--                and sort = #{ sort}-->
-<!--            </if>-->
-<!--            <if test="remark != null">-->
-<!--                and remark = #{ remark}-->
-<!--            </if>-->
-<!--            <if test="createTime != null">-->
-<!--                and create_time = #{ createTime}-->
-<!--            </if>-->
-<!--            <if test="updateTime != null">-->
-<!--                and update_time = #{ updateTime}-->
-<!--            </if>-->
+            <!--<if test="roleName != null">-->
+            <!--    and role_name = #{ roleName}-->
+            <!--</if>-->
+            <!--<if test="roleKey != null">-->
+            <!--    and role_key = #{ roleKey}-->
+            <!--</if>-->
+            <!--<if test="dataScope != null">-->
+            <!--    and data_scope = #{ dataScope}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </update>
 
-    <select id="queryRole" parameterType="com.example.springboottpl.entity.RoleBean" resultMap="BaseResultMap">
+    <!--更新角色信息状态-->
+    <update id="updateRoleStatus" parameterType="com.example.tpl.system.vo.req.UpdateRoleStatusReqVo">
+        update sys_role set status = #{status} where id in
+        <foreach collection="ids" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+
+    </update>
+
+    <!--查询角色信息详情-->
+    <select id="queryRoleDetail" parameterType="com.example.tpl.system.entity.RoleBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role
         <where>
-        <if test="id != null">
-            and id = #{ id}
-        </if>
-        <if test="roleName != null">
-            and role_name = #{ roleName}
-        </if>
-        <!--<if test="statusId != null">-->
-        <!--    and status_id = #{ statusId}-->
-        <!--</if>-->
-        <!--<if test="sort != null">-->
-        <!--    and sort = #{ sort}-->
-        <!--</if>-->
-        <!--<if test="remark != null">-->
-        <!--    and remark = #{ remark}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <!--<if test="roleName != null">-->
+            <!--    and role_name = #{ roleName}-->
+            <!--</if>-->
+            <!--<if test="roleKey != null">-->
+            <!--    and role_key = #{ roleKey}-->
+            <!--</if>-->
+            <!--<if test="dataScope != null">-->
+            <!--    and data_scope = #{ dataScope}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryRoleList" parameterType="com.example.springboottpl.entity.RoleBean" resultMap="BaseResultMap">
+    <!--根据role_name查询角色信息-->
+    <select id="queryRoleByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role where role_name = #{roleName}
+    </select>
+
+    <!--根据role_key查询角色信息-->
+    <select id="queryRoleByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role where role_key = #{roleKey}
+    </select>
+
+    <!--根据id查询角色信息详情-->
+    <select id="queryRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role where id = #{id}
+    </select>
+
+    <!--查询角色信息列表-->
+    <select id="queryRoleList" parameterType="com.example.tpl.system.entity.RoleBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role
         <where>
-          <!--<if test="id != null">-->
-          <!--    and id = #{ id}-->
-          <!--</if>-->
-          <if test="roleName != null">
-              and role_name = #{ roleName}
-          </if>
-          <if test="statusId != null">
-              and status_id = #{ statusId}
-          </if>
-          <!--<if test="sort != null">-->
-          <!--    and sort = #{ sort}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <if test="roleName != null">
+                and role_name = #{ roleName}
+            </if>
+            <if test="roleKey != null">
+                and role_key = #{ roleKey}
+            </if>
+            <if test="dataScope != null">
+                and data_scope = #{ dataScope}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+
         </where>
     </select>
 </mapper>

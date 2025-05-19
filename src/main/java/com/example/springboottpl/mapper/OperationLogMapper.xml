@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.OperationLogDao">
+<mapper namespace="com.example.tpl.system.dao.OperationLogDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.OperationLogBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="user_id" property="userId" jdbcType="BIGINT"/>
-      <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-      <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
-      <result column="operation_url" property="operationUrl" jdbcType="VARCHAR"/>
-      <result column="operation_method" property="operationMethod" jdbcType="VARCHAR"/>
-      <result column="operation_desc" property="operationDesc" jdbcType="VARCHAR"/>
-      <result column="operation_status" property="operationStatus" jdbcType="VARCHAR"/>
-      <result column="request_params" property="requestParams" jdbcType="VARCHAR"/>
-      <result column="response_params" property="responseParams" jdbcType="VARCHAR"/>
-      <result column="err_message" property="errMessage" jdbcType="VARCHAR"/>
-      <result column="err_message_detail" property="errMessageDetail" jdbcType="VARCHAR"/>
-        <result column="use_time" property="useTime" jdbcType="BIGINT"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.OperationLogBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="os" property="os" jdbcType="VARCHAR"/>
+        <result column="browser" property="browser" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        <result column="engine" property="engine" jdbcType="VARCHAR"/>
+        <result column="operate_ip" property="operateIp" jdbcType="VARCHAR"/>
+        <result column="operation_url" property="operationUrl" jdbcType="VARCHAR"/>
+        <result column="request_method" property="requestMethod" jdbcType="VARCHAR"/>
+        <result column="operation_desc" property="operationDesc" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="operate_param" property="operateParam" jdbcType="VARCHAR"/>
+        <result column="json_result" property="jsonResult" jdbcType="VARCHAR"/>
+        <result column="error_msg" property="errorMsg" jdbcType="VARCHAR"/>
+        <result column="err_msg_detail" property="errMsgDetail" jdbcType="VARCHAR"/>
+        <result column="cost_time" property="costTime" jdbcType="BIGINT"/>
+        <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_id, user_name, ip_address, operation_url, operation_method, operation_desc, operation_status, request_params, response_params, err_message, err_message_detail, use_time, create_time
+        id, title, user_id, user_name, dept_id, dept_name, platform, os, browser, version, engine, operate_ip, operation_url, request_method, operation_desc, status, operate_param, json_result, error_msg, err_msg_detail, cost_time, operate_time
     </sql>
 
-    <insert id="saveOperationLog" parameterType="com.example.springboottpl.entity.OperationLogBean">
+    <!--添加操作日志-->
+    <insert id="addOperationLog" parameterType="com.example.tpl.system.entity.OperationLogBean">
         insert into sys_operation_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
+            </if>
+            <if test="title != null">
+                title,
             </if>
             <if test="userId != null">
                 user_id,
@@ -36,43 +48,67 @@
             <if test="userName != null">
                 user_name,
             </if>
-            <if test="ipAddress != null">
-                ip_address,
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="deptName != null">
+                dept_name,
+            </if>
+            <if test="platform != null">
+                platform,
+            </if>
+            <if test="os != null">
+                os,
+            </if>
+            <if test="browser != null">
+                browser,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="engine != null">
+                engine,
+            </if>
+            <if test="operateIp != null">
+                operate_ip,
             </if>
             <if test="operationUrl != null">
                 operation_url,
             </if>
-            <if test="operationMethod != null">
-                operation_method,
+            <if test="requestMethod != null">
+                request_method,
             </if>
             <if test="operationDesc != null">
                 operation_desc,
             </if>
-            <if test="operationStatus != null">
-                operation_status,
+            <if test="status != null">
+                status,
             </if>
-            <if test="requestParams != null">
-                request_params,
+            <if test="operateParam != null">
+                operate_param,
             </if>
-            <if test="responseParams != null">
-                response_params,
+            <if test="jsonResult != null">
+                json_result,
             </if>
-            <if test="errMessage != null">
-                err_message,
+            <if test="errorMsg != null">
+                error_msg,
             </if>
-            <if test="errMessageDetail != null">
-                err_message_detail,
+            <if test="errMsgDetail != null">
+                err_msg_detail,
             </if>
-            <if test="useTime != null">
-                use_time,
+            <if test="costTime != null">
+                cost_time,
             </if>
-            <if test="createTime != null">
-                create_time,
+            <if test="operateTime != null">
+                operate_time,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 #{ id,jdbcType=BIGINT },
+            </if>
+            <if test="title != null">
+                #{ title,jdbcType=VARCHAR },
             </if>
             <if test="userId != null">
                 #{ userId,jdbcType=BIGINT },
@@ -80,77 +116,226 @@
             <if test="userName != null">
                 #{ userName,jdbcType=VARCHAR },
             </if>
-            <if test="ipAddress != null">
-                #{ ipAddress,jdbcType=VARCHAR },
+            <if test="deptId != null">
+                #{ deptId,jdbcType=BIGINT },
+            </if>
+            <if test="deptName != null">
+                #{ deptName,jdbcType=VARCHAR },
+            </if>
+            <if test="platform != null">
+                #{ platform,jdbcType=VARCHAR },
+            </if>
+            <if test="os != null">
+                #{ os,jdbcType=VARCHAR },
+            </if>
+            <if test="browser != null">
+                #{ browser,jdbcType=VARCHAR },
+            </if>
+            <if test="version != null">
+                #{ version,jdbcType=VARCHAR },
+            </if>
+            <if test="engine != null">
+                #{ engine,jdbcType=VARCHAR },
+            </if>
+            <if test="operateIp != null">
+                #{ operateIp,jdbcType=VARCHAR },
             </if>
             <if test="operationUrl != null">
                 #{ operationUrl,jdbcType=VARCHAR },
             </if>
-            <if test="operationMethod != null">
-                #{ operationMethod,jdbcType=VARCHAR },
+            <if test="requestMethod != null">
+                #{ requestMethod,jdbcType=VARCHAR },
             </if>
             <if test="operationDesc != null">
                 #{ operationDesc,jdbcType=VARCHAR },
             </if>
-            <if test="operationStatus != null">
-                #{ operationStatus,jdbcType=INTEGER },
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
             </if>
-            <if test="requestParams != null">
-                #{ requestParams,jdbcType=VARCHAR },
+            <if test="operateParam != null">
+                #{ operateParam,jdbcType=VARCHAR },
             </if>
-            <if test="responseParams != null">
-                #{ responseParams,jdbcType=VARCHAR },
+            <if test="jsonResult != null">
+                #{ jsonResult,jdbcType=VARCHAR },
             </if>
-            <if test="errMessage != null">
-                #{ errMessage,jdbcType=VARCHAR },
+            <if test="errorMsg != null">
+                #{ errorMsg,jdbcType=VARCHAR },
             </if>
-            <if test="errMessageDetail != null">
-                #{ errMessageDetail,jdbcType=VARCHAR },
+            <if test="errMsgDetail != null">
+                #{ errMsgDetail,jdbcType=VARCHAR },
             </if>
-            <if test="useTime != null">
-                #{ useTime,jdbcType=BIGINT },
+            <if test="costTime != null">
+                #{ costTime,jdbcType=BIGINT },
             </if>
-            <if test="createTime != null">
-                #{ createTime,jdbcType=TIMESTAMP },
+            <if test="operateTime != null">
+                #{ operateTime,jdbcType=TIMESTAMP },
             </if>
         </trim>
     </insert>
 
+    <!--删除操作日志-->
     <delete id="deleteOperationLog">
         delete from sys_operation_log where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <select id="queryOperationLogList" parameterType="com.example.springboottpl.entity.OperationLogBean" resultMap="BaseResultMap">
+    <!--清空操作日志-->
+    <delete id="cleanOperationLog">
+        delete from sys_operation_log
+    </delete>
+
+    <!--查询操作日志详情-->
+    <select id="queryOperationLogDetail" parameterType="com.example.tpl.system.entity.OperationLogBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_operation_log
         <where>
-          <if test="userId != null">
-              and user_id = #{ userId}
-          </if>
-          <if test="userName != null">
-              and user_name = #{ userName}
-          </if>
-          <if test="ipAddress != null">
-              and ip_address = #{ ipAddress}
-          </if>
-          <if test="operationUrl != null">
-              and operation_url = #{ operationUrl}
-          </if>
-          <if test="operationMethod != null">
-              and operation_method = #{ operationMethod}
-          </if>
-          <if test="operationDesc != null">
-              and operation_desc = #{ operationDesc}
-          </if>
-            <if test="operationStatus != null">
-                and operation_status = #{ operationStatus}
+            <if test="id != null">
+                and id = #{ id}
             </if>
+            <!--<if test="title != null">-->
+            <!--    and title = #{ title}-->
+            <!--</if>-->
+            <!--<if test="userId != null">-->
+            <!--    and user_id = #{ userId}-->
+            <!--</if>-->
+            <!--<if test="userName != null">-->
+            <!--    and user_name = #{ userName}-->
+            <!--</if>-->
+            <!--<if test="deptId != null">-->
+            <!--    and dept_id = #{ deptId}-->
+            <!--</if>-->
+            <!--<if test="deptName != null">-->
+            <!--    and dept_name = #{ deptName}-->
+            <!--</if>-->
+            <!--<if test="platform != null">-->
+            <!--    and platform = #{ platform}-->
+            <!--</if>-->
+            <!--<if test="os != null">-->
+            <!--    and os = #{ os}-->
+            <!--</if>-->
+            <!--<if test="browser != null">-->
+            <!--    and browser = #{ browser}-->
+            <!--</if>-->
+            <!--<if test="version != null">-->
+            <!--    and version = #{ version}-->
+            <!--</if>-->
+            <!--<if test="engine != null">-->
+            <!--    and engine = #{ engine}-->
+            <!--</if>-->
+            <!--<if test="operateIp != null">-->
+            <!--    and operate_ip = #{ operateIp}-->
+            <!--</if>-->
+            <!--<if test="operationUrl != null">-->
+            <!--    and operation_url = #{ operationUrl}-->
+            <!--</if>-->
+            <!--<if test="requestMethod != null">-->
+            <!--    and request_method = #{ requestMethod}-->
+            <!--</if>-->
+            <!--<if test="operationDesc != null">-->
+            <!--    and operation_desc = #{ operationDesc}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="operateParam != null">-->
+            <!--    and operate_param = #{ operateParam}-->
+            <!--</if>-->
+            <!--<if test="jsonResult != null">-->
+            <!--    and json_result = #{ jsonResult}-->
+            <!--</if>-->
+            <!--<if test="errorMsg != null">-->
+            <!--    and error_msg = #{ errorMsg}-->
+            <!--</if>-->
+            <!--<if test="errMsgDetail != null">-->
+            <!--    and err_msg_detail = #{ errMsgDetail}-->
+            <!--</if>-->
+            <!--<if test="costTime != null">-->
+            <!--    and cost_time = #{ costTime}-->
+            <!--</if>-->
+            <!--<if test="operateTime != null">-->
+            <!--    and operate_time = #{ operateTime}-->
+            <!--</if>-->
         </where>
-        order by create_time desc
+    </select>
+
+
+    <!--查询操作日志列表-->
+    <select id="queryOperationLogList" parameterType="com.example.tpl.system.entity.OperationLogBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_operation_log
+        <where>
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="title != null">-->
+            <!--    and title = #{ title}-->
+            <!--</if>-->
+            <!--<if test="userId != null">-->
+            <!--    and user_id = #{ userId}-->
+            <!--</if>-->
+            <if test="userName != null">
+                and user_name = #{ userName}
+            </if>
+            <!--<if test="deptId != null">-->
+            <!--    and dept_id = #{ deptId}-->
+            <!--</if>-->
+            <!--<if test="deptName != null">-->
+            <!--    and dept_name = #{ deptName}-->
+            <!--</if>-->
+            <!--<if test="platform != null">-->
+            <!--    and platform = #{ platform}-->
+            <!--</if>-->
+            <!--<if test="os != null">-->
+            <!--    and os = #{ os}-->
+            <!--</if>-->
+            <!--<if test="browser != null">-->
+            <!--    and browser = #{ browser}-->
+            <!--</if>-->
+            <!--<if test="version != null">-->
+            <!--    and version = #{ version}-->
+            <!--</if>-->
+            <!--<if test="engine != null">-->
+            <!--    and engine = #{ engine}-->
+            <!--</if>-->
+            <!--<if test="operateIp != null">-->
+            <!--    and operate_ip = #{ operateIp}-->
+            <!--</if>-->
+            <!--<if test="operationUrl != null">-->
+            <!--    and operation_url = #{ operationUrl}-->
+            <!--</if>-->
+            <!--<if test="requestMethod != null">-->
+            <!--    and request_method = #{ requestMethod}-->
+            <!--</if>-->
+            <!--<if test="operationDesc != null">-->
+            <!--    and operation_desc = #{ operationDesc}-->
+            <!--</if>-->
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+            <!--<if test="operateParam != null">-->
+            <!--    and operate_param = #{ operateParam}-->
+            <!--</if>-->
+            <!--<if test="jsonResult != null">-->
+            <!--    and json_result = #{ jsonResult}-->
+            <!--</if>-->
+            <!--<if test="errorMsg != null">-->
+            <!--    and error_msg = #{ errorMsg}-->
+            <!--</if>-->
+            <!--<if test="errMsgDetail != null">-->
+            <!--    and err_msg_detail = #{ errMsgDetail}-->
+            <!--</if>-->
+            <!--<if test="costTime != null">-->
+            <!--    and cost_time = #{ costTime}-->
+            <!--</if>-->
+            <!--<if test="operateTime != null">-->
+            <!--    and operate_time = #{ operateTime}-->
+            <!--</if>-->
+        </where>
+        order by operate_time desc
     </select>
 </mapper>

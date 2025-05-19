@@ -1,19 +1,29 @@
-package com.example.springboottpl.service;
+package com.example.tpl.system.service;
 
-import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.RoleAddReqVo;
-import com.example.springboottpl.vo.req.RoleDeleteReqVo;
-import com.example.springboottpl.vo.req.RoleListReqVo;
-import com.example.springboottpl.vo.req.RoleReqVo;
-import com.example.springboottpl.vo.req.RoleUpdateReqVo;
-import com.example.springboottpl.vo.req.UpdateRoleMenuListReqVo;
-import com.example.springboottpl.vo.resp.RoleMenuRespVo;
-import com.example.springboottpl.vo.resp.RoleRespVo;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.AddRoleReqVo;
+import com.example.tpl.system.vo.req.AllocatedListReq;
+import com.example.tpl.system.vo.req.CancelAuthUserAllReq;
+import com.example.tpl.system.vo.req.CancelAuthUserReq;
+import com.example.tpl.system.vo.req.DeleteRoleReqVo;
+import com.example.tpl.system.vo.req.QueryRoleDetailReqVo;
+import com.example.tpl.system.vo.req.QueryRoleListReqVo;
+import com.example.tpl.system.vo.req.QueryRoleMenuReq;
+import com.example.tpl.system.vo.req.SelectAuthUserAllReq;
+import com.example.tpl.system.vo.req.UnallocatedListReq;
+import com.example.tpl.system.vo.req.UpdateRoleMenuReq;
+import com.example.tpl.system.vo.req.UpdateRoleReqVo;
+import com.example.tpl.system.vo.req.UpdateRoleStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryRoleDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryRoleListRespVo;
+import com.example.tpl.system.vo.resp.QueryRoleMenuResp;
+import com.example.tpl.system.vo.resp.QueryUserListRespVo;
 
 /**
  * 描述：角色信息
  * 作者：刘飞华
- * 日期：2023-09-20 10:44:25
+ * 日期：2025/01/13 17:57:37
  */
 public interface RoleService {
 
@@ -23,9 +33,9 @@ public interface RoleService {
     * @param role 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/13 17:57:37
     */
-   int saveRole(RoleAddReqVo role);
+   Result<Integer> addRole(AddRoleReqVo role);
 
    /**
     * 删除角色信息
@@ -33,9 +43,9 @@ public interface RoleService {
     * @param role 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/13 17:57:37
     */
-   int deleteRole(RoleDeleteReqVo role);
+   Result<Integer> deleteRole(DeleteRoleReqVo role);
 
    /**
     * 更新角色信息
@@ -43,47 +53,108 @@ public interface RoleService {
     * @param role 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/13 17:57:37
     */
-   int updateRole(RoleUpdateReqVo role);
+   Result<Integer> updateRole(UpdateRoleReqVo role);
 
    /**
-    * 查询角色信息
+    * 更新角色信息状态
     *
     * @param role 请求参数
-    * @return RoleResp
+    * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/13 17:57:37
     */
-   RoleRespVo queryRole(RoleReqVo role);
+   Result<Integer> updateRoleStatus(UpdateRoleStatusReqVo role);
+
+
+   /**
+    * 查询角色信息详情
+    *
+    * @param role 请求参数
+    * @return QueryRoleDetailResp
+    * @author 刘飞华
+    * @date: 2025/01/13 17:57:37
+    */
+   Result<QueryRoleDetailRespVo> queryRoleDetail(QueryRoleDetailReqVo role);
 
    /**
     * 查询角色信息列表
     *
     * @param role 请求参数
-    * @return ResultPage<RoleResp>
+    * @return QueryRoleListResp
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/13 17:57:37
     */
-   ResultPage<RoleRespVo> queryRoleList(RoleListReqVo role);
+   Result<ResultPage<QueryRoleListRespVo>> queryRoleList(QueryRoleListReqVo role);
 
    /**
-    * 查询角色菜单信息列表
+    * 查询角色关联的菜单
     *
-    * @param roleId 请求参数
-    * @return RoleResp
+    * @param roleMenuReq 请求参数
+    * @return QueryMenuListRespVo
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/15 15:09:35
     */
-   RoleMenuRespVo queryRoleMenuList(Integer roleId);
+    Result<QueryRoleMenuResp> queryRoleMenu(QueryRoleMenuReq roleMenuReq);
 
    /**
-    * 更新角色菜单信息列表
+    * 更新角色关联的菜单
     *
-    * @param record 请求参数
-    * @return RoleResp
+    * @param roleMenuReq 请求参数
+    * @return Integer
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:25
+    * @date: 2025/01/15 15:09:35
     */
-   Integer updateRoleMenuList(UpdateRoleMenuListReqVo record);
+   Result<Integer> updateRoleMenu(UpdateRoleMenuReq roleMenuReq);
+
+   /**
+    * 查询已分配用户角色列表
+    *
+    * @param allocatedListReq 请求参数
+    * @return QueryUserListRespVo
+    * @author 刘飞华
+    * @date: 2025/01/15 15:09:35
+    */
+   Result<ResultPage<QueryUserListRespVo>> queryAllocatedList(AllocatedListReq allocatedListReq);
+
+   /**
+    * 查询未分配用户角色列表
+    *
+    * @param unallocatedListReq 请求参数
+    * @return QueryUserListRespVo
+    * @author 刘飞华
+    * @date: 2025/01/15 15:09:35
+    */
+   Result<ResultPage<QueryUserListRespVo>> queryUnallocatedList(UnallocatedListReq unallocatedListReq);
+
+   /**
+    * 取消授权用户
+    *
+    * @param cancelAuthUserReq 请求参数
+    * @return Integer
+    * @author 刘飞华
+    * @date: 2025/01/15 15:09:35
+    */
+   Result<Integer> cancelAuthUser(CancelAuthUserReq cancelAuthUserReq);
+
+   /**
+    * 批量取消授权用户
+    *
+    * @param authUserAllReq 请求参数
+    * @return Integer
+    * @author 刘飞华
+    * @date: 2025/01/15 15:09:35
+    */
+   Result<Integer> batchCancelAuthUser(CancelAuthUserAllReq authUserAllReq);
+
+   /**
+    * 批量选择用户授权
+    *
+    * @param authUserAllReq 请求参数
+    * @return Integer
+    * @author 刘飞华
+    * @date: 2025/01/15 15:09:35
+    */
+   Result<Integer> batchAuthUser(SelectAuthUserAllReq authUserAllReq);
 }

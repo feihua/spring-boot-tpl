@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.UserDao">
-
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.UserBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
-      <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-      <result column="password" property="password" jdbcType="VARCHAR"/>
-      <result column="status_id" property="statusId" jdbcType="INTEGER"/>
-      <result column="sort" property="sort" jdbcType="INTEGER"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+<mapper namespace="com.example.tpl.system.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.UserBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="mobile" property="mobile" jdbcType="CHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
+        <result column="login_ip" property="loginIp" jdbcType="VARCHAR"/>
+        <result column="login_date" property="loginDate" jdbcType="TIMESTAMP"/>
+        <result column="login_browser" property="loginBrowser" jdbcType="VARCHAR"/>
+        <result column="login_os" property="loginOs" jdbcType="VARCHAR"/>
+        <result column="pwd_update_date" property="pwdUpdateDate" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <resultMap id="MenuResultMap" type="com.example.springboottpl.entity.MenuBean">
+    <sql id="Base_Column_List">
+        id, mobile, user_name, nick_name, user_type, avatar, email, password, status, dept_id, login_ip, login_date,
+        login_browser, login_os, pwd_update_date, remark, del_flag, create_time, update_time
+    </sql>
+
+    <resultMap id="MenuResultMap" type="com.example.tpl.system.entity.MenuBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
         <result column="menu_type" property="menuType" jdbcType="TINYINT"/>
-        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
+        <result column="visible" property="visible" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
         <result column="sort" property="sort" jdbcType="INTEGER"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
@@ -28,25 +42,22 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-
     </resultMap>
 
-
-    <resultMap id="RoleResultMap" type="com.example.springboottpl.entity.RoleBean">
+    <resultMap id="RoleResultMap" type="com.example.tpl.system.entity.RoleBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
-        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
-        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="role_key" property="roleKey" jdbcType="VARCHAR"/>
+        <result column="data_scope" property="dataScope" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-
     </resultMap>
-    <sql id="Base_Column_List">
-        id, mobile, user_name, password, status_id, sort, remark, create_time, update_time
-    </sql>
 
-    <insert id="saveUser" parameterType="com.example.springboottpl.entity.UserBean">
+    <insert id="addUser" parameterType="com.example.tpl.system.entity.UserBean" useGeneratedKeys="true"
+            keyProperty="id">
         insert into sys_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -58,17 +69,47 @@
             <if test="userName != null">
                 user_name,
             </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
             <if test="password != null">
                 password,
             </if>
-            <if test="statusId != null">
-                status_id,
+            <if test="status != null">
+                status,
             </if>
-            <if test="sort != null">
-                sort,
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="loginIp != null">
+                login_ip,
+            </if>
+            <if test="loginDate != null">
+                login_date,
+            </if>
+            <if test="loginBrowser != null">
+                login_browser,
+            </if>
+            <if test="loginOs != null">
+                login_os,
+            </if>
+            <if test="pwdUpdateDate != null">
+                pwd_update_date,
             </if>
             <if test="remark != null">
                 remark,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -82,22 +123,52 @@
                 #{ id,jdbcType=BIGINT },
             </if>
             <if test="mobile != null">
-                #{ mobile,jdbcType=VARCHAR },
+                #{ mobile,jdbcType=CHAR },
             </if>
             <if test="userName != null">
                 #{ userName,jdbcType=VARCHAR },
             </if>
+            <if test="nickName != null">
+                #{ nickName,jdbcType=VARCHAR },
+            </if>
+            <if test="userType != null">
+                #{ userType,jdbcType=VARCHAR },
+            </if>
+            <if test="avatar != null">
+                #{ avatar,jdbcType=VARCHAR },
+            </if>
+            <if test="email != null">
+                #{ email,jdbcType=VARCHAR },
+            </if>
             <if test="password != null">
                 #{ password,jdbcType=VARCHAR },
             </if>
-            <if test="statusId != null">
-                #{ statusId,jdbcType=INTEGER },
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
             </if>
-            <if test="sort != null">
-                #{ sort,jdbcType=INTEGER },
+            <if test="deptId != null">
+                #{ deptId,jdbcType=BIGINT },
+            </if>
+            <if test="loginIp != null">
+                #{ loginIp,jdbcType=VARCHAR },
+            </if>
+            <if test="loginDate != null">
+                #{ loginDate,jdbcType=TIMESTAMP },
+            </if>
+            <if test="loginBrowser != null">
+                #{ loginBrowser,jdbcType=VARCHAR },
+            </if>
+            <if test="loginOs != null">
+                #{ loginOs,jdbcType=VARCHAR },
+            </if>
+            <if test="pwdUpdateDate != null">
+                #{ pwdUpdateDate,jdbcType=TIMESTAMP },
             </if>
             <if test="remark != null">
                 #{ remark,jdbcType=VARCHAR },
+            </if>
+            <if test="delFlag != null">
+                #{ delFlag,jdbcType=TINYINT },
             </if>
             <if test="createTime != null">
                 #{ createTime,jdbcType=TIMESTAMP },
@@ -111,34 +182,64 @@
     <delete id="deleteUser">
         delete from sys_user where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <update id="updateUser" parameterType="com.example.springboottpl.entity.UserBean">
+    <update id="updateUser" parameterType="com.example.tpl.system.entity.UserBean">
         update sys_user
         <set>
             <if test="id != null">
                 id = #{ id,jdbcType=BIGINT},
             </if>
             <if test="mobile != null">
-                mobile = #{ mobile,jdbcType=VARCHAR},
+                mobile = #{ mobile,jdbcType=CHAR},
             </if>
             <if test="userName != null">
                 user_name = #{ userName,jdbcType=VARCHAR},
             </if>
+            <if test="nickName != null">
+                nick_name = #{ nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                user_type = #{ userType,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{ avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{ email,jdbcType=VARCHAR},
+            </if>
             <if test="password != null">
                 password = #{ password,jdbcType=VARCHAR},
             </if>
-            <if test="statusId != null">
-                status_id = #{ statusId,jdbcType=INTEGER},
+            <if test="status != null">
+                status = #{ status,jdbcType=TINYINT},
             </if>
-            <if test="sort != null">
-                sort = #{ sort,jdbcType=INTEGER},
+            <if test="deptId != null">
+                dept_id = #{ deptId,jdbcType=BIGINT},
+            </if>
+            <if test="loginIp != null">
+                login_ip = #{ loginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="loginDate != null">
+                login_date = #{ loginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginBrowser != null">
+                login_browser = #{ loginBrowser,jdbcType=VARCHAR},
+            </if>
+            <if test="loginOs != null">
+                login_os = #{ loginOs,jdbcType=VARCHAR},
+            </if>
+            <if test="pwdUpdateDate != null">
+                pwd_update_date = #{ pwdUpdateDate,jdbcType=TIMESTAMP},
             </if>
             <if test="remark != null">
                 remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{ delFlag,jdbcType=TINYINT},
             </if>
             <if test="createTime != null">
                 create_time = #{ createTime,jdbcType=TIMESTAMP},
@@ -147,107 +248,200 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
-<!--            <if test="mobile != null">-->
-<!--                and mobile = #{ mobile}-->
-<!--            </if>-->
-<!--            <if test="userName != null">-->
-<!--                and user_name = #{ userName}-->
-<!--            </if>-->
-<!--            <if test="password != null">-->
-<!--                and password = #{ password}-->
-<!--            </if>-->
-<!--            <if test="statusId != null">-->
-<!--                and status_id = #{ statusId}-->
-<!--            </if>-->
-<!--            <if test="sort != null">-->
-<!--                and sort = #{ sort}-->
-<!--            </if>-->
-<!--            <if test="remark != null">-->
-<!--                and remark = #{ remark}-->
-<!--            </if>-->
-<!--            <if test="createTime != null">-->
-<!--                and create_time = #{ createTime}-->
-<!--            </if>-->
-<!--            <if test="updateTime != null">-->
-<!--                and update_time = #{ updateTime}-->
-<!--            </if>-->
+            <!--<if test="mobile != null">-->
+            <!--    and mobile = #{ mobile}-->
+            <!--</if>-->
+            <!--<if test="userName != null">-->
+            <!--    and user_name = #{ userName}-->
+            <!--</if>-->
+            <!--<if test="nickName != null">-->
+            <!--    and nick_name = #{ nickName}-->
+            <!--</if>-->
+            <!--<if test="userType != null">-->
+            <!--    and user_type = #{ userType}-->
+            <!--</if>-->
+            <!--<if test="avatar != null">-->
+            <!--    and avatar = #{ avatar}-->
+            <!--</if>-->
+            <!--<if test="email != null">-->
+            <!--    and email = #{ email}-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+            <!--    and password = #{ password}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="deptId != null">-->
+            <!--    and dept_id = #{ deptId}-->
+            <!--</if>-->
+            <!--<if test="loginIp != null">-->
+            <!--    and login_ip = #{ loginIp}-->
+            <!--</if>-->
+            <!--<if test="loginDate != null">-->
+            <!--    and login_date = #{ loginDate}-->
+            <!--</if>-->
+            <!--<if test="loginBrowser != null">-->
+            <!--    and login_browser = #{ loginBrowser}-->
+            <!--</if>-->
+            <!--<if test="loginOs != null">-->
+            <!--    and login_os = #{ loginOs}-->
+            <!--</if>-->
+            <!--<if test="pwdUpdateDate != null">-->
+            <!--    and pwd_update_date = #{ pwdUpdateDate}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </update>
 
-    <select id="queryUser" parameterType="com.example.springboottpl.entity.UserBean" resultMap="BaseResultMap">
+    <update id="updateUserStatus" parameterType="com.example.tpl.system.vo.req.UpdateUserStatusReqVo">
+        update sys_user set status = #{status} where id in
+        <foreach collection="ids" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+
+    </update>
+
+    <select id="queryUserDetail" parameterType="com.example.tpl.system.entity.UserBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user
         <where>
-        <if test="id != null">
-            and id = #{ id}
-        </if>
-        <if test="mobile != null">
-            and mobile = #{ mobile}
-        </if>
-        <!--<if test="userName != null">-->
-        <!--    and user_name = #{ userName}-->
-        <!--</if>-->
-        <!--<if test="password != null">-->
-        <!--    and password = #{ password}-->
-        <!--</if>-->
-        <!--<if test="statusId != null">-->
-        <!--    and status_id = #{ statusId}-->
-        <!--</if>-->
-        <!--<if test="sort != null">-->
-        <!--    and sort = #{ sort}-->
-        <!--</if>-->
-        <!--<if test="remark != null">-->
-        <!--    and remark = #{ remark}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <!--<if test="mobile != null">-->
+            <!--    and mobile = #{ mobile}-->
+            <!--</if>-->
+            <!--<if test="userName != null">-->
+            <!--    and user_name = #{ userName}-->
+            <!--</if>-->
+            <!--<if test="nickName != null">-->
+            <!--    and nick_name = #{ nickName}-->
+            <!--</if>-->
+            <!--<if test="userType != null">-->
+            <!--    and user_type = #{ userType}-->
+            <!--</if>-->
+            <!--<if test="avatar != null">-->
+            <!--    and avatar = #{ avatar}-->
+            <!--</if>-->
+            <!--<if test="email != null">-->
+            <!--    and email = #{ email}-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+            <!--    and password = #{ password}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="deptId != null">-->
+            <!--    and dept_id = #{ deptId}-->
+            <!--</if>-->
+            <!--<if test="loginIp != null">-->
+            <!--    and login_ip = #{ loginIp}-->
+            <!--</if>-->
+            <!--<if test="loginDate != null">-->
+            <!--    and login_date = #{ loginDate}-->
+            <!--</if>-->
+            <!--<if test="loginBrowser != null">-->
+            <!--    and login_browser = #{ loginBrowser}-->
+            <!--</if>-->
+            <!--<if test="loginOs != null">-->
+            <!--    and login_os = #{ loginOs}-->
+            <!--</if>-->
+            <!--<if test="pwdUpdateDate != null">-->
+            <!--    and pwd_update_date = #{ pwdUpdateDate}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryUserList" parameterType="com.example.springboottpl.entity.UserBean" resultMap="BaseResultMap">
+    <!--  根据id查询用户信息  -->
+    <select id="queryUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where id = #{id}
+    </select>
+
+    <!--  根据name查询用户信息  -->
+    <select id="queryUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where user_name = #{name}
+    </select>
+
+    <!--  根据手机号查询用户信息  -->
+    <select id="queryUserByMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where mobile = #{mobile}
+    </select>
+
+    <!--  根据email查询用户信息  -->
+    <select id="queryUserByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where email = #{email}
+    </select>
+
+    <select id="queryUserList" parameterType="com.example.tpl.system.entity.UserBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user
         <where>
-          <!--<if test="id != null">-->
-          <!--    and id = #{ id}-->
-          <!--</if>-->
-          <if test="mobile != null">
-              and mobile = #{ mobile}
-          </if>
-          <if test="userName != null">
-              and user_name = #{ userName}
-          </if>
-          <!--<if test="password != null">-->
-          <!--    and password = #{ password}-->
-          <!--</if>-->
-          <if test="statusId != null">
-              and status_id = #{ statusId}
-          </if>
-          <!--<if test="sort != null">-->
-          <!--    and sort = #{ sort}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <if test="mobile != null">
+                and mobile = #{ mobile}
+            </if>
+            <if test="userName != null">
+                and user_name = #{ userName}
+            </if>
+            <if test="nickName != null">
+                and nick_name = #{ nickName}
+            </if>
+            <if test="userType != null">
+                and user_type = #{ userType}
+            </if>
+            <if test="email != null">
+                and email = #{ email}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{ deptId}
+            </if>
+
         </where>
     </select>
 
+    <!--  查询用户菜单  -->
     <select id="queryUserMenus" resultMap="MenuResultMap">
         select distinct u.*
         from sys_user_role t
@@ -258,10 +452,34 @@
         order by u.sort asc
     </select>
 
-    <select id="queryUserRoles" resultMap="RoleResultMap">
-        select distinct usr.*
+    <!--  查询用户角色  -->
+    <select id="queryRoleIdsByUserId" resultType="java.lang.Long">
+        select distinct t.role_id
         from sys_user_role t
-        left join sys_role usr on t.role_id = usr.id
         where t.user_id = #{userId}
+    </select>
+
+    <!--  查询已分配用户角色列表  -->
+    <select id="queryAllocatedList" resultMap="BaseResultMap">
+        select u.* from sys_user u left join sys_user_role ur on u.id = ur.user_id where u.del_flag = 1 and ur.role_id =
+        #{roleId}
+        <if test="mobile != null">
+            and mobile = #{mobile}
+        </if>
+        <if test="userName != null">
+            and user_name = #{userName}
+        </if>
+    </select>
+
+    <!--  查询未分配用户角色列表  -->
+    <select id="queryUnallocatedList" resultMap="BaseResultMap">
+        select * from sys_user where id not in (select u.id as id from sys_user u left join sys_user_role ur on u.id =
+        ur.user_id where u.del_flag = 1 and ur.role_id = #{roleId}
+        <if test="mobile != null">
+            and mobile = #{mobile}
+        </if>
+        <if test="userName != null">
+            and user_name = #{userName}
+        </if>)
     </select>
 </mapper>

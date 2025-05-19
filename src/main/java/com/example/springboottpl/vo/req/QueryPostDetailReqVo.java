@@ -1,15 +1,10 @@
-package com.example.springboottpl.vo.req;
+package com.example.tpl.system.vo.req;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,16 +13,19 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:02
+ * 日期：2025-01-10 15:23:47
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("查询岗位信息详情请求Vo")
+@Schema(description = "岗位信息请求vo")
 public class QueryPostDetailReqVo implements Serializable {
 
-	@ApiModelProperty(value = "岗位ID", required = true)
-	@NotNull(message = "postId岗位ID不能为空")
-	private Long postId;
+
+    @Schema(description = "岗位id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "id岗位id不能为空")
+    private Long id;
+
+
 }

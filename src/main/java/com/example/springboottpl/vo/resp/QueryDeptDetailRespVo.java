@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,68 +15,51 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 15:23:46
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("查询部门详情响应vo")
+@Schema(description = "部门响应vo")
 public class QueryDeptDetailRespVo implements Serializable {
 
+    @Schema(description = "部门id")
+    private Long id;
 
-    @ApiModelProperty("部门id")
-    private Long deptId;
-
-    @ApiModelProperty("租户编号")
-    private String tenantId;
-
-    @ApiModelProperty("父部门id")
+    @Schema(description = "父部门id")
     private Long parentId;
 
-    @ApiModelProperty("祖级列表")
-    private String parentIds;
+    @Schema(description = "祖级列表")
+    private String ancestors;
 
-    @ApiModelProperty("部门名称")
+    @Schema(description = "部门名称")
     private String deptName;
 
-    @ApiModelProperty("部门类别编码")
-    private String deptCategory;
+    @Schema(description = "显示顺序")
+    private Integer sort;
 
-    @ApiModelProperty("显示顺序")
-    private Integer orderNum;
+    @Schema(description = "负责人")
+    private String leader;
 
-    @ApiModelProperty("负责人")
-    private Long leader;
-
-    @ApiModelProperty("联系电话")
+    @Schema(description = "联系电话")
     private String phone;
 
-    @ApiModelProperty("邮箱")
+    @Schema(description = "邮箱")
     private String email;
 
-    @ApiModelProperty("部门状态(1:正常，0:禁用)")
-    private Integer status;
+    @Schema(description = "部门状态（0：停用，1:正常）")
+    private int status;
 
-    @ApiModelProperty("删除标志（0代表存在 1代表删除）")
+    @Schema(description = "删除标志（0代表删除 1代表存在）")
     private Integer delFlag;
 
-    @ApiModelProperty("创建部门")
-    private Long createDept;
-
-    @ApiModelProperty("创建者")
-    private Long createBy;
-
-    @ApiModelProperty("创建时间")
+    @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    @ApiModelProperty("更新者")
-    private Long updateBy;
-
-    @ApiModelProperty("更新时间")
+    @Schema(description = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
-
 
 }

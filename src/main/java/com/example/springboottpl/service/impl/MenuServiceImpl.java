@@ -1,22 +1,20 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.biz.MenuBiz;
-import com.example.springboottpl.service.MenuService;
-import com.example.springboottpl.vo.req.MenuAddReqVo;
-import com.example.springboottpl.vo.req.MenuDeleteReqVo;
-import com.example.springboottpl.vo.req.MenuReqVo;
-import com.example.springboottpl.vo.req.MenuUpdateReqVo;
-import com.example.springboottpl.vo.resp.MenuRespVo;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
+import com.example.tpl.system.biz.MenuBiz;
+import com.example.tpl.system.service.MenuService;
 
 /**
  * 描述：菜单信息
  * 作者：刘飞华
- * 日期：2023-09-20 10:44:24
+ * 日期：2025/01/13 17:57:36
  */
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -30,12 +28,12 @@ public class MenuServiceImpl implements MenuService {
     * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:24
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int saveMenu(MenuAddReqVo menu){
+   public Result<Integer> addMenu(AddMenuReqVo menu){
 
-        return menuBiz.saveMenu(menu);
+        return menuBiz.addMenu(menu);
    }
 
    /**
@@ -44,10 +42,10 @@ public class MenuServiceImpl implements MenuService {
     * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:24
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int deleteMenu(MenuDeleteReqVo menu){
+   public Result<Integer> deleteMenu(DeleteMenuReqVo menu){
 		return menuBiz.deleteMenu(menu);
    }
 
@@ -57,39 +55,65 @@ public class MenuServiceImpl implements MenuService {
     * @param menu 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:24
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int updateMenu(MenuUpdateReqVo menu){
+   public Result<Integer> updateMenu(UpdateMenuReqVo menu){
 
         return menuBiz.updateMenu(menu);
    }
 
    /**
-    * 查询菜单信息
+   * 更新菜单信息状态
+   *
+   * @param menu 请求参数
+   * @return int
+   * @author 刘飞华
+   * @date: 2025/01/13 17:57:36
+   */
+  @Override
+  public Result<Integer> updateMenuStatus(UpdateMenuStatusReqVo menu){
+
+       return menuBiz.updateMenuStatus(menu);
+  }
+
+   /**
+    * 查询菜单信息详情
     *
     * @param menu 请求参数
     * @return MenuResp
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:24
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public MenuRespVo queryMenu(MenuReqVo menu){
+   public Result<QueryMenuDetailRespVo> queryMenuDetail(QueryMenuDetailReqVo menu){
 
-       return menuBiz.queryMenu(menu);
+       return menuBiz.queryMenuDetail(menu);
    }
 
    /**
     * 查询菜单信息列表
     *
+    * @param menu 请求参数
     * @return MenuResp
     * @author 刘飞华
-    * @date: 2023-09-20 10:44:24
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public List<MenuRespVo> queryMenuList(){
+   public Result<List<QueryMenuListRespVo>> queryMenuList(QueryMenuListReqVo menu){
 
-        return menuBiz.queryMenuList();
+        return menuBiz.queryMenuList(menu);
    }
 
+    /**
+     * 查询菜单信息(排除按钮)
+     *
+     * @return List
+     * @author 刘飞华
+     * @date: 2025/1/20 9:10
+     */
+    @Override
+    public Result<List<QueryMenuSimpleListRespVo>> queryMenuListSimple() {
+        return menuBiz.queryMenuListSimple();
+    }
 }

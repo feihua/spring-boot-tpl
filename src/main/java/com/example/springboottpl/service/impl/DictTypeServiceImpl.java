@@ -1,17 +1,19 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.biz.DictTypeBiz;
-import com.example.springboottpl.service.DictTypeService;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
+import com.example.tpl.system.biz.DictTypeBiz;
+import com.example.tpl.system.service.DictTypeService;
 
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 @Service
 public class DictTypeServiceImpl implements DictTypeService {
@@ -25,10 +27,10 @@ public class DictTypeServiceImpl implements DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int addDictType(AddDictTypeReqVo dictType){
+   public Result<Integer> addDictType(AddDictTypeReqVo dictType){
 
         return dictTypeBiz.addDictType(dictType);
    }
@@ -39,10 +41,10 @@ public class DictTypeServiceImpl implements DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int deleteDictType(DeleteDictTypeReqVo dictType){
+   public Result<Integer> deleteDictType(DeleteDictTypeReqVo dictType){
 		return dictTypeBiz.deleteDictType(dictType);
    }
 
@@ -52,10 +54,10 @@ public class DictTypeServiceImpl implements DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int updateDictType(UpdateDictTypeReqVo dictType){
+   public Result<Integer> updateDictType(UpdateDictTypeReqVo dictType){
 
         return dictTypeBiz.updateDictType(dictType);
    }
@@ -66,10 +68,10 @@ public class DictTypeServiceImpl implements DictTypeService {
    * @param dictType 请求参数
    * @return int
    * @author 刘飞华
-   * @date: 2024-10-08 14:26:30
+   * @date: 2025/01/13 17:57:36
    */
   @Override
-  public int updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType){
+  public Result<Integer> updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType){
 
        return dictTypeBiz.updateDictTypeStatus(dictType);
   }
@@ -80,10 +82,10 @@ public class DictTypeServiceImpl implements DictTypeService {
     * @param dictType 请求参数
     * @return DictTypeResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDictTypeDetailRespVo queryDictTypeDetail(QueryDictTypeDetailReqVo dictType){
+   public Result<QueryDictTypeDetailRespVo> queryDictTypeDetail(QueryDictTypeDetailReqVo dictType){
 
        return dictTypeBiz.queryDictTypeDetail(dictType);
    }
@@ -94,10 +96,10 @@ public class DictTypeServiceImpl implements DictTypeService {
     * @param dictType 请求参数
     * @return DictTypeResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDictTypeListRespVo queryDictTypeList(QueryDictTypeListReqVo dictType){
+   public Result<ResultPage<QueryDictTypeListRespVo>> queryDictTypeList(QueryDictTypeListReqVo dictType){
 
         return dictTypeBiz.queryDictTypeList(dictType);
    }

@@ -1,14 +1,11 @@
-package com.example.springboottpl.vo.req;
+package com.example.tpl.system.vo.req;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,44 +14,32 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:02
+ * 日期：2025-01-10 15:23:47
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("添加岗位信息请求Vo")
+@Schema(description = "岗位信息请求addVo")
 public class AddPostReqVo implements Serializable {
 
-    @ApiModelProperty(value = "租户编号", required = true)
-    @NotBlank(message = "tenantId租户编号不能为空")
-    private String tenantId;
-    
-    @ApiModelProperty(value = "部门id", required = true)
-    @NotBlank(message = "deptId部门id不能为空")
-    private Long deptId;
-    
-    @ApiModelProperty(value = "岗位编码", required = true)
+    @Schema(description = "岗位编码", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "postCode岗位编码不能为空")
     private String postCode;
-    
-    @ApiModelProperty(value = "岗位类别编码", required = true)
-    @NotBlank(message = "postCategory岗位类别编码不能为空")
-    private String postCategory;
-    
-    @ApiModelProperty(value = "岗位名称", required = true)
+
+    @Schema(description = "岗位名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "postName岗位名称不能为空")
     private String postName;
-    
-    @ApiModelProperty(value = "显示顺序", required = true)
-    @NotNull(message = "postSort显示顺序不能为空")
-    private Integer postSort;
-    
-    @ApiModelProperty(value = "状态(1:正常，0:禁用)", required = true)
-    @NotNull(message = "status状态(1:正常，0:禁用)不能为空")
+
+    @Schema(description = "显示顺序", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "sort显示顺序不能为空")
+    private Integer sort;
+
+    @Schema(description = "岗位状态（0：停用，1:正常）", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "status岗位状态（0：停用，1:正常）不能为空")
     private Integer status;
-    
-    @ApiModelProperty(value = "备注")
+
+    @Schema(description = "备注")
     private String remark;
 
 }

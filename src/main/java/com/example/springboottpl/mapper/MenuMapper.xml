@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.MenuDao">
+<mapper namespace="com.example.tpl.system.dao.MenuDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.MenuBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
-      <result column="menu_type" property="menuType" jdbcType="TINYINT"/>
-      <result column="status_id" property="statusId" jdbcType="TINYINT"/>
-      <result column="sort" property="sort" jdbcType="INTEGER"/>
-      <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
-      <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
-      <result column="api_url" property="apiUrl" jdbcType="VARCHAR"/>
-      <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.MenuBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menu_type" property="menuType" jdbcType="TINYINT"/>
+        <result column="visible" property="visible" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
+        <result column="api_url" property="apiUrl" jdbcType="VARCHAR"/>
+        <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, menu_name, menu_type, status_id, sort, parent_id, menu_url, api_url, menu_icon, remark, create_time, update_time
+        id, menu_name, menu_type, visible, status, sort, parent_id, menu_url, api_url, menu_icon, remark, create_time, update_time
     </sql>
 
-    <insert id="saveMenu" parameterType="com.example.springboottpl.entity.MenuBean">
+    <!--添加菜单信息-->
+    <insert id="addMenu" parameterType="com.example.tpl.system.entity.MenuBean">
         insert into sys_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -34,8 +36,11 @@
             <if test="menuType != null">
                 menu_type,
             </if>
-            <if test="statusId != null">
-                status_id,
+            <if test="visible != null">
+                visible,
+            </if>
+            <if test="status != null">
+                status,
             </if>
             <if test="sort != null">
                 sort,
@@ -72,8 +77,11 @@
             <if test="menuType != null">
                 #{ menuType,jdbcType=TINYINT },
             </if>
-            <if test="statusId != null">
-                #{ statusId,jdbcType=TINYINT },
+            <if test="visible != null">
+                #{ visible,jdbcType=TINYINT },
+            </if>
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
             </if>
             <if test="sort != null">
                 #{ sort,jdbcType=INTEGER },
@@ -102,11 +110,13 @@
         </trim>
     </insert>
 
+    <!--删除菜单信息-->
     <delete id="deleteMenu">
-        delete from sys_menu where id =#{id}
+        delete from sys_menu where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <update id="updateMenu" parameterType="com.example.springboottpl.entity.MenuBean">
+    <!--更新菜单信息-->
+    <update id="updateMenu" parameterType="com.example.tpl.system.entity.MenuBean">
         update sys_menu
         <set>
             <if test="id != null">
@@ -118,8 +128,11 @@
             <if test="menuType != null">
                 menu_type = #{ menuType,jdbcType=TINYINT},
             </if>
-            <if test="statusId != null">
-                status_id = #{ statusId,jdbcType=TINYINT},
+            <if test="visible != null">
+                visible = #{ visible,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{ status,jdbcType=TINYINT},
             </if>
             <if test="sort != null">
                 sort = #{ sort,jdbcType=INTEGER},
@@ -146,120 +159,159 @@
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="id != null">
                 and id = #{ id}
             </if>
-<!--            <if test="menuName != null">-->
-<!--                and menu_name = #{ menuName}-->
-<!--            </if>-->
-<!--            <if test="menuType != null">-->
-<!--                and menu_type = #{ menuType}-->
-<!--            </if>-->
-<!--            <if test="statusId != null">-->
-<!--                and status_id = #{ statusId}-->
-<!--            </if>-->
-<!--            <if test="sort != null">-->
-<!--                and sort = #{ sort}-->
-<!--            </if>-->
-<!--            <if test="parentId != null">-->
-<!--                and parent_id = #{ parentId}-->
-<!--            </if>-->
-<!--            <if test="menuUrl != null">-->
-<!--                and menu_url = #{ menuUrl}-->
-<!--            </if>-->
-<!--            <if test="apiUrl != null">-->
-<!--                and api_url = #{ apiUrl}-->
-<!--            </if>-->
-<!--            <if test="menuIcon != null">-->
-<!--                and menu_icon = #{ menuIcon}-->
-<!--            </if>-->
-<!--            <if test="remark != null">-->
-<!--                and remark = #{ remark}-->
-<!--            </if>-->
-<!--            <if test="createTime != null">-->
-<!--                and create_time = #{ createTime}-->
-<!--            </if>-->
-<!--            <if test="updateTime != null">-->
-<!--                and update_time = #{ updateTime}-->
-<!--            </if>-->
+            <!--<if test="menuName != null">-->
+            <!--    and menu_name = #{ menuName}-->
+            <!--</if>-->
+            <!--<if test="menuType != null">-->
+            <!--    and menu_type = #{ menuType}-->
+            <!--</if>-->
+            <!--<if test="visible != null">-->
+            <!--    and visible = #{ visible}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="parentId != null">-->
+            <!--    and parent_id = #{ parentId}-->
+            <!--</if>-->
+            <!--<if test="menuUrl != null">-->
+            <!--    and menu_url = #{ menuUrl}-->
+            <!--</if>-->
+            <!--<if test="apiUrl != null">-->
+            <!--    and api_url = #{ apiUrl}-->
+            <!--</if>-->
+            <!--<if test="menuIcon != null">-->
+            <!--    and menu_icon = #{ menuIcon}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </update>
 
-    <select id="queryMenu" parameterType="com.example.springboottpl.entity.MenuBean" resultMap="BaseResultMap">
+    <!--更新菜单信息状态-->
+    <update id="updateMenuStatus" parameterType="com.example.tpl.system.entity.MenuBean">
+        update sys_menu set status = #{ status,jdbcType=TINYINT} where id = #{ id,jdbcType=BIGINT}
+    </update>
+
+    <!--查询菜单信息详情-->
+    <select id="queryMenuDetail" parameterType="com.example.tpl.system.entity.MenuBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_menu
         <where>
-        <if test="id != null">
-            and id = #{ id}
-        </if>
-        <if test="menuName != null">
-            and menu_name = #{ menuName}
-        </if>
-        <!--<if test="menuType != null">-->
-        <!--    and menu_type = #{ menuType}-->
-        <!--</if>-->
-        <!--<if test="statusId != null">-->
-        <!--    and status_id = #{ statusId}-->
-        <!--</if>-->
-        <!--<if test="sort != null">-->
-        <!--    and sort = #{ sort}-->
-        <!--</if>-->
-        <!--<if test="parentId != null">-->
-        <!--    and parent_id = #{ parentId}-->
-        <!--</if>-->
-        <!--<if test="menuUrl != null">-->
-        <!--    and menu_url = #{ menuUrl}-->
-        <!--</if>-->
-        <!--<if test="apiUrl != null">-->
-        <!--    and api_url = #{ apiUrl}-->
-        <!--</if>-->
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <!--<if test="menuName != null">-->
+            <!--    and menu_name = #{ menuName}-->
+            <!--</if>-->
+            <!--<if test="menuType != null">-->
+            <!--    and menu_type = #{ menuType}-->
+            <!--</if>-->
+            <!--<if test="visible != null">-->
+            <!--    and visible = #{ visible}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="parentId != null">-->
+            <!--    and parent_id = #{ parentId}-->
+            <!--</if>-->
+            <!--<if test="menuUrl != null">-->
+            <!--    and menu_url = #{ menuUrl}-->
+            <!--</if>-->
+            <!--<if test="apiUrl != null">-->
+            <!--    and api_url = #{ apiUrl}-->
+            <!--</if>-->
+            <!--<if test="menuIcon != null">-->
+            <!--    and menu_icon = #{ menuIcon}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <!--根据id查询菜单信息详情-->
+    <select id="queryMenuById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu where id = #{id}
+    </select>
+
+    <!--根据menu_name查询菜单信息详情-->
+    <select id="queryMenuByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu where menu_name = #{menuName}
+    </select>
+
+    <!--根据menu_url查询菜单信息详情-->
+    <select id="queryMenuByUrl" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu where menu_url = #{menuUrl}
+    </select>
+
+    <!--查询菜单信息列表-->
+    <select id="queryMenuList" parameterType="com.example.tpl.system.entity.MenuBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        <where>
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="menuName != null">-->
+            <!--    and menu_name = #{ menuName}-->
+            <!--</if>-->
+            <!--<if test="menuType != null">-->
+            <!--    and menu_type = #{ menuType}-->
+            <!--</if>-->
+            <if test="visible != null">
+                and visible = #{ visible}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
+            <!--<if test="parentId != null">-->
+            <!--    and parent_id = #{ parentId}-->
+            <!--</if>-->
+            <!--<if test="menuUrl != null">-->
+            <!--    and menu_url = #{ menuUrl}-->
+            <!--</if>-->
+            <!--<if test="apiUrl != null">-->
+            <!--    and api_url = #{ apiUrl}-->
+            <!--</if>-->
 
         </where>
     </select>
 
-    <select id="queryMenuList" parameterType="com.example.springboottpl.entity.MenuBean" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_menu
-        <where>
-          <!--<if test="id != null">-->
-          <!--    and id = #{ id}-->
-          <!--</if>-->
-          <!--<if test="menuName != null">-->
-          <!--    and menu_name = #{ menuName}-->
-          <!--</if>-->
-          <!--<if test="menuType != null">-->
-          <!--    and menu_type = #{ menuType}-->
-          <!--</if>-->
-          <!--<if test="statusId != null">-->
-          <!--    and status_id = #{ statusId}-->
-          <!--</if>-->
-          <!--<if test="sort != null">-->
-          <!--    and sort = #{ sort}-->
-          <!--</if>-->
-          <!--<if test="parentId != null">-->
-          <!--    and parent_id = #{ parentId}-->
-          <!--</if>-->
-          <!--<if test="menuUrl != null">-->
-          <!--    and menu_url = #{ menuUrl}-->
-          <!--</if>-->
-          <!--<if test="apiUrl != null">-->
-          <!--    and api_url = #{ apiUrl}-->
-          <!--</if>-->
-          <!--<if test="menuIcon != null">-->
-          <!--    and menu_icon = #{ menuIcon}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
-        </where>
+    <!--查询菜单数量-->
+    <select id="countMenuByParentId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select count(1) from sys_menu where parent_id= #{parentId}
     </select>
 </mapper>

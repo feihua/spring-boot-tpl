@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,47 +15,36 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 15:23:46
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("查询字典类型列表响应vo")
+@Schema(description = "字典类型响应vo")
 public class QueryDictTypeListRespVo implements Serializable {
 
-
-    @ApiModelProperty("字典主键")
+    @Schema(description = "字典主键")
     private Long dictId;
 
-    @ApiModelProperty("租户编号")
-    private String tenantId;
-
-    @ApiModelProperty("字典名称")
+    @Schema(description = "字典名称")
     private String dictName;
 
-    @ApiModelProperty("字典类型")
+    @Schema(description = "字典类型")
     private String dictType;
 
-    @ApiModelProperty("备注")
+    @Schema(description = "状态（0：停用，1:正常）")
+    private int status;
+
+    @Schema(description = "备注")
     private String remark;
 
-    @ApiModelProperty("创建部门")
-    private Long createDept;
-
-    @ApiModelProperty("创建者")
-    private Long createBy;
-
-    @ApiModelProperty("创建时间")
+    @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    @ApiModelProperty("更新者")
-    private Long updateBy;
-
-    @ApiModelProperty("更新时间")
+    @Schema(description = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
-
 
 }

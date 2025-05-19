@@ -1,17 +1,19 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.biz.PostBiz;
-import com.example.springboottpl.service.PostService;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
+import com.example.tpl.system.biz.PostBiz;
+import com.example.tpl.system.service.PostService;
 
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2025/01/13 17:57:36
  */
 @Service
 public class PostServiceImpl implements PostService {
@@ -25,10 +27,10 @@ public class PostServiceImpl implements PostService {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int addPost(AddPostReqVo post){
+   public Result<Integer> addPost(AddPostReqVo post){
 
         return postBiz.addPost(post);
    }
@@ -39,10 +41,10 @@ public class PostServiceImpl implements PostService {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int deletePost(DeletePostReqVo post){
+   public Result<Integer> deletePost(DeletePostReqVo post){
 		return postBiz.deletePost(post);
    }
 
@@ -52,10 +54,10 @@ public class PostServiceImpl implements PostService {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int updatePost(UpdatePostReqVo post){
+   public Result<Integer> updatePost(UpdatePostReqVo post){
 
         return postBiz.updatePost(post);
    }
@@ -66,10 +68,10 @@ public class PostServiceImpl implements PostService {
    * @param post 请求参数
    * @return int
    * @author 刘飞华
-   * @date: 2024-10-08 14:26:31
+   * @date: 2025/01/13 17:57:36
    */
   @Override
-  public int updatePostStatus(UpdatePostStatusReqVo post){
+  public Result<Integer> updatePostStatus(UpdatePostStatusReqVo post){
 
        return postBiz.updatePostStatus(post);
   }
@@ -80,10 +82,10 @@ public class PostServiceImpl implements PostService {
     * @param post 请求参数
     * @return PostResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryPostDetailRespVo queryPostDetail(QueryPostDetailReqVo post){
+   public Result<QueryPostDetailRespVo> queryPostDetail(QueryPostDetailReqVo post){
 
        return postBiz.queryPostDetail(post);
    }
@@ -94,10 +96,10 @@ public class PostServiceImpl implements PostService {
     * @param post 请求参数
     * @return PostResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryPostListRespVo queryPostList(QueryPostListReqVo post){
+   public Result<ResultPage<QueryPostListRespVo>> queryPostList(QueryPostListReqVo post){
 
         return postBiz.queryPostList(post);
    }

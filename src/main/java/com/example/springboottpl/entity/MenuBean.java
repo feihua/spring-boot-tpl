@@ -1,4 +1,4 @@
-package com.example.springboottpl.entity;
+package com.example.tpl.system.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：菜单信息
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 14:58:36
  */
 @Data
 @Builder
@@ -22,12 +22,12 @@ public class MenuBean implements Serializable {
     private Long id;
     //菜单名称
     private String menuName;
-    //菜单类型(1：目录,2：菜单,3：按钮，4：外链)
+    //菜单类型(1：目录   2：菜单   3：按钮)
     private Integer menuType;
-    //状态(1:正常，0:禁用)
+    //显示状态（0:隐藏, 显示:1）
+    private Integer visible;
+    //菜单状态(1:正常，0:禁用)
     private Integer status;
-    //显示状态（0显示 1隐藏）
-    private String visible;
     //排序
     private Integer sort;
     //父ID
@@ -40,14 +40,8 @@ public class MenuBean implements Serializable {
     private String menuIcon;
     //备注
     private String remark;
-    //创建部门
-    private Long createDept;
-    //创建者
-    private Long createBy;
     //创建时间
     private Date createTime;
-    //更新者
-    private Long updateBy;
-    //更新时间
+    //修改时间
     private Date updateTime;
 }

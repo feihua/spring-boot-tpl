@@ -1,14 +1,20 @@
-package com.example.springboottpl.biz;
+package com.example.tpl.system.biz;
 
-import java.util.Map;
-
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.AddDictTypeReqVo;
+import com.example.tpl.system.vo.req.DeleteDictTypeReqVo;
+import com.example.tpl.system.vo.req.QueryDictTypeDetailReqVo;
+import com.example.tpl.system.vo.req.QueryDictTypeListReqVo;
+import com.example.tpl.system.vo.req.UpdateDictTypeReqVo;
+import com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryDictTypeDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryDictTypeListRespVo;
 
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 public interface DictTypeBiz {
 
@@ -18,9 +24,9 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int addDictType(AddDictTypeReqVo dictType);
+   Result<Integer> addDictType(AddDictTypeReqVo dictType);
 
    /**
     * 删除字典类型
@@ -28,9 +34,9 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int deleteDictType(DeleteDictTypeReqVo dictType);
+   Result<Integer> deleteDictType(DeleteDictTypeReqVo dictType);
 
    /**
     * 更新字典类型
@@ -38,9 +44,9 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictType(UpdateDictTypeReqVo dictType);
+   Result<Integer> updateDictType(UpdateDictTypeReqVo dictType);
 
    /**
     * 更新字典类型状态
@@ -48,9 +54,9 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType);
+   Result<Integer> updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType);
 
    /**
     * 查询字典类型详情
@@ -58,9 +64,9 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return DictTypeResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictTypeDetailRespVo queryDictTypeDetail(QueryDictTypeDetailReqVo dictType);
+   Result<QueryDictTypeDetailRespVo> queryDictTypeDetail(QueryDictTypeDetailReqVo dictType);
 
    /**
     * 查询字典类型列表
@@ -68,8 +74,8 @@ public interface DictTypeBiz {
     * @param dictType 请求参数
     * @return ResultPage<DictTypeResp>
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictTypeListRespVo queryDictTypeList(QueryDictTypeListReqVo dictType);
+   Result<ResultPage<QueryDictTypeListRespVo>> queryDictTypeList(QueryDictTypeListReqVo dictType);
 
 }

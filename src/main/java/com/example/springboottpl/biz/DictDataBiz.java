@@ -1,14 +1,20 @@
-package com.example.springboottpl.biz;
+package com.example.tpl.system.biz;
 
-import java.util.Map;
-
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.AddDictDataReqVo;
+import com.example.tpl.system.vo.req.DeleteDictDataReqVo;
+import com.example.tpl.system.vo.req.QueryDictDataDetailReqVo;
+import com.example.tpl.system.vo.req.QueryDictDataListReqVo;
+import com.example.tpl.system.vo.req.UpdateDictDataReqVo;
+import com.example.tpl.system.vo.req.UpdateDictDataStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryDictDataDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryDictDataListRespVo;
 
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 public interface DictDataBiz {
 
@@ -18,9 +24,9 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int addDictData(AddDictDataReqVo dictData);
+   Result<Integer> addDictData(AddDictDataReqVo dictData);
 
    /**
     * 删除字典数据
@@ -28,9 +34,9 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int deleteDictData(DeleteDictDataReqVo dictData);
+   Result<Integer> deleteDictData(DeleteDictDataReqVo dictData);
 
    /**
     * 更新字典数据
@@ -38,9 +44,9 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictData(UpdateDictDataReqVo dictData);
+   Result<Integer> updateDictData(UpdateDictDataReqVo dictData);
 
    /**
     * 更新字典数据状态
@@ -48,9 +54,9 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictDataStatus(UpdateDictDataStatusReqVo dictData);
+   Result<Integer> updateDictDataStatus(UpdateDictDataStatusReqVo dictData);
 
    /**
     * 查询字典数据详情
@@ -58,9 +64,9 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return DictDataResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictDataDetailRespVo queryDictDataDetail(QueryDictDataDetailReqVo dictData);
+   Result<QueryDictDataDetailRespVo> queryDictDataDetail(QueryDictDataDetailReqVo dictData);
 
    /**
     * 查询字典数据列表
@@ -68,8 +74,8 @@ public interface DictDataBiz {
     * @param dictData 请求参数
     * @return ResultPage<DictDataResp>
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictDataListRespVo queryDictDataList(QueryDictDataListReqVo dictData);
+   Result<ResultPage<QueryDictDataListRespVo>> queryDictDataList(QueryDictDataListReqVo dictData);
 
 }

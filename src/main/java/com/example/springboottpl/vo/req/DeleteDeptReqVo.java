@@ -1,16 +1,10 @@
-package com.example.springboottpl.vo.req;
+package com.example.tpl.system.vo.req;
 
-import java.util.List;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,17 +13,17 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 15:23:46
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("删除部门请求vo")
+@Schema(description = "部门请求vo")
 public class DeleteDeptReqVo implements Serializable {
 
-	@ApiModelProperty(value = "主键", required = true)
-	@NotNull(message = "ids主键不能为空")
-	private List<Long> ids;
+    @Schema(description = "部门id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "id不能为空")
+    private Long id;
 }
 

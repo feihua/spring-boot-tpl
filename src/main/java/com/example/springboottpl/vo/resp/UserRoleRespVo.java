@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,23 +11,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 描述：角色用户关联表
+ * 描述：用户的角色
  * 作者：刘飞华
- * 日期：2023-09-20 10:44:26
+ * 日期：2025/1/11 11:12
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("角色用户关联表响应vo")
+@Schema(description = "用户的角色响应vo")
 public class UserRoleRespVo implements Serializable {
 
-	@ApiModelProperty(value = "角色拥有的角色ids")
-	private List<Integer> roleIds;
+    @Schema(description = "角色拥有的角色ids")
+    private List<Long> userRoleIds;
 
-	@ApiModelProperty(value = "角色拥有的角色")
-	private List<RoleRespVo> userRoleList;
-
-	@ApiModelProperty(value = "所有的角色")
-	private List<RoleRespVo> allRoleList;
+    @Schema(description = "所有的角色")
+    private List<QueryRoleDetailRespVo> sysRoleList;
 }

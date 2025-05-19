@@ -1,161 +1,221 @@
-package com.example.springboottpl.biz.impl;
+package com.example.tpl.system.biz.impl;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.entity.DictTypeBean;
-import com.example.springboottpl.vo.req.*;
-
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.dao.DictTypeDao;
-import com.example.springboottpl.biz.DictTypeBiz;
+import com.example.tpl.system.biz.DictTypeBiz;
+import com.example.tpl.system.dao.DictTypeDao;
+import com.example.tpl.system.entity.DictTypeBean;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.AddDictTypeReqVo;
+import com.example.tpl.system.vo.req.DeleteDictTypeReqVo;
+import com.example.tpl.system.vo.req.QueryDictTypeDetailReqVo;
+import com.example.tpl.system.vo.req.QueryDictTypeListReqVo;
+import com.example.tpl.system.vo.req.UpdateDictTypeReqVo;
+import com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryDictTypeDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryDictTypeListRespVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/10 15:34:35
  */
 @Service
 public class DictTypeBizImpl implements DictTypeBiz {
 
-   @Autowired
-   private DictTypeDao dictTypeDao;
+    @Autowired
+    private DictTypeDao dictTypeDao;
 
-   /**
-    * 添加字典类型
-    *
-    * @param dictType 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public int addDictType(AddDictTypeReqVo dictType){
+    /**
+     * 添加字典类型
+     *
+     * @param dict 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<Integer> addDictType(AddDictTypeReqVo dict) {
+        String dictName = dict.getDictName();//字典名称
+        String dictType = dict.getDictType();//字典类型
+
+        DictTypeBean queryByName = dictTypeDao.queryDictTypeByName(dictName);
+        if (queryByName != null) {
+            return Result.error("添加字典类型失败,字典名称已存在");
+        }
+
+
+        DictTypeBean queryByType = dictTypeDao.queryDictTypeByType(dictType);
+        if (queryByType != null) {
+            return Result.error("添加字典类型失败,字典类型已存在");
+        }
+
         DictTypeBean bean = new DictTypeBean();
-        bean.setTenantId(dictType.getTenantId());
-        bean.setDictName(dictType.getDictName());
-        bean.setDictType(dictType.getDictType());
-        bean.setRemark(dictType.getRemark());
+        bean.setDictName(dictName); //字典名称
+        bean.setDictType(dictType); //字典类型
+        bean.setStatus(dict.getStatus()); //状态（0：停用，1:正常）
+        bean.setRemark(dict.getRemark()); //备注
+        int i = dictTypeDao.addDictType(bean);
+        return Result.success(i);
+    }
 
-        return dictTypeDao.addDictType(bean);
-   }
+    /**
+     * 删除字典类型
+     *
+     * @param dictType 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<Integer> deleteDictType(DeleteDictTypeReqVo dictType) {
+        List<Long> ids = dictType.getIds();
+        for (Long id : ids) {
+            DictTypeBean dictTypeBean = dictTypeDao.queryDictTypeById(id);
+            if (dictTypeBean == null) {
+                return Result.error("删除字典类型失败,字典类型不存在");
+            }
 
-   /**
-    * 删除字典类型
-    *
-    * @param dictType 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public int deleteDictType(DeleteDictTypeReqVo dictType){
-		return dictTypeDao.deleteDictType(dictType.getIds());
-   }
+            int count = dictTypeDao.countDictDataByType(dictTypeBean.getDictType());
+            if (count > 0) {
+                return Result.error("删除字典类型失败,已分配,不能删除");
+            }
+        }
 
-   /**
-    * 更新字典类型
-    *
-    * @param dictType 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public int updateDictType(UpdateDictTypeReqVo dictType){
+        int i = dictTypeDao.deleteDictType(dictType.getIds());
+        return Result.success(i);
+    }
+
+    /**
+     * 更新字典类型
+     *
+     * @param dict 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<Integer> updateDictType(UpdateDictTypeReqVo dict) {
+        String dictName = dict.getDictName();//字典名称
+        String dictType = dict.getDictType();//字典类型
+
+        DictTypeBean queryById = dictTypeDao.queryDictTypeById(dict.getDictId());
+        if (queryById == null) {
+            return Result.error("更新字典类型失败,字典类型不存在");
+        }
+        DictTypeBean queryByName = dictTypeDao.queryDictTypeByName(dictName);
+        if (queryByName != null && !queryByName.getDictId().equals(dict.getDictId())) {
+            return Result.error("更新字典类型失败,字典名称已存在");
+        }
+
+        DictTypeBean queryByType = dictTypeDao.queryDictTypeByType(dictType);
+        if (queryByType != null && !queryByType.getDictId().equals(dict.getDictId())) {
+            return Result.error("更新字典类型失败,字典类型已存在");
+        }
+
         DictTypeBean bean = new DictTypeBean();
-        bean.setDictId(dictType.getDictId());
-        bean.setTenantId(dictType.getTenantId());
-        bean.setDictName(dictType.getDictName());
-        bean.setDictType(dictType.getDictType());
-        bean.setRemark(dictType.getRemark());
-        return dictTypeDao.updateDictType(bean);
-   }
+        bean.setDictId(dict.getDictId());//字典主键
+        bean.setDictName(dictName);//字典名称
+        bean.setDictType(dictType);//字典类型
+        bean.setStatus(dict.getStatus());//状态（0：停用，1:正常）
+        bean.setRemark(dict.getRemark());//备注
 
-   /**
-    * 更新字典类型状态
-    *
-    * @param dictType 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public int updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType){
+        int i = dictTypeDao.updateDictType(bean);
+        return Result.success(i);
+    }
+
+    /**
+     * 更新字典类型状态
+     *
+     * @param dictType 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<Integer> updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType) {
+
+        int i = dictTypeDao.updateDictTypeStatus(dictType);
+        return Result.success(i);
+    }
+
+    /**
+     * 查询字典类型详情
+     *
+     * @param dictType 请求参数
+     * @return DictTypeResp
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<QueryDictTypeDetailRespVo> queryDictTypeDetail(QueryDictTypeDetailReqVo dictType) {
         DictTypeBean bean = new DictTypeBean();
-        //bean.setDictId(dictType.getDictId());
-        //bean.setTenantId(dictType.getTenantId());
-        //bean.setDictName(dictType.getDictName());
-        //bean.setDictType(dictType.getDictType());
+        bean.setDictId(dictType.getId());//字典主键
+        //bean.setDictName(dictType.getDictName());//字典名称
+        //bean.setDictType(dictType.getDictType());//字典类型
+        //bean.setStatus(dictType.getStatus());//状态（0：停用，1:正常）
 
-        return dictTypeDao.updateDictTypeStatus(bean);
-   }
-
-   /**
-    * 查询字典类型详情
-    *
-    * @param dictType 请求参数
-    * @return DictTypeResp
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public QueryDictTypeDetailRespVo queryDictTypeDetail(QueryDictTypeDetailReqVo dictType){
-        DictTypeBean bean = new DictTypeBean();
-        bean.setDictId(dictType.getDictId());
-        //bean.setTenantId(dictType.getTenantId());
-        //bean.setDictName(dictType.getDictName());
-        //bean.setDictType(dictType.getDictType());
 
         DictTypeBean query = dictTypeDao.queryDictTypeDetail(bean);
+        if (query == null) {
+            return Result.error("查询字典类型详情失败,字典类型不存在");
+        }
 
-        return QueryDictTypeDetailRespVo.builder().build();
-   }
+        QueryDictTypeDetailRespVo resp = new QueryDictTypeDetailRespVo();
+        resp.setDictId(query.getDictId());//字典主键
+        resp.setDictName(query.getDictName());//字典名称
+        resp.setDictType(query.getDictType());//字典类型
+        resp.setStatus(query.getStatus());//状态（0：停用，1:正常）
+        resp.setRemark(query.getRemark());//备注
+        resp.setCreateTime(query.getCreateTime());//创建时间
+        resp.setUpdateTime(query.getUpdateTime());//修改时间
 
-   /**
-    * 查询字典类型列表
-    *
-    * @param dictType 请求参数
-    * @return DictTypeResp
-    * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
-    */
-   @Override
-   public QueryDictTypeListRespVo queryDictTypeList(QueryDictTypeListReqVo dictType){
+        return Result.success(resp);
+    }
+
+    /**
+     * 查询字典类型列表
+     *
+     * @param dictType 请求参数
+     * @return DictTypeResp
+     * @author 刘飞华
+     * @date: 2025/01/10 15:34:35
+     */
+    @Override
+    public Result<ResultPage<QueryDictTypeListRespVo>> queryDictTypeList(QueryDictTypeListReqVo dictType) {
         DictTypeBean bean = new DictTypeBean();
-        //bean.setTenantId(dictType.getTenantId());
-        //bean.setDictName(dictType.getDictName());
-        //bean.setDictType(dictType.getDictType());
+        bean.setDictName(dictType.getDictName());//字典名称
+        bean.setDictType(dictType.getDictType());//字典类型
+        bean.setStatus(dictType.getStatus());//状态（0：停用，1:正常）
 
-        PageHelper.startPage(dictType.getPageNum(), dictType.getPageSize());
-	    List<DictTypeBean> query = dictTypeDao.queryDictTypeList(bean);
+        PageHelper.startPage(dictType.getPageNo(), dictType.getPageSize());
+        List<DictTypeBean> query = dictTypeDao.queryDictTypeList(bean);
         PageInfo<DictTypeBean> pageInfo = new PageInfo<>(query);
 
-	    List<QueryDictTypeListRespVo> list = pageInfo.getList().stream().map(x -> {
+        List<DictTypeBean> infoList = pageInfo.getList();
+        List<QueryDictTypeListRespVo> list = new ArrayList<>();
+
+        for (DictTypeBean typeBean : infoList) {
             QueryDictTypeListRespVo resp = new QueryDictTypeListRespVo();
-            resp.setDictId(x.getDictId());
-            resp.setTenantId(x.getTenantId());
-            resp.setDictName(x.getDictName());
-            resp.setDictType(x.getDictType());
-            resp.setRemark(x.getRemark());
-            resp.setCreateDept(x.getCreateDept());
-            resp.setCreateBy(x.getCreateBy());
-            resp.setCreateTime(x.getCreateTime());
-            resp.setUpdateBy(x.getUpdateBy());
-            resp.setUpdateTime(x.getUpdateTime());
-		   return resp;
-	    }).collect(Collectors.toList());
+            resp.setDictId(typeBean.getDictId());//字典主键
+            resp.setDictName(typeBean.getDictName());//字典名称
+            resp.setDictType(typeBean.getDictType());//字典类型
+            resp.setStatus(typeBean.getStatus());//状态（0：停用，1:正常）
+            resp.setRemark(typeBean.getRemark());//备注
+            resp.setCreateTime(typeBean.getCreateTime());//创建时间
+            resp.setUpdateTime(typeBean.getUpdateTime());//修改时间
 
-        //return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
-        return null;
+            list.add(resp);
+        }
 
-   }
+        return Result.success(new ResultPage<>(list, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal()));
+
+    }
 }

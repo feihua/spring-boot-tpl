@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,25 +13,25 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：用户菜单
  * 作者：刘飞华
- * 日期：2023/3/29 17:18
+ * 日期：2025/1/11 11:10
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("用户菜单响应vo")
+@Schema(description = "用户菜单响应vo")
 public class UserMenuRespVo implements Serializable {
 
-	@ApiModelProperty(value = "按钮权限")
-	private List<String> btnPaths;
+    @Schema(description = "按钮权限")
+    private List<String> btnMenu;
 
-	@ApiModelProperty(value = "左侧菜单数据")
-	private List<MenuRespVo> leftMenuData;
+    @Schema(description = "左侧菜单数据")
+    private List<QueryUserMenuListData> sysMenu;
 
-	@ApiModelProperty(value = "姓名")
-	private String name;
+    @Schema(description = "姓名")
+    private String name;
 
-	@ApiModelProperty(value = "图像地址")
-	private String avatar;
+    @Schema(description = "图像地址")
+    private String avatar;
 
 }

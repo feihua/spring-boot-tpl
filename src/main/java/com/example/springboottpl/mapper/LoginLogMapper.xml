@@ -1,85 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.LoginLogDao">
+<mapper namespace="com.example.tpl.system.dao.LoginLogDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.LoginLogBean">
-      <result column="id" property="id" jdbcType="BIGINT"/>
-      <result column="user_id" property="userId" jdbcType="BIGINT"/>
-      <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-      <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.LoginLogBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="ipaddr" property="ipaddr" jdbcType="VARCHAR"/>
+        <result column="login_location" property="loginLocation" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="browser" property="browser" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        <result column="os" property="os" jdbcType="VARCHAR"/>
+        <result column="arch" property="arch" jdbcType="VARCHAR"/>
+        <result column="engine" property="engine" jdbcType="VARCHAR"/>
+        <result column="engine_details" property="engineDetails" jdbcType="VARCHAR"/>
+        <result column="extra" property="extra" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="msg" property="msg" jdbcType="VARCHAR"/>
+        <result column="login_time" property="loginTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_id, user_name, ip_address, create_time
+        id, login_name, ipaddr, login_location, platform, browser, version, os, arch, engine, engine_details, extra,
+        status, msg, login_time
     </sql>
 
-    <insert id="saveLoginLog" parameterType="com.example.springboottpl.entity.LoginLogBean">
+    <!--添加系统访问记录-->
+    <insert id="addLoginLog" parameterType="com.example.tpl.system.entity.LoginLogBean">
         insert into sys_login_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
             </if>
-            <if test="userId != null">
-                user_id,
+            <if test="loginName != null">
+                login_name,
             </if>
-            <if test="userName != null">
-                user_name,
+            <if test="ipaddr != null">
+                ipaddr,
             </if>
-            <if test="ipAddress != null">
-                ip_address,
+            <if test="loginLocation != null">
+                login_location,
             </if>
-            <if test="createTime != null">
-                create_time,
+            <if test="platform != null">
+                platform,
+            </if>
+            <if test="browser != null">
+                browser,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="os != null">
+                os,
+            </if>
+            <if test="arch != null">
+                arch,
+            </if>
+            <if test="engine != null">
+                engine,
+            </if>
+            <if test="engineDetails != null">
+                engine_details,
+            </if>
+            <if test="extra != null">
+                extra,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="msg != null">
+                msg,
+            </if>
+            <if test="loginTime != null">
+                login_time,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 #{ id,jdbcType=BIGINT },
             </if>
-            <if test="userId != null">
-                #{ userId,jdbcType=BIGINT },
+            <if test="loginName != null">
+                #{ loginName,jdbcType=VARCHAR },
             </if>
-            <if test="userName != null">
-                #{ userName,jdbcType=VARCHAR },
+            <if test="ipaddr != null">
+                #{ ipaddr,jdbcType=VARCHAR },
             </if>
-            <if test="ipAddress != null">
-                #{ ipAddress,jdbcType=VARCHAR },
+            <if test="loginLocation != null">
+                #{ loginLocation,jdbcType=VARCHAR },
             </if>
-            <if test="createTime != null">
-                #{ createTime,jdbcType=TIMESTAMP },
+            <if test="platform != null">
+                #{ platform,jdbcType=VARCHAR },
+            </if>
+            <if test="browser != null">
+                #{ browser,jdbcType=VARCHAR },
+            </if>
+            <if test="version != null">
+                #{ version,jdbcType=VARCHAR },
+            </if>
+            <if test="os != null">
+                #{ os,jdbcType=VARCHAR },
+            </if>
+            <if test="arch != null">
+                #{ arch,jdbcType=VARCHAR },
+            </if>
+            <if test="engine != null">
+                #{ engine,jdbcType=VARCHAR },
+            </if>
+            <if test="engineDetails != null">
+                #{ engineDetails,jdbcType=VARCHAR },
+            </if>
+            <if test="extra != null">
+                #{ extra,jdbcType=VARCHAR },
+            </if>
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
+            </if>
+            <if test="msg != null">
+                #{ msg,jdbcType=VARCHAR },
+            </if>
+            <if test="loginTime != null">
+                #{ loginTime,jdbcType=TIMESTAMP },
             </if>
         </trim>
     </insert>
 
+    <!--删除系统访问记录-->
     <delete id="deleteLoginLog">
         delete from sys_login_log where id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
+    <!--清空系统访问记录-->
+    <delete id="cleanLoginLog">
+        delete from sys_login_log
+    </delete>
 
-    <select id="queryLoginLogList" parameterType="com.example.springboottpl.entity.LoginLogBean" resultMap="BaseResultMap">
+    <!--查询系统访问记录详情-->
+    <select id="queryLoginLogDetail" parameterType="com.example.tpl.system.entity.LoginLogBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_login_log
         <where>
-          <if test="id != null">
-              and id = #{ id}
-          </if>
-          <if test="userId != null">
-              and user_id = #{ userId}
-          </if>
-          <if test="userName != null">
-              and user_name = #{ userName}
-          </if>
-          <if test="ipAddress != null">
-              and ip_address = #{ ipAddress}
-          </if>
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <!--<if test="loginName != null">-->
+            <!--    and login_name = #{ loginName}-->
+            <!--</if>-->
+            <!--<if test="ipaddr != null">-->
+            <!--    and ipaddr = #{ ipaddr}-->
+            <!--</if>-->
+            <!--<if test="loginLocation != null">-->
+            <!--    and login_location = #{ loginLocation}-->
+            <!--</if>-->
+            <!--<if test="platform != null">-->
+            <!--    and platform = #{ platform}-->
+            <!--</if>-->
+            <!--<if test="browser != null">-->
+            <!--    and browser = #{ browser}-->
+            <!--</if>-->
+            <!--<if test="version != null">-->
+            <!--    and version = #{ version}-->
+            <!--</if>-->
+            <!--<if test="os != null">-->
+            <!--    and os = #{ os}-->
+            <!--</if>-->
+            <!--<if test="arch != null">-->
+            <!--    and arch = #{ arch}-->
+            <!--</if>-->
+            <!--<if test="engine != null">-->
+            <!--    and engine = #{ engine}-->
+            <!--</if>-->
+            <!--<if test="engineDetails != null">-->
+            <!--    and engine_details = #{ engineDetails}-->
+            <!--</if>-->
+            <!--<if test="extra != null">-->
+            <!--    and extra = #{ extra}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="msg != null">-->
+            <!--    and msg = #{ msg}-->
+            <!--</if>-->
+            <!--<if test="loginTime != null">-->
+            <!--    and login_time = #{ loginTime}-->
+            <!--</if>-->
         </where>
-        order by create_time desc
+    </select>
+
+    <!--查询系统访问记录列表-->
+    <select id="queryLoginLogList" parameterType="com.example.tpl.system.entity.LoginLogBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_login_log
+        <where>
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="loginName != null">-->
+            <!--    and login_name = #{ loginName}-->
+            <!--</if>-->
+            <!--<if test="ipaddr != null">-->
+            <!--    and ipaddr = #{ ipaddr}-->
+            <!--</if>-->
+            <!--<if test="loginLocation != null">-->
+            <!--    and login_location = #{ loginLocation}-->
+            <!--</if>-->
+            <!--<if test="platform != null">-->
+            <!--    and platform = #{ platform}-->
+            <!--</if>-->
+            <!--<if test="browser != null">-->
+            <!--    and browser = #{ browser}-->
+            <!--</if>-->
+            <!--<if test="version != null">-->
+            <!--    and version = #{ version}-->
+            <!--</if>-->
+            <!--<if test="os != null">-->
+            <!--    and os = #{ os}-->
+            <!--</if>-->
+            <!--<if test="arch != null">-->
+            <!--    and arch = #{ arch}-->
+            <!--</if>-->
+            <!--<if test="engine != null">-->
+            <!--    and engine = #{ engine}-->
+            <!--</if>-->
+            <!--<if test="engineDetails != null">-->
+            <!--    and engine_details = #{ engineDetails}-->
+            <!--</if>-->
+            <!--<if test="extra != null">-->
+            <!--    and extra = #{ extra}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="msg != null">-->
+            <!--    and msg = #{ msg}-->
+            <!--</if>-->
+            <!--<if test="loginTime != null">-->
+            <!--    and login_time = #{ loginTime}-->
+            <!--</if>-->
+        </where>
     </select>
 </mapper>

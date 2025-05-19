@@ -1,7 +1,6 @@
-package com.example.springboottpl.vo.resp;
+package com.example.tpl.system.vo.resp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,62 +15,51 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 15:23:46
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("查询字典数据列表响应vo")
+@Schema(description = "字典数据响应vo")
 public class QueryDictDataListRespVo implements Serializable {
 
-
-    @ApiModelProperty("字典编码")
+    @Schema(description = "字典编码")
     private Long dictCode;
 
-    @ApiModelProperty("租户编号")
-    private String tenantId;
-
-    @ApiModelProperty("字典排序")
+    @Schema(description = "字典排序")
     private Integer dictSort;
 
-    @ApiModelProperty("字典标签")
+    @Schema(description = "字典标签")
     private String dictLabel;
 
-    @ApiModelProperty("字典键值")
+    @Schema(description = "字典键值")
     private String dictValue;
 
-    @ApiModelProperty("字典类型")
+    @Schema(description = "字典类型")
     private String dictType;
 
-    @ApiModelProperty("样式属性（其他样式扩展）")
+    @Schema(description = "样式属性（其他样式扩展）")
     private String cssClass;
 
-    @ApiModelProperty("表格回显样式")
+    @Schema(description = "表格回显样式")
     private String listClass;
 
-    @ApiModelProperty("是否默认（Y是 N否）")
+    @Schema(description = "是否默认（Y是 N否）")
     private String isDefault;
 
-    @ApiModelProperty("创建部门")
-    private Long createDept;
+    @Schema(description = "状态（0：停用，1:正常）")
+    private int status;
 
-    @ApiModelProperty("创建者")
-    private Long createBy;
+    @Schema(description = "备注")
+    private String remark;
 
-    @ApiModelProperty("创建时间")
+    @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    @ApiModelProperty("更新者")
-    private Long updateBy;
-
-    @ApiModelProperty("更新时间")
+    @Schema(description = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
-
-    @ApiModelProperty("备注")
-    private String remark;
-
 
 }

@@ -1,14 +1,16 @@
-package com.example.springboottpl.service;
+package com.example.tpl.system.service;
 
 import java.util.Map;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
 
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 public interface DictTypeService {
 
@@ -18,9 +20,9 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int addDictType(AddDictTypeReqVo dictType);
+   Result<Integer> addDictType(AddDictTypeReqVo dictType);
 
    /**
     * 删除字典类型
@@ -28,9 +30,9 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int deleteDictType(DeleteDictTypeReqVo dictType);
+   Result<Integer> deleteDictType(DeleteDictTypeReqVo dictType);
 
    /**
     * 更新字典类型
@@ -38,9 +40,9 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictType(UpdateDictTypeReqVo dictType);
+   Result<Integer> updateDictType(UpdateDictTypeReqVo dictType);
 
    /**
     * 更新字典类型状态
@@ -48,9 +50,9 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType);
+   Result<Integer> updateDictTypeStatus(UpdateDictTypeStatusReqVo dictType);
 
 
    /**
@@ -59,9 +61,9 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return QueryDictTypeDetailResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictTypeDetailRespVo queryDictTypeDetail(QueryDictTypeDetailReqVo dictType);
+   Result<QueryDictTypeDetailRespVo> queryDictTypeDetail(QueryDictTypeDetailReqVo dictType);
 
    /**
     * 查询字典类型列表
@@ -69,8 +71,8 @@ public interface DictTypeService {
     * @param dictType 请求参数
     * @return QueryDictTypeListResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDictTypeListRespVo queryDictTypeList(QueryDictTypeListReqVo dictType);
+   Result<ResultPage<QueryDictTypeListRespVo>> queryDictTypeList(QueryDictTypeListReqVo dictType);
 
 }

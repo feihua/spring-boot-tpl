@@ -1,14 +1,21 @@
-package com.example.springboottpl.biz;
+package com.example.tpl.system.biz;
 
-import java.util.Map;
+import java.util.List;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.vo.req.AddDeptReqVo;
+import com.example.tpl.system.vo.req.DeleteDeptReqVo;
+import com.example.tpl.system.vo.req.QueryDeptDetailReqVo;
+import com.example.tpl.system.vo.req.QueryDeptListReqVo;
+import com.example.tpl.system.vo.req.UpdateDeptReqVo;
+import com.example.tpl.system.vo.req.UpdateDeptStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryDeptDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryDeptListRespVo;
 
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 public interface DeptBiz {
 
@@ -18,9 +25,9 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int addDept(AddDeptReqVo dept);
+   Result<Integer> addDept(AddDeptReqVo dept);
 
    /**
     * 删除部门
@@ -28,9 +35,9 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int deleteDept(DeleteDeptReqVo dept);
+   Result<Integer> deleteDept(DeleteDeptReqVo dept);
 
    /**
     * 更新部门
@@ -38,9 +45,9 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDept(UpdateDeptReqVo dept);
+   Result<Integer> updateDept(UpdateDeptReqVo dept);
 
    /**
     * 更新部门状态
@@ -48,9 +55,9 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   int updateDeptStatus(UpdateDeptStatusReqVo dept);
+   Result<Integer> updateDeptStatus(UpdateDeptStatusReqVo dept);
 
    /**
     * 查询部门详情
@@ -58,9 +65,9 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return DeptResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDeptDetailRespVo queryDeptDetail(QueryDeptDetailReqVo dept);
+   Result<QueryDeptDetailRespVo> queryDeptDetail(QueryDeptDetailReqVo dept);
 
    /**
     * 查询部门列表
@@ -68,8 +75,8 @@ public interface DeptBiz {
     * @param dept 请求参数
     * @return ResultPage<DeptResp>
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
-   QueryDeptListRespVo queryDeptList(QueryDeptListReqVo dept);
+   Result<List<QueryDeptListRespVo>> queryDeptList(QueryDeptListReqVo dept);
 
 }

@@ -1,14 +1,16 @@
-package com.example.springboottpl.biz;
+package com.example.tpl.system.biz;
 
 import java.util.Map;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
 
 /**
  * 描述：岗位信息
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:31
+ * 日期：2025/01/13 17:57:36
  */
 public interface PostBiz {
 
@@ -18,9 +20,9 @@ public interface PostBiz {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   int addPost(AddPostReqVo post);
+   Result<Integer> addPost(AddPostReqVo post);
 
    /**
     * 删除岗位信息
@@ -28,9 +30,9 @@ public interface PostBiz {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   int deletePost(DeletePostReqVo post);
+   Result<Integer> deletePost(DeletePostReqVo post);
 
    /**
     * 更新岗位信息
@@ -38,9 +40,9 @@ public interface PostBiz {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   int updatePost(UpdatePostReqVo post);
+   Result<Integer> updatePost(UpdatePostReqVo post);
 
    /**
     * 更新岗位信息状态
@@ -48,9 +50,9 @@ public interface PostBiz {
     * @param post 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   int updatePostStatus(UpdatePostStatusReqVo post);
+   Result<Integer> updatePostStatus(UpdatePostStatusReqVo post);
 
    /**
     * 查询岗位信息详情
@@ -58,9 +60,9 @@ public interface PostBiz {
     * @param post 请求参数
     * @return PostResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   QueryPostDetailRespVo queryPostDetail(QueryPostDetailReqVo post);
+   Result<QueryPostDetailRespVo> queryPostDetail(QueryPostDetailReqVo post);
 
    /**
     * 查询岗位信息列表
@@ -68,8 +70,8 @@ public interface PostBiz {
     * @param post 请求参数
     * @return ResultPage<PostResp>
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:31
+    * @date: 2025/01/13 17:57:36
     */
-   QueryPostListRespVo queryPostList(QueryPostListReqVo post);
+   Result<ResultPage<QueryPostListRespVo>> queryPostList(QueryPostListReqVo post);
 
 }

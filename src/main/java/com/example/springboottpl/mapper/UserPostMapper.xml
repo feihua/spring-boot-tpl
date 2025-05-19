@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.UserPostDao">
+<mapper namespace="com.example.tpl.system.dao.UserPostDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.UserPostBean">
-      <result column="user_id" property="userId" jdbcType="BIGINT"/>
-      <result column="post_id" property="postId" jdbcType="BIGINT"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.UserPostBean">
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="post_id" property="postId" jdbcType="BIGINT"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
         user_id, post_id
     </sql>
 
-    <insert id="addUserPost" parameterType="com.example.springboottpl.entity.UserPostBean">
+    <insert id="addUserPost" parameterType="com.example.tpl.system.entity.UserPostBean">
         insert into sys_user_post
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId != null">
@@ -33,14 +33,14 @@
     </insert>
 
     <delete id="deleteUserPost">
-        delete from sys_user_post where id in
+        delete from sys_user_post where user_id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <update id="updateUserPost" parameterType="com.example.springboottpl.entity.UserPostBean">
+    <update id="updateUserPost" parameterType="com.example.tpl.system.entity.UserPostBean">
         update sys_user_post
         <set>
             <if test="userId != null">
@@ -50,7 +50,7 @@
                 post_id = #{ postId,jdbcType=BIGINT},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="userId != null">
                 and user_id = #{ userId}
             </if>
@@ -60,7 +60,7 @@
         </where>
     </update>
 
-    <update id="updateUserPostStatus" parameterType="com.example.springboottpl.entity.UserPostBean">
+    <update id="updateUserPostStatus" parameterType="com.example.tpl.system.entity.UserPostBean">
         update sys_user_post
         <set>
             <if test="userId != null">
@@ -70,7 +70,7 @@
                 post_id = #{ postId,jdbcType=BIGINT},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="userId != null">
                 and user_id = #{ userId}
             </if>
@@ -80,31 +80,32 @@
         </where>
     </update>
 
-    <select id="queryUserPostDetail" parameterType="com.example.springboottpl.entity.UserPostBean" resultMap="BaseResultMap">
+    <select id="queryUserPostDetail" parameterType="com.example.tpl.system.entity.UserPostBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user_post
         <where>
-        <!--<if test="userId != null">-->
-        <!--    and user_id = #{ userId}-->
-        <!--</if>-->
-        <!--<if test="postId != null">-->
-        <!--    and post_id = #{ postId}-->
-        <!--</if>-->
+            <!--<if test="userId != null">-->
+            <!--    and user_id = #{ userId}-->
+            <!--</if>-->
+            <!--<if test="postId != null">-->
+            <!--    and post_id = #{ postId}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryUserPostList" parameterType="com.example.springboottpl.entity.UserPostBean" resultMap="BaseResultMap">
+    <select id="queryUserPostList" parameterType="com.example.tpl.system.entity.UserPostBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user_post
         <where>
-          <!--<if test="userId != null">-->
-          <!--    and user_id = #{ userId}-->
-          <!--</if>-->
-          <!--<if test="postId != null">-->
-          <!--    and post_id = #{ postId}-->
-          <!--</if>-->
+            <if test="userId != null">
+                and user_id = #{ userId}
+            </if>
+            <if test="postId != null">
+                and post_id = #{ postId}
+            </if>
         </where>
     </select>
 </mapper>

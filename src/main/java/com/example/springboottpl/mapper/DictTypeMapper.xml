@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.DictTypeDao">
+<mapper namespace="com.example.tpl.system.dao.DictTypeDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.DictTypeBean">
-      <result column="dict_id" property="dictId" jdbcType="BIGINT"/>
-      <result column="tenant_id" property="tenantId" jdbcType="VARCHAR"/>
-      <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
-      <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
-      <result column="remark" property="remark" jdbcType="VARCHAR"/>
-      <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
-      <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.DictTypeBean">
+        <result column="dict_id" property="dictId" jdbcType="BIGINT"/>
+        <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        dict_id, tenant_id, dict_name, dict_type, remark, create_dept, create_by, create_time, update_by, update_time
+        dict_id, dict_name, dict_type, status, remark, create_time, update_time
     </sql>
 
-    <insert id="addDictType" parameterType="com.example.springboottpl.entity.DictTypeBean">
+    <!--添加字典类型-->
+    <insert id="addDictType" parameterType="com.example.tpl.system.entity.DictTypeBean">
         insert into sys_dict_type
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="dictId != null">
                 dict_id,
-            </if>
-            <if test="tenantId != null">
-                tenant_id,
             </if>
             <if test="dictName != null">
                 dict_name,
@@ -35,20 +30,14 @@
             <if test="dictType != null">
                 dict_type,
             </if>
+            <if test="status != null">
+                status,
+            </if>
             <if test="remark != null">
                 remark,
             </if>
-            <if test="createDept != null">
-                create_dept,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
             <if test="createTime != null">
                 create_time,
-            </if>
-            <if test="updateBy != null">
-                update_by,
             </if>
             <if test="updateTime != null">
                 update_time,
@@ -58,29 +47,20 @@
             <if test="dictId != null">
                 #{ dictId,jdbcType=BIGINT },
             </if>
-            <if test="tenantId != null">
-                #{ tenantId,jdbcType=VARCHAR },
-            </if>
             <if test="dictName != null">
                 #{ dictName,jdbcType=VARCHAR },
             </if>
             <if test="dictType != null">
                 #{ dictType,jdbcType=VARCHAR },
             </if>
+            <if test="status != null">
+                #{ status,jdbcType=TINYINT },
+            </if>
             <if test="remark != null">
                 #{ remark,jdbcType=VARCHAR },
             </if>
-            <if test="createDept != null">
-                #{ createDept,jdbcType=BIGINT },
-            </if>
-            <if test="createBy != null">
-                #{ createBy,jdbcType=BIGINT },
-            </if>
             <if test="createTime != null">
                 #{ createTime,jdbcType=TIMESTAMP },
-            </if>
-            <if test="updateBy != null">
-                #{ updateBy,jdbcType=BIGINT },
             </if>
             <if test="updateTime != null">
                 #{ updateTime,jdbcType=TIMESTAMP },
@@ -88,22 +68,21 @@
         </trim>
     </insert>
 
+    <!--删除字典类型-->
     <delete id="deleteDictType">
-        delete from sys_dict_type where id in
+        delete from sys_dict_type where dict_id in
         <foreach collection="list" item="id" index="index"
-            open="(" close=")" separator=",">
+                 open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <update id="updateDictType" parameterType="com.example.springboottpl.entity.DictTypeBean">
+    <!--更新字典类型-->
+    <update id="updateDictType" parameterType="com.example.tpl.system.entity.DictTypeBean">
         update sys_dict_type
         <set>
             <if test="dictId != null">
                 dict_id = #{ dictId,jdbcType=BIGINT},
-            </if>
-            <if test="tenantId != null">
-                tenant_id = #{ tenantId,jdbcType=VARCHAR},
             </if>
             <if test="dictName != null">
                 dict_name = #{ dictName,jdbcType=VARCHAR},
@@ -111,200 +90,121 @@
             <if test="dictType != null">
                 dict_type = #{ dictType,jdbcType=VARCHAR},
             </if>
+            <if test="status != null">
+                status = #{ status,jdbcType=TINYINT},
+            </if>
             <if test="remark != null">
                 remark = #{ remark,jdbcType=VARCHAR},
             </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
-            </if>
             <if test="createTime != null">
                 create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
             </if>
             <if test="updateTime != null">
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
+        <where>
             <if test="dictId != null">
                 and dict_id = #{ dictId}
             </if>
-            <if test="tenantId != null">
-                and tenant_id = #{ tenantId}
-            </if>
-            <if test="dictName != null">
-                and dict_name = #{ dictName}
-            </if>
-            <if test="dictType != null">
-                and dict_type = #{ dictType}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
+            <!--<if test="dictName != null">-->
+            <!--    and dict_name = #{ dictName}-->
+            <!--</if>-->
+            <!--<if test="dictType != null">-->
+            <!--    and dict_type = #{ dictType}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+
         </where>
     </update>
 
-    <update id="updateDictTypeStatus" parameterType="com.example.springboottpl.entity.DictTypeBean">
-        update sys_dict_type
-        <set>
-            <if test="dictId != null">
-                dict_id = #{ dictId,jdbcType=BIGINT},
-            </if>
-            <if test="tenantId != null">
-                tenant_id = #{ tenantId,jdbcType=VARCHAR},
-            </if>
-            <if test="dictName != null">
-                dict_name = #{ dictName,jdbcType=VARCHAR},
-            </if>
-            <if test="dictType != null">
-                dict_type = #{ dictType,jdbcType=VARCHAR},
-            </if>
-            <if test="remark != null">
-                remark = #{ remark,jdbcType=VARCHAR},
-            </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
-            </if>
-            <if test="createTime != null">
-                create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{ updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        <where> 
-            <if test="dictId != null">
-                and dict_id = #{ dictId}
-            </if>
-            <if test="tenantId != null">
-                and tenant_id = #{ tenantId}
-            </if>
-            <if test="dictName != null">
-                and dict_name = #{ dictName}
-            </if>
-            <if test="dictType != null">
-                and dict_type = #{ dictType}
-            </if>
-            <if test="remark != null">
-                and remark = #{ remark}
-            </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
-        </where>
+    <!--更新字典类型状态-->
+    <update id="updateDictTypeStatus" parameterType="com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo">
+        update sys_dict_type set status = #{status,jdbcType=TINYINT} where dict_id in
+        <foreach collection="ids" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </update>
 
-    <select id="queryDictTypeDetail" parameterType="com.example.springboottpl.entity.DictTypeBean" resultMap="BaseResultMap">
+    <!--查询字典类型详情-->
+    <select id="queryDictTypeDetail" parameterType="com.example.tpl.system.entity.DictTypeBean"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dict_type
         <where>
-        <!--<if test="dictId != null">-->
-        <!--    and dict_id = #{ dictId}-->
-        <!--</if>-->
-        <!--<if test="tenantId != null">-->
-        <!--    and tenant_id = #{ tenantId}-->
-        <!--</if>-->
-        <!--<if test="dictName != null">-->
-        <!--    and dict_name = #{ dictName}-->
-        <!--</if>-->
-        <!--<if test="dictType != null">-->
-        <!--    and dict_type = #{ dictType}-->
-        <!--</if>-->
-        <!--<if test="remark != null">-->
-        <!--    and remark = #{ remark}-->
-        <!--</if>-->
-        <!--<if test="createDept != null">-->
-        <!--    and create_dept = #{ createDept}-->
-        <!--</if>-->
-        <!--<if test="createBy != null">-->
-        <!--    and create_by = #{ createBy}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateBy != null">-->
-        <!--    and update_by = #{ updateBy}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
+            <if test="dictId != null">
+                and dict_id = #{ dictId}
+            </if>
+            <!--<if test="dictName != null">-->
+            <!--    and dict_name = #{ dictName}-->
+            <!--</if>-->
+            <!--<if test="dictType != null">-->
+            <!--    and dict_type = #{ dictType}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
         </where>
     </select>
 
-    <select id="queryDictTypeList" parameterType="com.example.springboottpl.entity.DictTypeBean" resultMap="BaseResultMap">
+    <!--根据id查询字典类型详情-->
+    <select id="queryDictTypeById" parameterType="java.lang.Long"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict_type where dict_id = #{id}
+    </select>
+
+    <!--根据dictName查询字典类型详情-->
+    <select id="queryDictTypeByName" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict_type where dict_name = #{dictName}
+    </select>
+
+    <!--根据dictType查询字典类型详情-->
+    <select id="queryDictTypeByType" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict_type where dict_type = #{dictType}
+    </select>
+
+    <!--查询字典类型列表-->
+    <select id="queryDictTypeList" parameterType="com.example.tpl.system.entity.DictTypeBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dict_type
         <where>
-          <!--<if test="dictId != null">-->
-          <!--    and dict_id = #{ dictId}-->
-          <!--</if>-->
-          <!--<if test="tenantId != null">-->
-          <!--    and tenant_id = #{ tenantId}-->
-          <!--</if>-->
-          <!--<if test="dictName != null">-->
-          <!--    and dict_name = #{ dictName}-->
-          <!--</if>-->
-          <!--<if test="dictType != null">-->
-          <!--    and dict_type = #{ dictType}-->
-          <!--</if>-->
-          <!--<if test="remark != null">-->
-          <!--    and remark = #{ remark}-->
-          <!--</if>-->
-          <!--<if test="createDept != null">-->
-          <!--    and create_dept = #{ createDept}-->
-          <!--</if>-->
-          <!--<if test="createBy != null">-->
-          <!--    and create_by = #{ createBy}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateBy != null">-->
-          <!--    and update_by = #{ updateBy}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
+            <if test="dictName != null">
+                and dict_name = #{ dictName}
+            </if>
+            <if test="dictType != null">
+                and dict_type = #{ dictType}
+            </if>
+            <if test="status != null">
+                and status = #{ status}
+            </if>
         </where>
+    </select>
+
+    <!--通过字典类型查询字典类型使用数量-->
+    <select id="countDictDataByType" parameterType="java.lang.String"
+            resultType="java.lang.Integer">
+        select count(1) from sys_dict_data where dict_type= #{dict_type}
     </select>
 </mapper>

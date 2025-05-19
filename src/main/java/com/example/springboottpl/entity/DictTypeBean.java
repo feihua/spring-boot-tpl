@@ -1,4 +1,4 @@
-package com.example.springboottpl.entity;
+package com.example.tpl.system.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：字典类型
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:01
+ * 日期：2025-01-10 14:58:36
  */
 @Data
 @Builder
@@ -20,22 +20,16 @@ import lombok.NoArgsConstructor;
 public class DictTypeBean implements Serializable {
     //字典主键
     private Long dictId;
-    //租户编号
-    private String tenantId;
     //字典名称
     private String dictName;
     //字典类型
     private String dictType;
+    //状态（0：停用，1:正常）
+    private Integer status;
     //备注
     private String remark;
-    //创建部门
-    private Long createDept;
-    //创建者
-    private Long createBy;
     //创建时间
     private Date createTime;
-    //更新者
-    private Long updateBy;
-    //更新时间
+    //修改时间
     private Date updateTime;
 }

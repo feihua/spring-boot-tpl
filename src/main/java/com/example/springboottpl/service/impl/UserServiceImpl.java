@@ -1,165 +1,169 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
-import static com.example.springboottpl.enums.ExceptionEnum.USER_ID_IS_NULL_ERROR;
-
-import com.example.springboottpl.biz.UserBiz;
-import com.example.springboottpl.exception.TplException;
-import com.example.springboottpl.service.UserService;
-import com.example.springboottpl.util.ResultPage;
-import com.example.springboottpl.vo.req.UserAddReqVo;
-import com.example.springboottpl.vo.req.UserDeleteReqVo;
-import com.example.springboottpl.vo.req.UserListReqVo;
-import com.example.springboottpl.vo.req.UserLoginReqVo;
-import com.example.springboottpl.vo.req.UserReqVo;
-import com.example.springboottpl.vo.req.UserRoleUpdateReqVo;
-import com.example.springboottpl.vo.req.UserUpdateReqVo;
-import com.example.springboottpl.vo.resp.UserLoginRespVo;
-import com.example.springboottpl.vo.resp.UserMenuRespVo;
-import com.example.springboottpl.vo.resp.UserRespVo;
-import com.example.springboottpl.vo.resp.UserRoleRespVo;
+import com.example.tpl.system.biz.UserBiz;
+import com.example.tpl.system.service.UserService;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.AddUserReqVo;
+import com.example.tpl.system.vo.req.DeleteUserReqVo;
+import com.example.tpl.system.vo.req.QueryUserDetailReqVo;
+import com.example.tpl.system.vo.req.QueryUserListReqVo;
+import com.example.tpl.system.vo.req.UpdateUserReqVo;
+import com.example.tpl.system.vo.req.UpdateUserRoleReqVo;
+import com.example.tpl.system.vo.req.UpdateUserStatusReqVo;
+import com.example.tpl.system.vo.req.UserLoginReqVo;
+import com.example.tpl.system.vo.resp.QueryUserDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryUserListRespVo;
+import com.example.tpl.system.vo.resp.UserMenuRespVo;
+import com.example.tpl.system.vo.resp.UserRoleRespVo;
 
 /**
  * 描述：用户信息
  * 作者：刘飞华
- * 日期：2023-09-20 10:44:26
+ * 日期：2025/01/13 17:57:37
  */
 @Service
-@Slf4j
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserBiz userBiz;
+    @Autowired
+    private UserBiz userBiz;
 
-	@Autowired(required = false)
-	private HttpServletRequest request;
+    /**
+     * 添加用户信息
+     *
+     * @param user 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<Integer> addUser(AddUserReqVo user) {
 
-	/**
-	 * 添加用户信息
-	 *
-	 * @param user 请求参数
-	 * @return int
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public int saveUser(UserAddReqVo user) {
+        return userBiz.addUser(user);
+    }
 
-		return userBiz.saveUser(user);
-	}
+    /**
+     * 删除用户信息
+     *
+     * @param user 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<Integer> deleteUser(DeleteUserReqVo user) {
+        return userBiz.deleteUser(user);
+    }
 
-	/**
-	 * 删除用户信息
-	 *
-	 * @param user 请求参数
-	 * @return int
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public int deleteUser(UserDeleteReqVo user) {
-		return userBiz.deleteUser(user);
-	}
+    /**
+     * 更新用户信息
+     *
+     * @param user 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<Integer> updateUser(UpdateUserReqVo user) {
 
-	/**
-	 * 更新用户信息
-	 *
-	 * @param user 请求参数
-	 * @return int
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public int updateUser(UserUpdateReqVo user) {
+        return userBiz.updateUser(user);
+    }
 
-		return userBiz.updateUser(user);
-	}
+    /**
+     * 更新用户信息状态
+     *
+     * @param user 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<Integer> updateUserStatus(UpdateUserStatusReqVo user) {
 
-	/**
-	 * 查询用户信息
-	 *
-	 * @param user 请求参数
-	 * @return UserResp
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public UserRespVo queryUser(UserReqVo user) {
+        return userBiz.updateUserStatus(user);
+    }
 
-		return userBiz.queryUser(user);
-	}
+    /**
+     * 查询用户信息详情
+     *
+     * @param user 请求参数
+     * @return UserResp
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<QueryUserDetailRespVo> queryUserDetail(QueryUserDetailReqVo user) {
 
-	/**
-	 * 查询用户信息列表
-	 *
-	 * @param user 请求参数
-	 * @return UserResp
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public ResultPage<UserRespVo> queryUserList(UserListReqVo user) {
+        return userBiz.queryUserDetail(user);
+    }
 
-		return userBiz.queryUserList(user);
-	}
+    /**
+     * 查询用户信息列表
+     *
+     * @param user 请求参数
+     * @return UserResp
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<ResultPage<QueryUserListRespVo>> queryUserList(QueryUserListReqVo user) {
 
-	/**
-	 * 用户登录
-	 *
-	 * @param record 请求参数
-	 * @return Result<UserLoginRespVo>
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public UserLoginRespVo login(UserLoginReqVo record) {
-		return userBiz.login(record);
-	}
+        return userBiz.queryUserList(user);
+    }
 
-	/**
-	 * 查询用户角色
-	 *
-	 * @param userId 请求参数
-	 * @return Result<UserLoginRespVo>
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public UserRoleRespVo queryUserRole(Integer userId) {
-		return userBiz.queryUserRole(userId);
-	}
+    /**
+     * 用户登录
+     *
+     * @param record 请求参数
+     * @return Result<String>
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<String> login(UserLoginReqVo record) {
+        return userBiz.login(record);
+    }
 
-	/**
-	 * 更新用户角色
-	 *
-	 * @param record 请求参数
-	 * @return Result<UserLoginRespVo>
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public Integer updateUserRole(UserRoleUpdateReqVo record) {
-		return userBiz.updateUserRole(record);
-	}
+    /**
+     * 查询用户菜单
+     *
+     * @return Result<UserMenuRespVo>
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<UserMenuRespVo> queryUserMenu() {
+        return userBiz.queryUserMenu();
+    }
 
-	/**
-	 * 查询用户菜单
-	 *
-	 * @return Result<UserLoginRespVo>
-	 * @author 刘飞华
-	 * @date: 2023-09-20 10:44:26
-	 */
-	@Override
-	public UserMenuRespVo queryUserMenu() {
-		String userId = request.getHeader("userId");
-		if (null == userId || "".equals(userId)) {
-			log.error(USER_ID_IS_NULL_ERROR.getMsg());
-			throw new TplException(USER_ID_IS_NULL_ERROR);
-		}
-		return userBiz.queryUserMenu(Integer.parseInt(userId));
-	}
+    /**
+     * 查询用户角色
+     *
+     * @param userId 请求参数
+     * @return Result<UserRoleRespVo>
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<UserRoleRespVo> queryUserRole(Long userId) {
+        return userBiz.queryUserRole(userId);
+    }
+
+    /**
+     * 更新用户角色
+     *
+     * @param roleReqVo 请求参数
+     * @return Result<Integer>
+     * @author 刘飞华
+     * @date: 2025/01/13 17:57:37
+     */
+    @Override
+    public Result<Integer> updateUserRole(UpdateUserRoleReqVo roleReqVo) {
+        return userBiz.updateUserRole(roleReqVo);
+    }
+
+
 }

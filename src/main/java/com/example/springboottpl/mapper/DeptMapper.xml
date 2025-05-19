@@ -1,55 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.example.springboottpl.dao.DeptDao">
+<mapper namespace="com.example.tpl.system.dao.DeptDao">
 
-    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.DeptBean">
-      <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
-      <result column="tenant_id" property="tenantId" jdbcType="VARCHAR"/>
-      <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
-      <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
-      <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
-      <result column="dept_category" property="deptCategory" jdbcType="VARCHAR"/>
-      <result column="order_num" property="orderNum" jdbcType="INTEGER"/>
-      <result column="leader" property="leader" jdbcType="BIGINT"/>
-      <result column="phone" property="phone" jdbcType="VARCHAR"/>
-      <result column="email" property="email" jdbcType="VARCHAR"/>
-      <result column="status" property="status" jdbcType="CHAR"/>
-      <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
-      <result column="create_dept" property="createDept" jdbcType="BIGINT"/>
-      <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-      <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    
+    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.DeptBean">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="ancestors" property="ancestors" jdbcType="VARCHAR"/>
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="leader" property="leader" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="del_flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
-        dept_id, tenant_id, parent_id, parent_ids, dept_name, dept_category, order_num, leader, phone, email, status, del_flag, create_dept, create_by, create_time, update_by, update_time
+        id, parent_id, ancestors, dept_name, sort, leader, phone, email, status, del_flag, create_time, update_time
     </sql>
 
-    <insert id="addDept" parameterType="com.example.springboottpl.entity.DeptBean">
+    <insert id="addDept" parameterType="com.example.tpl.system.entity.DeptBean">
         insert into sys_dept
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="deptId != null">
-                dept_id,
-            </if>
-            <if test="tenantId != null">
-                tenant_id,
+            <if test="id != null">
+                id,
             </if>
             <if test="parentId != null">
                 parent_id,
             </if>
-            <if test="parentIds != null">
-                parent_ids,
+            <if test="ancestors != null">
+                ancestors,
             </if>
             <if test="deptName != null">
                 dept_name,
             </if>
-            <if test="deptCategory != null">
-                dept_category,
-            </if>
-            <if test="orderNum != null">
-                order_num,
+            <if test="sort != null">
+                sort,
             </if>
             <if test="leader != null">
                 leader,
@@ -66,46 +55,31 @@
             <if test="delFlag != null">
                 del_flag,
             </if>
-            <if test="createDept != null">
-                create_dept,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
             <if test="createTime != null">
                 create_time,
-            </if>
-            <if test="updateBy != null">
-                update_by,
             </if>
             <if test="updateTime != null">
                 update_time,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="deptId != null">
-                #{ deptId,jdbcType=BIGINT },
-            </if>
-            <if test="tenantId != null">
-                #{ tenantId,jdbcType=VARCHAR },
+            <if test="id != null">
+                #{ id,jdbcType=BIGINT },
             </if>
             <if test="parentId != null">
                 #{ parentId,jdbcType=BIGINT },
             </if>
-            <if test="parentIds != null">
-                #{ parentIds,jdbcType=VARCHAR },
+            <if test="ancestors != null">
+                #{ ancestors,jdbcType=VARCHAR },
             </if>
             <if test="deptName != null">
                 #{ deptName,jdbcType=VARCHAR },
             </if>
-            <if test="deptCategory != null">
-                #{ deptCategory,jdbcType=VARCHAR },
-            </if>
-            <if test="orderNum != null">
-                #{ orderNum,jdbcType=INTEGER },
+            <if test="sort != null">
+                #{ sort,jdbcType=INTEGER },
             </if>
             <if test="leader != null">
-                #{ leader,jdbcType=BIGINT },
+                #{ leader,jdbcType=VARCHAR },
             </if>
             <if test="phone != null">
                 #{ phone,jdbcType=VARCHAR },
@@ -114,22 +88,13 @@
                 #{ email,jdbcType=VARCHAR },
             </if>
             <if test="status != null">
-                #{ status,jdbcType=CHAR },
+                #{ status,jdbcType=TINYINT },
             </if>
             <if test="delFlag != null">
-                #{ delFlag,jdbcType=CHAR },
-            </if>
-            <if test="createDept != null">
-                #{ createDept,jdbcType=BIGINT },
-            </if>
-            <if test="createBy != null">
-                #{ createBy,jdbcType=BIGINT },
+                #{ delFlag,jdbcType=TINYINT },
             </if>
             <if test="createTime != null">
                 #{ createTime,jdbcType=TIMESTAMP },
-            </if>
-            <if test="updateBy != null">
-                #{ updateBy,jdbcType=BIGINT },
             </if>
             <if test="updateTime != null">
                 #{ updateTime,jdbcType=TIMESTAMP },
@@ -138,35 +103,33 @@
     </insert>
 
     <delete id="deleteDept">
-        delete from sys_dept where id = #{id}
+        delete from sys_dept where id in
+        <foreach collection="list" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </delete>
 
-    <update id="updateDept" parameterType="com.example.springboottpl.entity.DeptBean">
+    <update id="updateDept" parameterType="com.example.tpl.system.entity.DeptBean">
         update sys_dept
         <set>
-            <if test="deptId != null">
-                dept_id = #{ deptId,jdbcType=BIGINT},
-            </if>
-            <if test="tenantId != null">
-                tenant_id = #{ tenantId,jdbcType=VARCHAR},
+            <if test="id != null">
+                id = #{ id,jdbcType=BIGINT},
             </if>
             <if test="parentId != null">
                 parent_id = #{ parentId,jdbcType=BIGINT},
             </if>
-            <if test="parentIds != null">
-                parent_ids = #{ parentIds,jdbcType=VARCHAR},
+            <if test="ancestors != null">
+                ancestors = #{ ancestors,jdbcType=VARCHAR},
             </if>
             <if test="deptName != null">
                 dept_name = #{ deptName,jdbcType=VARCHAR},
             </if>
-            <if test="deptCategory != null">
-                dept_category = #{ deptCategory,jdbcType=VARCHAR},
-            </if>
-            <if test="orderNum != null">
-                order_num = #{ orderNum,jdbcType=INTEGER},
+            <if test="sort != null">
+                sort = #{ sort,jdbcType=INTEGER},
             </if>
             <if test="leader != null">
-                leader = #{ leader,jdbcType=BIGINT},
+                leader = #{ leader,jdbcType=VARCHAR},
             </if>
             <if test="phone != null">
                 phone = #{ phone,jdbcType=VARCHAR},
@@ -175,48 +138,33 @@
                 email = #{ email,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                status = #{ status,jdbcType=CHAR},
+                status = #{ status,jdbcType=TINYINT},
             </if>
             <if test="delFlag != null">
-                del_flag = #{ delFlag,jdbcType=CHAR},
-            </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
+                del_flag = #{ delFlag,jdbcType=TINYINT},
             </if>
             <if test="createTime != null">
                 create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
             </if>
             <if test="updateTime != null">
                 update_time = #{ updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <where> 
-            <if test="deptId != null">
-                and dept_id = #{ deptId}
-            </if>
-            <if test="tenantId != null">
-                and tenant_id = #{ tenantId}
+        <where>
+            <if test="id != null">
+                and id = #{ id}
             </if>
             <if test="parentId != null">
                 and parent_id = #{ parentId}
             </if>
-            <if test="parentIds != null">
-                and parent_ids = #{ parentIds}
+            <if test="ancestors != null">
+                and ancestors = #{ ancestors}
             </if>
             <if test="deptName != null">
                 and dept_name = #{ deptName}
             </if>
-            <if test="deptCategory != null">
-                and dept_category = #{ deptCategory}
-            </if>
-            <if test="orderNum != null">
-                and order_num = #{ orderNum}
+            <if test="sort != null">
+                and sort = #{ sort}
             </if>
             <if test="leader != null">
                 and leader = #{ leader}
@@ -233,17 +181,8 @@
             <if test="delFlag != null">
                 and del_flag = #{ delFlag}
             </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
             <if test="createTime != null">
                 and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
             </if>
             <if test="updateTime != null">
                 and update_time = #{ updateTime}
@@ -251,256 +190,104 @@
         </where>
     </update>
 
-    <update id="updateDeptStatus" parameterType="com.example.springboottpl.entity.DeptBean">
-        update sys_dept
-        <set>
-            <if test="deptId != null">
-                dept_id = #{ deptId,jdbcType=BIGINT},
+    <update id="updateDeptStatus" parameterType="com.example.tpl.system.vo.req.UpdateDeptStatusReqVo">
+        update sys_dept set status = #{status} where id in
+        <foreach collection="ids" item="id" index="index"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="queryDeptDetail" parameterType="com.example.tpl.system.entity.DeptBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept
+        <where>
+            <if test="id != null">
+                and id = #{ id}
             </if>
-            <if test="tenantId != null">
-                tenant_id = #{ tenantId,jdbcType=VARCHAR},
-            </if>
-            <if test="parentId != null">
-                parent_id = #{ parentId,jdbcType=BIGINT},
-            </if>
-            <if test="parentIds != null">
-                parent_ids = #{ parentIds,jdbcType=VARCHAR},
-            </if>
-            <if test="deptName != null">
-                dept_name = #{ deptName,jdbcType=VARCHAR},
-            </if>
-            <if test="deptCategory != null">
-                dept_category = #{ deptCategory,jdbcType=VARCHAR},
-            </if>
-            <if test="orderNum != null">
-                order_num = #{ orderNum,jdbcType=INTEGER},
-            </if>
-            <if test="leader != null">
-                leader = #{ leader,jdbcType=BIGINT},
-            </if>
-            <if test="phone != null">
-                phone = #{ phone,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                email = #{ email,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                status = #{ status,jdbcType=CHAR},
-            </if>
-            <if test="delFlag != null">
-                del_flag = #{ delFlag,jdbcType=CHAR},
-            </if>
-            <if test="createDept != null">
-                create_dept = #{ createDept,jdbcType=BIGINT},
-            </if>
-            <if test="createBy != null">
-                create_by = #{ createBy,jdbcType=BIGINT},
-            </if>
-            <if test="createTime != null">
-                create_time = #{ createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{ updateBy,jdbcType=BIGINT},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{ updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        <where> 
-            <if test="deptId != null">
-                and dept_id = #{ deptId}
-            </if>
-            <if test="tenantId != null">
-                and tenant_id = #{ tenantId}
-            </if>
-            <if test="parentId != null">
-                and parent_id = #{ parentId}
-            </if>
-            <if test="parentIds != null">
-                and parent_ids = #{ parentIds}
-            </if>
+            <!--<if test="parentId != null">-->
+            <!--    and parent_id = #{ parentId}-->
+            <!--</if>-->
+            <!--<if test="ancestors != null">-->
+            <!--    and ancestors = #{ ancestors}-->
+            <!--</if>-->
+            <!--<if test="deptName != null">-->
+            <!--    and dept_name = #{ deptName}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="leader != null">-->
+            <!--    and leader = #{ leader}-->
+            <!--</if>-->
+            <!--<if test="phone != null">-->
+            <!--    and phone = #{ phone}-->
+            <!--</if>-->
+            <!--<if test="email != null">-->
+            <!--    and email = #{ email}-->
+            <!--</if>-->
+            <!--<if test="status != null">-->
+            <!--    and status = #{ status}-->
+            <!--</if>-->
+            <!--<if test="delFlag != null">-->
+            <!--    and del_flag = #{ delFlag}-->
+            <!--</if>-->
+            <!--<if test="createTime != null">-->
+            <!--    and create_time = #{ createTime}-->
+            <!--</if>-->
+            <!--<if test="updateTime != null">-->
+            <!--    and update_time = #{ updateTime}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <!-- 根据部门id查询部门信息   -->
+    <select id="queryDeptById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <!-- 根据部门名称查询部门信息   -->
+    <select id="queryDeptByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    </select>
+
+    <select id="queryDeptList" parameterType="com.example.tpl.system.entity.DeptBean" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept
+        <where>
             <if test="deptName != null">
                 and dept_name = #{ deptName}
-            </if>
-            <if test="deptCategory != null">
-                and dept_category = #{ deptCategory}
-            </if>
-            <if test="orderNum != null">
-                and order_num = #{ orderNum}
-            </if>
-            <if test="leader != null">
-                and leader = #{ leader}
-            </if>
-            <if test="phone != null">
-                and phone = #{ phone}
-            </if>
-            <if test="email != null">
-                and email = #{ email}
             </if>
             <if test="status != null">
                 and status = #{ status}
             </if>
-            <if test="delFlag != null">
-                and del_flag = #{ delFlag}
-            </if>
-            <if test="createDept != null">
-                and create_dept = #{ createDept}
-            </if>
-            <if test="createBy != null">
-                and create_by = #{ createBy}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{ createTime}
-            </if>
-            <if test="updateBy != null">
-                and update_by = #{ updateBy}
-            </if>
-            <if test="updateTime != null">
-                and update_time = #{ updateTime}
-            </if>
-        </where>
-    </update>
 
-    <select id="queryDeptDetail" parameterType="com.example.springboottpl.entity.DeptBean" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_dept
-        <where>
-        <if test="deptId != null">
-            and dept_id = #{ deptId}
-        </if>
-        <!--<if test="tenantId != null">-->
-        <!--    and tenant_id = #{ tenantId}-->
-        <!--</if>-->
-        <!--<if test="parentId != null">-->
-        <!--    and parent_id = #{ parentId}-->
-        <!--</if>-->
-        <!--<if test="parentIds != null">-->
-        <!--    and parent_ids = #{ parentIds}-->
-        <!--</if>-->
-        <!--<if test="deptName != null">-->
-        <!--    and dept_name = #{ deptName}-->
-        <!--</if>-->
-        <!--<if test="deptCategory != null">-->
-        <!--    and dept_category = #{ deptCategory}-->
-        <!--</if>-->
-        <!--<if test="orderNum != null">-->
-        <!--    and order_num = #{ orderNum}-->
-        <!--</if>-->
-        <!--<if test="leader != null">-->
-        <!--    and leader = #{ leader}-->
-        <!--</if>-->
-        <!--<if test="phone != null">-->
-        <!--    and phone = #{ phone}-->
-        <!--</if>-->
-        <!--<if test="email != null">-->
-        <!--    and email = #{ email}-->
-        <!--</if>-->
-        <!--<if test="status != null">-->
-        <!--    and status = #{ status}-->
-        <!--</if>-->
-        <!--<if test="delFlag != null">-->
-        <!--    and del_flag = #{ delFlag}-->
-        <!--</if>-->
-        <!--<if test="createDept != null">-->
-        <!--    and create_dept = #{ createDept}-->
-        <!--</if>-->
-        <!--<if test="createBy != null">-->
-        <!--    and create_by = #{ createBy}-->
-        <!--</if>-->
-        <!--<if test="createTime != null">-->
-        <!--    and create_time = #{ createTime}-->
-        <!--</if>-->
-        <!--<if test="updateBy != null">-->
-        <!--    and update_by = #{ updateBy}-->
-        <!--</if>-->
-        <!--<if test="updateTime != null">-->
-        <!--    and update_time = #{ updateTime}-->
-        <!--</if>-->
         </where>
     </select>
 
-    <select id="queryDeptList" parameterType="com.example.springboottpl.entity.DeptBean" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_dept
-        <where>
-          <!--<if test="deptId != null">-->
-          <!--    and dept_id = #{ deptId}-->
-          <!--</if>-->
-          <!--<if test="tenantId != null">-->
-          <!--    and tenant_id = #{ tenantId}-->
-          <!--</if>-->
-          <if test="parentId != null">
-              and parent_id = #{ parentId}
-          </if>
-          <!--<if test="parentIds != null">-->
-          <!--    and parent_ids = #{ parentIds}-->
-          <!--</if>-->
-          <if test="deptName != null">
-              and dept_name = #{ deptName}
-          </if>
-          <!--<if test="deptCategory != null">-->
-          <!--    and dept_category = #{ deptCategory}-->
-          <!--</if>-->
-          <!--<if test="orderNum != null">-->
-          <!--    and order_num = #{ orderNum}-->
-          <!--</if>-->
-          <!--<if test="leader != null">-->
-          <!--    and leader = #{ leader}-->
-          <!--</if>-->
-          <!--<if test="phone != null">-->
-          <!--    and phone = #{ phone}-->
-          <!--</if>-->
-          <!--<if test="email != null">-->
-          <!--    and email = #{ email}-->
-          <!--</if>-->
-          <!--<if test="status != null">-->
-          <!--    and status = #{ status}-->
-          <!--</if>-->
-          <!--<if test="delFlag != null">-->
-          <!--    and del_flag = #{ delFlag}-->
-          <!--</if>-->
-          <!--<if test="createDept != null">-->
-          <!--    and create_dept = #{ createDept}-->
-          <!--</if>-->
-          <!--<if test="createBy != null">-->
-          <!--    and create_by = #{ createBy}-->
-          <!--</if>-->
-          <!--<if test="createTime != null">-->
-          <!--    and create_time = #{ createTime}-->
-          <!--</if>-->
-          <!--<if test="updateBy != null">-->
-          <!--    and update_by = #{ updateBy}-->
-          <!--</if>-->
-          <!--<if test="updateTime != null">-->
-          <!--    and update_time = #{ updateTime}-->
-          <!--</if>-->
-        </where>
+    <!-- 根据部门id查询是否有下级部门   -->
+    <select id="queryNormalChildrenDeptById" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select count(*) from sys_dept where status = 1 and del_flag = '1' and find_in_set(#{id}, ancestors)
     </select>
 
-    <!-- 检查部门是否已存在   -->
-    <select id="checkDeptNameUnique" resultType="java.lang.Integer">
-        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
-    </select>
-
-    <!-- 根据id查询部门详情   -->
-    <select id="queryDeptById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/> from sys_dept where dept_id = #{deptId}
-    </select>
-
-    <!-- 是否存在部门子节点   -->
-    <select id="hasChildByDeptId" resultType="java.lang.Integer">
-        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    <!-- 根据父部门id查询下级部门数量   -->
+    <select id="queryDeptCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select count(1) from sys_dept where del_flag = '1' and parent_id = #{parentId}
     </select>
 
     <!-- 查询部门是否存在用户   -->
-    <select id="checkDeptExistUser" resultType="java.lang.Integer">
-        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    <select id="checkDeptExistUser" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select count(1) from sys_user where dept_id = #{id} and del_flag = '1'
     </select>
 
-    <!-- 校验部门是否有数据权限   -->
-    <select id="checkDeptDataScope" resultType="java.lang.Integer">
-        select count(1) from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
+    <!--根据部门id查询是所有下级部门-->
+    <select id="queryChildrenDeptById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from sys_dept where find_in_set(#{id}, ancestors)
     </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.example.springboottpl.entity;
+package com.example.tpl.system.entity;
 
 import java.io.Serializable;
 
@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 /**
  * 描述：角色和部门关联
  * 作者：刘飞华
- * 日期：2024-10-08 17:42:02
+ * 日期：2025-01-10 14:58:36
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoleDeptBean implements Serializable {
-    //角色ID
+    //角色id
     private Long roleId;
-    //部门ID
+    //部门id
     private Long deptId;
 }

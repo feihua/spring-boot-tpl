@@ -1,17 +1,26 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.biz.DeptBiz;
-import com.example.springboottpl.service.DeptService;
+import com.example.tpl.system.biz.DeptBiz;
+import com.example.tpl.system.service.DeptService;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.vo.req.AddDeptReqVo;
+import com.example.tpl.system.vo.req.DeleteDeptReqVo;
+import com.example.tpl.system.vo.req.QueryDeptDetailReqVo;
+import com.example.tpl.system.vo.req.QueryDeptListReqVo;
+import com.example.tpl.system.vo.req.UpdateDeptReqVo;
+import com.example.tpl.system.vo.req.UpdateDeptStatusReqVo;
+import com.example.tpl.system.vo.resp.QueryDeptDetailRespVo;
+import com.example.tpl.system.vo.resp.QueryDeptListRespVo;
 
 /**
  * 描述：部门
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 @Service
 public class DeptServiceImpl implements DeptService {
@@ -25,10 +34,10 @@ public class DeptServiceImpl implements DeptService {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int addDept(AddDeptReqVo dept){
+   public Result<Integer> addDept(AddDeptReqVo dept){
 
         return deptBiz.addDept(dept);
    }
@@ -39,10 +48,10 @@ public class DeptServiceImpl implements DeptService {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int deleteDept(DeleteDeptReqVo dept){
+   public Result<Integer> deleteDept(DeleteDeptReqVo dept){
 		return deptBiz.deleteDept(dept);
    }
 
@@ -52,10 +61,10 @@ public class DeptServiceImpl implements DeptService {
     * @param dept 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int updateDept(UpdateDeptReqVo dept){
+   public Result<Integer> updateDept(UpdateDeptReqVo dept){
 
         return deptBiz.updateDept(dept);
    }
@@ -66,10 +75,10 @@ public class DeptServiceImpl implements DeptService {
    * @param dept 请求参数
    * @return int
    * @author 刘飞华
-   * @date: 2024-10-08 14:26:30
+   * @date: 2025/01/13 17:57:36
    */
   @Override
-  public int updateDeptStatus(UpdateDeptStatusReqVo dept){
+  public Result<Integer> updateDeptStatus(UpdateDeptStatusReqVo dept){
 
        return deptBiz.updateDeptStatus(dept);
   }
@@ -80,10 +89,10 @@ public class DeptServiceImpl implements DeptService {
     * @param dept 请求参数
     * @return DeptResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDeptDetailRespVo queryDeptDetail(QueryDeptDetailReqVo dept){
+   public Result<QueryDeptDetailRespVo> queryDeptDetail(QueryDeptDetailReqVo dept){
 
        return deptBiz.queryDeptDetail(dept);
    }
@@ -94,10 +103,10 @@ public class DeptServiceImpl implements DeptService {
     * @param dept 请求参数
     * @return DeptResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDeptListRespVo queryDeptList(QueryDeptListReqVo dept){
+   public Result<List<QueryDeptListRespVo>> queryDeptList(QueryDeptListReqVo dept){
 
         return deptBiz.queryDeptList(dept);
    }

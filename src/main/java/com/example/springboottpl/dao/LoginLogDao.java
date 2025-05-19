@@ -1,48 +1,66 @@
-package com.example.springboottpl.dao;
+package com.example.tpl.system.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.springboottpl.entity.LoginLogBean;
+import com.example.tpl.system.entity.LoginLogBean;
 
 /**
- * 描述：登录日志
+ * 描述：系统访问记录
  * 作者：刘飞华
- * 日期：2023-09-22 09:59:01
+ * 日期：2025-01-10 14:58:36
  */
 @Mapper
 public interface LoginLogDao {
 
+    /**
+     * 添加系统访问记录
+     *
+     * @param loginLog 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025-01-10 14:58:36
+     */
+    int addLoginLog(LoginLogBean loginLog);
+
+    /**
+     * 删除系统访问记录
+     *
+     * @param ids 请求参数
+     * @return int
+     * @author 刘飞华
+     * @date: 2025-01-10 14:58:36
+     */
+    int deleteLoginLog(List<Integer> ids);
+
    /**
-    * 添加登录日志
+    * 清空系统访问记录
     *
-    * @param loginLog 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2023-09-22 09:59:01
+    * @date: 2025-01-10 14:58:36
     */
-   int saveLoginLog(LoginLogBean loginLog);
+   int cleanLoginLog();
 
-   /**
-    * 删除登录日志
-    *
-    * @param ids 请求参数
-    * @return int
-    * @author 刘飞华
-    * @date: 2023-09-22 09:59:01
-    */
-   int deleteLoginLog(List<Integer> ids);
+    /**
+     * 查询系统访问记录详情
+     *
+     * @param loginLog 请求参数
+     * @return LoginLog
+     * @author 刘飞华
+     * @date: 2025-01-10 14:58:36
+     */
+    LoginLogBean queryLoginLogDetail(LoginLogBean loginLog);
 
-
-   /**
-    * 查询登录日志列表
-    *
-    * @param loginLog 请求参数
-    * @return List<LoginLog>
-    * @author 刘飞华
-    * @date: 2023-09-22 09:59:01
-    */
-   List<LoginLogBean> queryLoginLogList(LoginLogBean loginLog);
+    /**
+     * 查询系统访问记录列表
+     *
+     * @param loginLog 请求参数
+     * @return List<LoginLog>
+     * @author 刘飞华
+     * @date: 2025-01-10 14:58:36
+     */
+    List<LoginLogBean> queryLoginLogList(LoginLogBean loginLog);
 
 }

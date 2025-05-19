@@ -1,17 +1,19 @@
-package com.example.springboottpl.service.impl;
+package com.example.tpl.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.springboottpl.vo.req.*;
-import com.example.springboottpl.vo.resp.*;
-import com.example.springboottpl.biz.DictDataBiz;
-import com.example.springboottpl.service.DictDataService;
+import com.example.tpl.system.util.Result;
+import com.example.tpl.system.util.ResultPage;
+import com.example.tpl.system.vo.req.*;
+import com.example.tpl.system.vo.resp.*;
+import com.example.tpl.system.biz.DictDataBiz;
+import com.example.tpl.system.service.DictDataService;
 
 /**
  * 描述：字典数据
  * 作者：刘飞华
- * 日期：2024-10-08 14:26:30
+ * 日期：2025/01/13 17:57:36
  */
 @Service
 public class DictDataServiceImpl implements DictDataService {
@@ -25,10 +27,10 @@ public class DictDataServiceImpl implements DictDataService {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int addDictData(AddDictDataReqVo dictData){
+   public Result<Integer> addDictData(AddDictDataReqVo dictData){
 
         return dictDataBiz.addDictData(dictData);
    }
@@ -39,10 +41,10 @@ public class DictDataServiceImpl implements DictDataService {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int deleteDictData(DeleteDictDataReqVo dictData){
+   public Result<Integer> deleteDictData(DeleteDictDataReqVo dictData){
 		return dictDataBiz.deleteDictData(dictData);
    }
 
@@ -52,10 +54,10 @@ public class DictDataServiceImpl implements DictDataService {
     * @param dictData 请求参数
     * @return int
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public int updateDictData(UpdateDictDataReqVo dictData){
+   public Result<Integer> updateDictData(UpdateDictDataReqVo dictData){
 
         return dictDataBiz.updateDictData(dictData);
    }
@@ -66,10 +68,10 @@ public class DictDataServiceImpl implements DictDataService {
    * @param dictData 请求参数
    * @return int
    * @author 刘飞华
-   * @date: 2024-10-08 14:26:30
+   * @date: 2025/01/13 17:57:36
    */
   @Override
-  public int updateDictDataStatus(UpdateDictDataStatusReqVo dictData){
+  public Result<Integer> updateDictDataStatus(UpdateDictDataStatusReqVo dictData){
 
        return dictDataBiz.updateDictDataStatus(dictData);
   }
@@ -80,10 +82,10 @@ public class DictDataServiceImpl implements DictDataService {
     * @param dictData 请求参数
     * @return DictDataResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDictDataDetailRespVo queryDictDataDetail(QueryDictDataDetailReqVo dictData){
+   public Result<QueryDictDataDetailRespVo> queryDictDataDetail(QueryDictDataDetailReqVo dictData){
 
        return dictDataBiz.queryDictDataDetail(dictData);
    }
@@ -94,10 +96,10 @@ public class DictDataServiceImpl implements DictDataService {
     * @param dictData 请求参数
     * @return DictDataResp
     * @author 刘飞华
-    * @date: 2024-10-08 14:26:30
+    * @date: 2025/01/13 17:57:36
     */
    @Override
-   public QueryDictDataListRespVo queryDictDataList(QueryDictDataListReqVo dictData){
+   public Result<ResultPage<QueryDictDataListRespVo>> queryDictDataList(QueryDictDataListReqVo dictData){
 
         return dictDataBiz.queryDictDataList(dictData);
    }
