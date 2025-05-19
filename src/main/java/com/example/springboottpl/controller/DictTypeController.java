@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.DictTypeService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddDictTypeReqVo;
-import com.example.tpl.system.vo.req.DeleteDictTypeReqVo;
-import com.example.tpl.system.vo.req.QueryDictTypeDetailReqVo;
-import com.example.tpl.system.vo.req.QueryDictTypeListReqVo;
-import com.example.tpl.system.vo.req.UpdateDictTypeReqVo;
-import com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryDictTypeDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryDictTypeListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.DictTypeService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddDictTypeReqVo;
+import com.example.springboottpl.vo.req.DeleteDictTypeReqVo;
+import com.example.springboottpl.vo.req.QueryDictTypeDetailReqVo;
+import com.example.springboottpl.vo.req.QueryDictTypeListReqVo;
+import com.example.springboottpl.vo.req.UpdateDictTypeReqVo;
+import com.example.springboottpl.vo.req.UpdateDictTypeStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryDictTypeDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryDictTypeListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

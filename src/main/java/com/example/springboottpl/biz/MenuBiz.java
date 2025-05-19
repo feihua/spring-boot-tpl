@@ -1,17 +1,17 @@
-package com.example.tpl.system.biz;
+package com.example.springboottpl.biz;
 
 import java.util.List;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.AddMenuReqVo;
-import com.example.tpl.system.vo.req.DeleteMenuReqVo;
-import com.example.tpl.system.vo.req.QueryMenuDetailReqVo;
-import com.example.tpl.system.vo.req.QueryMenuListReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryMenuDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuListRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuSimpleListRespVo;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.AddMenuReqVo;
+import com.example.springboottpl.vo.req.DeleteMenuReqVo;
+import com.example.springboottpl.vo.req.QueryMenuDetailReqVo;
+import com.example.springboottpl.vo.req.QueryMenuListReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryMenuDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuListRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuSimpleListRespVo;
 
 /**
  * 描述：菜单信息

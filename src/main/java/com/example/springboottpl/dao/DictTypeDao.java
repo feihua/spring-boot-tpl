@@ -1,12 +1,12 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.tpl.system.entity.DictTypeBean;
-import com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo;
+import com.example.springboottpl.entity.DictTypeBean;
+import com.example.springboottpl.vo.req.UpdateDictTypeStatusReqVo;
 
 /**
  * 描述：字典类型

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.UserRoleDao">
+<mapper namespace="com.example.springboottpl.dao.UserRoleDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.UserRoleBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.UserRoleBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
         <result column="role_id" property="roleId" jdbcType="BIGINT"/>
@@ -14,7 +14,7 @@
         id, user_id, role_id, create_time
     </sql>
 
-    <insert id="addUserRole" parameterType="com.example.tpl.system.entity.UserRoleBean">
+    <insert id="addUserRole" parameterType="com.example.springboottpl.entity.UserRoleBean">
         insert into sys_user_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -54,7 +54,7 @@
         </foreach>
     </delete>
 
-    <update id="updateUserRole" parameterType="com.example.tpl.system.entity.UserRoleBean">
+    <update id="updateUserRole" parameterType="com.example.springboottpl.entity.UserRoleBean">
         update sys_user_role
         <set>
             <if test="id != null">
@@ -86,7 +86,7 @@
         </where>
     </update>
 
-    <update id="updateUserRoleStatus" parameterType="com.example.tpl.system.entity.UserRoleBean">
+    <update id="updateUserRoleStatus" parameterType="com.example.springboottpl.entity.UserRoleBean">
         update sys_user_role
         <set>
             <if test="id != null">
@@ -118,7 +118,7 @@
         </where>
     </update>
 
-    <select id="queryUserRoleDetail" parameterType="com.example.tpl.system.entity.UserRoleBean"
+    <select id="queryUserRoleDetail" parameterType="com.example.springboottpl.entity.UserRoleBean"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -139,7 +139,7 @@
         </where>
     </select>
 
-    <select id="queryUserRoleList" parameterType="com.example.tpl.system.entity.UserRoleBean" resultMap="BaseResultMap">
+    <select id="queryUserRoleList" parameterType="com.example.springboottpl.entity.UserRoleBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user_role

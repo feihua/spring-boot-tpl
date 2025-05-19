@@ -1,4 +1,4 @@
-package com.example.tpl.system.vo.req;
+package com.example.springboottpl.vo.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

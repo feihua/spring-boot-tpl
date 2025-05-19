@@ -1,13 +1,13 @@
-package com.example.tpl.system.biz;
+package com.example.springboottpl.biz;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddOperationLogReqVo;
-import com.example.tpl.system.vo.req.DeleteOperationLogReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogDetailReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogListReqVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogListRespVo;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddOperationLogReqVo;
+import com.example.springboottpl.vo.req.DeleteOperationLogReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogDetailReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogListReqVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogListRespVo;
 
 /**
  * 描述：操作日志

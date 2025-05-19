@@ -1,15 +1,15 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.*;
-import com.example.tpl.system.vo.resp.*;
-import com.example.tpl.system.biz.MenuBiz;
-import com.example.tpl.system.service.MenuService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.*;
+import com.example.springboottpl.vo.resp.*;
+import com.example.springboottpl.biz.MenuBiz;
+import com.example.springboottpl.service.MenuService;
 
 /**
  * 描述：菜单信息

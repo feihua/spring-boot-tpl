@@ -21,6 +21,11 @@ public class TplApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		log.info("tpl server is running");
+		String msg = """
+                tpl server is running
+                
+                swagger: http://localhost:6666/tpl/doc.html
+                """;
+		log.info(msg);
 	}
 }

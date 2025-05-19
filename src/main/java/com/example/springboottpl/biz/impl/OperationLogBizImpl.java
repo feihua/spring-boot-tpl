@@ -1,4 +1,4 @@
-package com.example.tpl.system.biz.impl;
+package com.example.springboottpl.biz.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,17 +6,17 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.OperationLogBiz;
-import com.example.tpl.system.dao.OperationLogDao;
-import com.example.tpl.system.entity.OperationLogBean;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddOperationLogReqVo;
-import com.example.tpl.system.vo.req.DeleteOperationLogReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogDetailReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogListReqVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogListRespVo;
+import com.example.springboottpl.biz.OperationLogBiz;
+import com.example.springboottpl.dao.OperationLogDao;
+import com.example.springboottpl.entity.OperationLogBean;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddOperationLogReqVo;
+import com.example.springboottpl.vo.req.DeleteOperationLogReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogDetailReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogListReqVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogListRespVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 

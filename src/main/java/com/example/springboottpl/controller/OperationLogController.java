@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.OperationLogService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.DeleteOperationLogReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogDetailReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogListReqVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.OperationLogService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.DeleteOperationLogReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogDetailReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogListReqVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

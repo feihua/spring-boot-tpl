@@ -1,21 +1,21 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.DeptBiz;
-import com.example.tpl.system.service.DeptService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.AddDeptReqVo;
-import com.example.tpl.system.vo.req.DeleteDeptReqVo;
-import com.example.tpl.system.vo.req.QueryDeptDetailReqVo;
-import com.example.tpl.system.vo.req.QueryDeptListReqVo;
-import com.example.tpl.system.vo.req.UpdateDeptReqVo;
-import com.example.tpl.system.vo.req.UpdateDeptStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryDeptDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryDeptListRespVo;
+import com.example.springboottpl.biz.DeptBiz;
+import com.example.springboottpl.service.DeptService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.AddDeptReqVo;
+import com.example.springboottpl.vo.req.DeleteDeptReqVo;
+import com.example.springboottpl.vo.req.QueryDeptDetailReqVo;
+import com.example.springboottpl.vo.req.QueryDeptListReqVo;
+import com.example.springboottpl.vo.req.UpdateDeptReqVo;
+import com.example.springboottpl.vo.req.UpdateDeptStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryDeptDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryDeptListRespVo;
 
 /**
  * 描述：部门

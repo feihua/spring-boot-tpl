@@ -1,4 +1,4 @@
-package com.example.tpl.system.entity;
+package com.example.springboottpl.entity;
 
 import java.io.Serializable;
 

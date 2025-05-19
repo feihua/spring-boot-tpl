@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.DeptDao">
+<mapper namespace="com.example.springboottpl.dao.DeptDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.DeptBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.DeptBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="ancestors" property="ancestors" jdbcType="VARCHAR"/>
@@ -22,7 +22,7 @@
         id, parent_id, ancestors, dept_name, sort, leader, phone, email, status, del_flag, create_time, update_time
     </sql>
 
-    <insert id="addDept" parameterType="com.example.tpl.system.entity.DeptBean">
+    <insert id="addDept" parameterType="com.example.springboottpl.entity.DeptBean">
         insert into sys_dept
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -110,7 +110,7 @@
         </foreach>
     </delete>
 
-    <update id="updateDept" parameterType="com.example.tpl.system.entity.DeptBean">
+    <update id="updateDept" parameterType="com.example.springboottpl.entity.DeptBean">
         update sys_dept
         <set>
             <if test="id != null">
@@ -190,7 +190,7 @@
         </where>
     </update>
 
-    <update id="updateDeptStatus" parameterType="com.example.tpl.system.vo.req.UpdateDeptStatusReqVo">
+    <update id="updateDeptStatus" parameterType="com.example.springboottpl.vo.req.UpdateDeptStatusReqVo">
         update sys_dept set status = #{status} where id in
         <foreach collection="ids" item="id" index="index"
                  open="(" close=")" separator=",">
@@ -198,7 +198,7 @@
         </foreach>
     </update>
 
-    <select id="queryDeptDetail" parameterType="com.example.tpl.system.entity.DeptBean" resultMap="BaseResultMap">
+    <select id="queryDeptDetail" parameterType="com.example.springboottpl.entity.DeptBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dept
@@ -256,7 +256,7 @@
         from sys_dept where dept_name = #{deptName} and parent_id = #{parentId}
     </select>
 
-    <select id="queryDeptList" parameterType="com.example.tpl.system.entity.DeptBean" resultMap="BaseResultMap">
+    <select id="queryDeptList" parameterType="com.example.springboottpl.entity.DeptBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dept

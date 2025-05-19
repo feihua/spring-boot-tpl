@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.PostDao">
+<mapper namespace="com.example.springboottpl.dao.PostDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.PostBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.PostBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="post_code" property="postCode" jdbcType="VARCHAR"/>
         <result column="post_name" property="postName" jdbcType="VARCHAR"/>
@@ -19,7 +19,7 @@
     </sql>
 
     <!--添加岗位信息-->
-    <insert id="addPost" parameterType="com.example.tpl.system.entity.PostBean">
+    <insert id="addPost" parameterType="com.example.springboottpl.entity.PostBean">
         insert into sys_post
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -85,7 +85,7 @@
     </delete>
 
     <!--更新岗位信息-->
-    <update id="updatePost" parameterType="com.example.tpl.system.entity.PostBean">
+    <update id="updatePost" parameterType="com.example.springboottpl.entity.PostBean">
         update sys_post
         <set>
             <if test="id != null">
@@ -121,7 +121,7 @@
     </update>
 
     <!--更新岗位信息状态-->
-    <update id="updatePostStatus" parameterType="com.example.tpl.system.vo.req.UpdatePostStatusReqVo">
+    <update id="updatePostStatus" parameterType="com.example.springboottpl.vo.req.UpdatePostStatusReqVo">
         update sys_post set status = #{status,jdbcType=TINYINT} where id in
         <foreach collection="ids" item="id" index="index"
                  open="(" close=")" separator=",">
@@ -130,7 +130,7 @@
     </update>
 
     <!--查询岗位信息详情-->
-    <select id="queryPostDetail" parameterType="com.example.tpl.system.entity.PostBean" resultMap="BaseResultMap">
+    <select id="queryPostDetail" parameterType="com.example.springboottpl.entity.PostBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_post
@@ -184,7 +184,7 @@
     </select>
 
     <!--查询岗位信息列表-->
-    <select id="queryPostList" parameterType="com.example.tpl.system.entity.PostBean" resultMap="BaseResultMap">
+    <select id="queryPostList" parameterType="com.example.springboottpl.entity.PostBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_post

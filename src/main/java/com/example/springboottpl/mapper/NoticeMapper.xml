@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.NoticeDao">
+<mapper namespace="com.example.springboottpl.dao.NoticeDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.NoticeBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.NoticeBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="notice_title" property="noticeTitle" jdbcType="VARCHAR"/>
         <result column="notice_type" property="noticeType" jdbcType="TINYINT"/>
@@ -19,7 +19,7 @@
     </sql>
 
     <!--添加通知公告-->
-    <insert id="addNotice" parameterType="com.example.tpl.system.entity.NoticeBean">
+    <insert id="addNotice" parameterType="com.example.springboottpl.entity.NoticeBean">
         insert into sys_notice
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -85,7 +85,7 @@
     </delete>
 
     <!--更新通知公告-->
-    <update id="updateNotice" parameterType="com.example.tpl.system.entity.NoticeBean">
+    <update id="updateNotice" parameterType="com.example.springboottpl.entity.NoticeBean">
         update sys_notice
         <set>
             <if test="id != null">
@@ -142,7 +142,7 @@
     </update>
 
     <!--更新通知公告状态-->
-    <update id="updateNoticeStatus" parameterType="com.example.tpl.system.vo.req.UpdateNoticeStatusReqVo">
+    <update id="updateNoticeStatus" parameterType="com.example.springboottpl.vo.req.UpdateNoticeStatusReqVo">
         update sys_notice set status = #{status,jdbcType=TINYINT} where id in
         <foreach collection="ids" item="id" index="index"
                  open="(" close=")" separator=",">
@@ -151,7 +151,7 @@
     </update>
 
     <!--查询通知公告详情-->
-    <select id="queryNoticeDetail" parameterType="com.example.tpl.system.entity.NoticeBean" resultMap="BaseResultMap">
+    <select id="queryNoticeDetail" parameterType="com.example.springboottpl.entity.NoticeBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_notice
@@ -198,7 +198,7 @@
     </select>
 
     <!--查询通知公告列表-->
-    <select id="queryNoticeList" parameterType="com.example.tpl.system.entity.NoticeBean" resultMap="BaseResultMap">
+    <select id="queryNoticeList" parameterType="com.example.springboottpl.entity.NoticeBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_notice

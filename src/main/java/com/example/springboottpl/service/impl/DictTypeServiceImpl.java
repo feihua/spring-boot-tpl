@@ -1,14 +1,14 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.*;
-import com.example.tpl.system.vo.resp.*;
-import com.example.tpl.system.biz.DictTypeBiz;
-import com.example.tpl.system.service.DictTypeService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.*;
+import com.example.springboottpl.vo.resp.*;
+import com.example.springboottpl.biz.DictTypeBiz;
+import com.example.springboottpl.service.DictTypeService;
 
 /**
  * 描述：字典类型

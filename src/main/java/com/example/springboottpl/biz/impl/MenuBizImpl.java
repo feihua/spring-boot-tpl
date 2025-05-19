@@ -1,4 +1,4 @@
-package com.example.tpl.system.biz.impl;
+package com.example.springboottpl.biz.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,20 +7,20 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.MenuBiz;
-import com.example.tpl.system.dao.MenuDao;
-import com.example.tpl.system.dao.RoleMenuDao;
-import com.example.tpl.system.entity.MenuBean;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.AddMenuReqVo;
-import com.example.tpl.system.vo.req.DeleteMenuReqVo;
-import com.example.tpl.system.vo.req.QueryMenuDetailReqVo;
-import com.example.tpl.system.vo.req.QueryMenuListReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryMenuDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuListRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuSimpleListRespVo;
+import com.example.springboottpl.biz.MenuBiz;
+import com.example.springboottpl.dao.MenuDao;
+import com.example.springboottpl.dao.RoleMenuDao;
+import com.example.springboottpl.entity.MenuBean;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.AddMenuReqVo;
+import com.example.springboottpl.vo.req.DeleteMenuReqVo;
+import com.example.springboottpl.vo.req.QueryMenuDetailReqVo;
+import com.example.springboottpl.vo.req.QueryMenuListReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryMenuDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuListRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuSimpleListRespVo;
 
 /**
  * 描述：菜单信息

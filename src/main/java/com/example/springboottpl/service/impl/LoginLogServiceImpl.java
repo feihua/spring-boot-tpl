@@ -1,17 +1,17 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.LoginLogBiz;
-import com.example.tpl.system.service.LoginLogService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.DeleteLoginLogReqVo;
-import com.example.tpl.system.vo.req.QueryLoginLogDetailReqVo;
-import com.example.tpl.system.vo.req.QueryLoginLogListReqVo;
-import com.example.tpl.system.vo.resp.QueryLoginLogDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryLoginLogListRespVo;
+import com.example.springboottpl.biz.LoginLogBiz;
+import com.example.springboottpl.service.LoginLogService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.DeleteLoginLogReqVo;
+import com.example.springboottpl.vo.req.QueryLoginLogDetailReqVo;
+import com.example.springboottpl.vo.req.QueryLoginLogListReqVo;
+import com.example.springboottpl.vo.resp.QueryLoginLogDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryLoginLogListRespVo;
 
 /**
  * 描述：系统访问记录

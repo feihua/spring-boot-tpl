@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.LoginLogDao">
+<mapper namespace="com.example.springboottpl.dao.LoginLogDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.LoginLogBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.LoginLogBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
         <result column="ipaddr" property="ipaddr" jdbcType="VARCHAR"/>
@@ -27,7 +27,7 @@
     </sql>
 
     <!--添加系统访问记录-->
-    <insert id="addLoginLog" parameterType="com.example.tpl.system.entity.LoginLogBean">
+    <insert id="addLoginLog" parameterType="com.example.springboottpl.entity.LoginLogBean">
         insert into sys_login_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -140,7 +140,7 @@
     </delete>
 
     <!--查询系统访问记录详情-->
-    <select id="queryLoginLogDetail" parameterType="com.example.tpl.system.entity.LoginLogBean"
+    <select id="queryLoginLogDetail" parameterType="com.example.springboottpl.entity.LoginLogBean"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -195,7 +195,7 @@
     </select>
 
     <!--查询系统访问记录列表-->
-    <select id="queryLoginLogList" parameterType="com.example.tpl.system.entity.LoginLogBean" resultMap="BaseResultMap">
+    <select id="queryLoginLogList" parameterType="com.example.springboottpl.entity.LoginLogBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_login_log

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.DictTypeDao">
+<mapper namespace="com.example.springboottpl.dao.DictTypeDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.DictTypeBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.DictTypeBean">
         <result column="dict_id" property="dictId" jdbcType="BIGINT"/>
         <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
         <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
@@ -18,7 +18,7 @@
     </sql>
 
     <!--添加字典类型-->
-    <insert id="addDictType" parameterType="com.example.tpl.system.entity.DictTypeBean">
+    <insert id="addDictType" parameterType="com.example.springboottpl.entity.DictTypeBean">
         insert into sys_dict_type
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="dictId != null">
@@ -78,7 +78,7 @@
     </delete>
 
     <!--更新字典类型-->
-    <update id="updateDictType" parameterType="com.example.tpl.system.entity.DictTypeBean">
+    <update id="updateDictType" parameterType="com.example.springboottpl.entity.DictTypeBean">
         update sys_dict_type
         <set>
             <if test="dictId != null">
@@ -121,7 +121,7 @@
     </update>
 
     <!--更新字典类型状态-->
-    <update id="updateDictTypeStatus" parameterType="com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo">
+    <update id="updateDictTypeStatus" parameterType="com.example.springboottpl.vo.req.UpdateDictTypeStatusReqVo">
         update sys_dict_type set status = #{status,jdbcType=TINYINT} where dict_id in
         <foreach collection="ids" item="id" index="index"
                  open="(" close=")" separator=",">
@@ -130,7 +130,7 @@
     </update>
 
     <!--查询字典类型详情-->
-    <select id="queryDictTypeDetail" parameterType="com.example.tpl.system.entity.DictTypeBean"
+    <select id="queryDictTypeDetail" parameterType="com.example.springboottpl.entity.DictTypeBean"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -185,7 +185,7 @@
     </select>
 
     <!--查询字典类型列表-->
-    <select id="queryDictTypeList" parameterType="com.example.tpl.system.entity.DictTypeBean" resultMap="BaseResultMap">
+    <select id="queryDictTypeList" parameterType="com.example.springboottpl.entity.DictTypeBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dict_type

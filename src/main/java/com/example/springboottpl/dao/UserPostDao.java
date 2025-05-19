@@ -1,10 +1,10 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.tpl.system.entity.UserPostBean;
+import com.example.springboottpl.entity.UserPostBean;
 
 /**
  * 描述：用户与岗位关联

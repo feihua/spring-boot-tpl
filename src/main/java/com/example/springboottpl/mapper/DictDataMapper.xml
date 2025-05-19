@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.DictDataDao">
+<mapper namespace="com.example.springboottpl.dao.DictDataDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.DictDataBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.DictDataBean">
         <result column="dict_code" property="dictCode" jdbcType="BIGINT"/>
         <result column="dict_sort" property="dictSort" jdbcType="INTEGER"/>
         <result column="dict_label" property="dictLabel" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
     </sql>
 
     <!--添加字典数据-->
-    <insert id="addDictData" parameterType="com.example.tpl.system.entity.DictDataBean">
+    <insert id="addDictData" parameterType="com.example.springboottpl.entity.DictDataBean">
         insert into sys_dict_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="dictCode != null">
@@ -114,7 +114,7 @@
     </delete>
 
     <!--更新字典数据-->
-    <update id="updateDictData" parameterType="com.example.tpl.system.entity.DictDataBean">
+    <update id="updateDictData" parameterType="com.example.springboottpl.entity.DictDataBean">
         update sys_dict_data
         <set>
             <if test="dictCode != null">
@@ -195,7 +195,7 @@
     </update>
 
     <!--更新字典数据状态-->
-    <update id="updateDictDataStatus" parameterType="com.example.tpl.system.vo.req.UpdateDictDataStatusReqVo">
+    <update id="updateDictDataStatus" parameterType="com.example.springboottpl.vo.req.UpdateDictDataStatusReqVo">
         update sys_dict_data set status = #{status,jdbcType=TINYINT} where dict_code in
         <foreach collection="ids" item="id" index="index"
                  open="(" close=")" separator=",">
@@ -204,7 +204,7 @@
     </update>
 
     <!--查询字典数据详情-->
-    <select id="queryDictDataDetail" parameterType="com.example.tpl.system.entity.DictDataBean"
+    <select id="queryDictDataDetail" parameterType="com.example.springboottpl.entity.DictDataBean"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -285,7 +285,7 @@
     </select>
 
     <!--查询字典数据列表-->
-    <select id="queryDictDataList" parameterType="com.example.tpl.system.entity.DictDataBean" resultMap="BaseResultMap">
+    <select id="queryDictDataList" parameterType="com.example.springboottpl.entity.DictDataBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_dict_data

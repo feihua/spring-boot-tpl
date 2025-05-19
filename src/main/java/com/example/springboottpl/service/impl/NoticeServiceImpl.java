@@ -1,14 +1,14 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.*;
-import com.example.tpl.system.vo.resp.*;
-import com.example.tpl.system.biz.NoticeBiz;
-import com.example.tpl.system.service.NoticeService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.*;
+import com.example.springboottpl.vo.resp.*;
+import com.example.springboottpl.biz.NoticeBiz;
+import com.example.springboottpl.service.NoticeService;
 
 /**
  * 描述：通知公告

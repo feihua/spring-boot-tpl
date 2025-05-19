@@ -1,10 +1,10 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.tpl.system.entity.RoleDeptBean;
+import com.example.springboottpl.entity.RoleDeptBean;
 
 /**
  * 描述：角色和部门关联

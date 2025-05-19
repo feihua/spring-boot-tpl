@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.MenuService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.AddMenuReqVo;
-import com.example.tpl.system.vo.req.DeleteMenuReqVo;
-import com.example.tpl.system.vo.req.QueryMenuDetailReqVo;
-import com.example.tpl.system.vo.req.QueryMenuListReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuReqVo;
-import com.example.tpl.system.vo.req.UpdateMenuStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryMenuDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuListRespVo;
-import com.example.tpl.system.vo.resp.QueryMenuSimpleListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.MenuService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.AddMenuReqVo;
+import com.example.springboottpl.vo.req.DeleteMenuReqVo;
+import com.example.springboottpl.vo.req.QueryMenuDetailReqVo;
+import com.example.springboottpl.vo.req.QueryMenuListReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuReqVo;
+import com.example.springboottpl.vo.req.UpdateMenuStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryMenuDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuListRespVo;
+import com.example.springboottpl.vo.resp.QueryMenuSimpleListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

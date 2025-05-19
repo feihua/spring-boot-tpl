@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.RoleService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddRoleReqVo;
-import com.example.tpl.system.vo.req.AllocatedListReq;
-import com.example.tpl.system.vo.req.CancelAuthUserAllReq;
-import com.example.tpl.system.vo.req.CancelAuthUserReq;
-import com.example.tpl.system.vo.req.DeleteRoleReqVo;
-import com.example.tpl.system.vo.req.QueryRoleDetailReqVo;
-import com.example.tpl.system.vo.req.QueryRoleListReqVo;
-import com.example.tpl.system.vo.req.QueryRoleMenuReq;
-import com.example.tpl.system.vo.req.SelectAuthUserAllReq;
-import com.example.tpl.system.vo.req.UnallocatedListReq;
-import com.example.tpl.system.vo.req.UpdateRoleMenuReq;
-import com.example.tpl.system.vo.req.UpdateRoleReqVo;
-import com.example.tpl.system.vo.req.UpdateRoleStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryRoleDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryRoleListRespVo;
-import com.example.tpl.system.vo.resp.QueryRoleMenuResp;
-import com.example.tpl.system.vo.resp.QueryUserListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.RoleService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddRoleReqVo;
+import com.example.springboottpl.vo.req.AllocatedListReq;
+import com.example.springboottpl.vo.req.CancelAuthUserAllReq;
+import com.example.springboottpl.vo.req.CancelAuthUserReq;
+import com.example.springboottpl.vo.req.DeleteRoleReqVo;
+import com.example.springboottpl.vo.req.QueryRoleDetailReqVo;
+import com.example.springboottpl.vo.req.QueryRoleListReqVo;
+import com.example.springboottpl.vo.req.QueryRoleMenuReq;
+import com.example.springboottpl.vo.req.SelectAuthUserAllReq;
+import com.example.springboottpl.vo.req.UnallocatedListReq;
+import com.example.springboottpl.vo.req.UpdateRoleMenuReq;
+import com.example.springboottpl.vo.req.UpdateRoleReqVo;
+import com.example.springboottpl.vo.req.UpdateRoleStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryRoleDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryRoleListRespVo;
+import com.example.springboottpl.vo.resp.QueryRoleMenuResp;
+import com.example.springboottpl.vo.resp.QueryUserListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

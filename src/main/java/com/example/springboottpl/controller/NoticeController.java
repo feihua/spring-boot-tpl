@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.NoticeService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddNoticeReqVo;
-import com.example.tpl.system.vo.req.DeleteNoticeReqVo;
-import com.example.tpl.system.vo.req.QueryNoticeDetailReqVo;
-import com.example.tpl.system.vo.req.QueryNoticeListReqVo;
-import com.example.tpl.system.vo.req.UpdateNoticeReqVo;
-import com.example.tpl.system.vo.req.UpdateNoticeStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryNoticeDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryNoticeListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.NoticeService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddNoticeReqVo;
+import com.example.springboottpl.vo.req.DeleteNoticeReqVo;
+import com.example.springboottpl.vo.req.QueryNoticeDetailReqVo;
+import com.example.springboottpl.vo.req.QueryNoticeListReqVo;
+import com.example.springboottpl.vo.req.UpdateNoticeReqVo;
+import com.example.springboottpl.vo.req.UpdateNoticeStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryNoticeDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryNoticeListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

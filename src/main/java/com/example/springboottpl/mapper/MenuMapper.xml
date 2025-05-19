@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.MenuDao">
+<mapper namespace="com.example.springboottpl.dao.MenuDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.MenuBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.MenuBean">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
         <result column="menu_type" property="menuType" jdbcType="TINYINT"/>
@@ -24,7 +24,7 @@
     </sql>
 
     <!--添加菜单信息-->
-    <insert id="addMenu" parameterType="com.example.tpl.system.entity.MenuBean">
+    <insert id="addMenu" parameterType="com.example.springboottpl.entity.MenuBean">
         insert into sys_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -116,7 +116,7 @@
     </delete>
 
     <!--更新菜单信息-->
-    <update id="updateMenu" parameterType="com.example.tpl.system.entity.MenuBean">
+    <update id="updateMenu" parameterType="com.example.springboottpl.entity.MenuBean">
         update sys_menu
         <set>
             <if test="id != null">
@@ -203,12 +203,12 @@
     </update>
 
     <!--更新菜单信息状态-->
-    <update id="updateMenuStatus" parameterType="com.example.tpl.system.entity.MenuBean">
+    <update id="updateMenuStatus" parameterType="com.example.springboottpl.entity.MenuBean">
         update sys_menu set status = #{ status,jdbcType=TINYINT} where id = #{ id,jdbcType=BIGINT}
     </update>
 
     <!--查询菜单信息详情-->
-    <select id="queryMenuDetail" parameterType="com.example.tpl.system.entity.MenuBean" resultMap="BaseResultMap">
+    <select id="queryMenuDetail" parameterType="com.example.springboottpl.entity.MenuBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_menu
@@ -277,7 +277,7 @@
     </select>
 
     <!--查询菜单信息列表-->
-    <select id="queryMenuList" parameterType="com.example.tpl.system.entity.MenuBean" resultMap="BaseResultMap">
+    <select id="queryMenuList" parameterType="com.example.springboottpl.entity.MenuBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_menu

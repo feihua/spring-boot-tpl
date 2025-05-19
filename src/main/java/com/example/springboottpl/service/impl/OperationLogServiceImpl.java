@@ -1,18 +1,18 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.OperationLogBiz;
-import com.example.tpl.system.service.OperationLogService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddOperationLogReqVo;
-import com.example.tpl.system.vo.req.DeleteOperationLogReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogDetailReqVo;
-import com.example.tpl.system.vo.req.QueryOperationLogListReqVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryOperationLogListRespVo;
+import com.example.springboottpl.biz.OperationLogBiz;
+import com.example.springboottpl.service.OperationLogService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddOperationLogReqVo;
+import com.example.springboottpl.vo.req.DeleteOperationLogReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogDetailReqVo;
+import com.example.springboottpl.vo.req.QueryOperationLogListReqVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryOperationLogListRespVo;
 
 /**
  * 描述：操作日志

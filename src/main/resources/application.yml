@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://110.41.179.89:3306/tpl?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
-    password: oMbPi5munxCsBSsiLoPV
+    password: 12341qweqfsd2356
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
@@ -28,4 +28,13 @@ server:
 # 不需要拦截的url
 not:
   intercept:
-    urls: /tpl/user/login,/tpl/swagger-ui/index.html,/tpl/v3/api-docs,/tpl/doc.html,/tpl/v2/api-docs,/tpl/favicon.ico
+    urls: /tpl/user/login,/tpl/swagger-ui/index.html,/tpl/v3/api-docs/default,/tpl/doc.html,/tpl/v2/api-docs,/tpl/favicon.ico
+
+knife4j:
+  enable: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    # 使用增强order属性进行排序，或者不设置该参数
+    operations-sorter: order

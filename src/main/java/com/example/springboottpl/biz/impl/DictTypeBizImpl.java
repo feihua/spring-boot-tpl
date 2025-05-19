@@ -1,4 +1,4 @@
-package com.example.tpl.system.biz.impl;
+package com.example.springboottpl.biz.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.DictTypeBiz;
-import com.example.tpl.system.dao.DictTypeDao;
-import com.example.tpl.system.entity.DictTypeBean;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddDictTypeReqVo;
-import com.example.tpl.system.vo.req.DeleteDictTypeReqVo;
-import com.example.tpl.system.vo.req.QueryDictTypeDetailReqVo;
-import com.example.tpl.system.vo.req.QueryDictTypeListReqVo;
-import com.example.tpl.system.vo.req.UpdateDictTypeReqVo;
-import com.example.tpl.system.vo.req.UpdateDictTypeStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryDictTypeDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryDictTypeListRespVo;
+import com.example.springboottpl.biz.DictTypeBiz;
+import com.example.springboottpl.dao.DictTypeDao;
+import com.example.springboottpl.entity.DictTypeBean;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddDictTypeReqVo;
+import com.example.springboottpl.vo.req.DeleteDictTypeReqVo;
+import com.example.springboottpl.vo.req.QueryDictTypeDetailReqVo;
+import com.example.springboottpl.vo.req.QueryDictTypeListReqVo;
+import com.example.springboottpl.vo.req.UpdateDictTypeReqVo;
+import com.example.springboottpl.vo.req.UpdateDictTypeStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryDictTypeDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryDictTypeListRespVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 

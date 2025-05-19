@@ -1,13 +1,13 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.tpl.system.entity.MenuBean;
-import com.example.tpl.system.entity.UserBean;
-import com.example.tpl.system.vo.req.UpdateUserStatusReqVo;
+import com.example.springboottpl.entity.MenuBean;
+import com.example.springboottpl.entity.UserBean;
+import com.example.springboottpl.vo.req.UpdateUserStatusReqVo;
 
 /**
  * 描述：用户信息

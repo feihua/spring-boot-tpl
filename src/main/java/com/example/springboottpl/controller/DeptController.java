@@ -1,4 +1,4 @@
-package com.example.tpl.system.controller;
+package com.example.springboottpl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import com.example.tpl.system.annotation.OperateLog;
-import com.example.tpl.system.service.DeptService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.vo.req.AddDeptReqVo;
-import com.example.tpl.system.vo.req.DeleteDeptReqVo;
-import com.example.tpl.system.vo.req.QueryDeptDetailReqVo;
-import com.example.tpl.system.vo.req.QueryDeptListReqVo;
-import com.example.tpl.system.vo.req.UpdateDeptReqVo;
-import com.example.tpl.system.vo.req.UpdateDeptStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryDeptDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryDeptListRespVo;
+import com.example.springboottpl.annotation.OperateLog;
+import com.example.springboottpl.service.DeptService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.vo.req.AddDeptReqVo;
+import com.example.springboottpl.vo.req.DeleteDeptReqVo;
+import com.example.springboottpl.vo.req.QueryDeptDetailReqVo;
+import com.example.springboottpl.vo.req.QueryDeptListReqVo;
+import com.example.springboottpl.vo.req.UpdateDeptReqVo;
+import com.example.springboottpl.vo.req.UpdateDeptStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryDeptDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryDeptListRespVo;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 
 /**

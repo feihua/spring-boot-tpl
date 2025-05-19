@@ -1,11 +1,11 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.tpl.system.entity.MenuBean;
+import com.example.springboottpl.entity.MenuBean;
 
 /**
  * 描述：菜单信息

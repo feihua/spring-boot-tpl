@@ -1,4 +1,4 @@
-package com.example.tpl.system.biz.impl;
+package com.example.springboottpl.biz.impl;
 
 import java.util.List;
 import java.util.Objects;
@@ -7,19 +7,19 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.PostBiz;
-import com.example.tpl.system.dao.PostDao;
-import com.example.tpl.system.entity.PostBean;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddPostReqVo;
-import com.example.tpl.system.vo.req.DeletePostReqVo;
-import com.example.tpl.system.vo.req.QueryPostDetailReqVo;
-import com.example.tpl.system.vo.req.QueryPostListReqVo;
-import com.example.tpl.system.vo.req.UpdatePostReqVo;
-import com.example.tpl.system.vo.req.UpdatePostStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryPostDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryPostListRespVo;
+import com.example.springboottpl.biz.PostBiz;
+import com.example.springboottpl.dao.PostDao;
+import com.example.springboottpl.entity.PostBean;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddPostReqVo;
+import com.example.springboottpl.vo.req.DeletePostReqVo;
+import com.example.springboottpl.vo.req.QueryPostDetailReqVo;
+import com.example.springboottpl.vo.req.QueryPostListReqVo;
+import com.example.springboottpl.vo.req.UpdatePostReqVo;
+import com.example.springboottpl.vo.req.UpdatePostStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryPostDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryPostListRespVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 

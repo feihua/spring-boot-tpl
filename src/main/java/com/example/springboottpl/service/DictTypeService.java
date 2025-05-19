@@ -1,11 +1,11 @@
-package com.example.tpl.system.service;
+package com.example.springboottpl.service;
 
 import java.util.Map;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.*;
-import com.example.tpl.system.vo.resp.*;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.*;
+import com.example.springboottpl.vo.resp.*;
 
 /**
  * 描述：字典类型

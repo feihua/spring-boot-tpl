@@ -1,4 +1,4 @@
-package com.example.tpl.system.vo.resp;
+package com.example.springboottpl.vo.resp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

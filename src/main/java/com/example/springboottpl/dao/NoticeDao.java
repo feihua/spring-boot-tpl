@@ -1,12 +1,12 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.tpl.system.entity.NoticeBean;
-import com.example.tpl.system.vo.req.UpdateNoticeStatusReqVo;
+import com.example.springboottpl.entity.NoticeBean;
+import com.example.springboottpl.vo.req.UpdateNoticeStatusReqVo;
 
 /**
  * 描述：通知公告

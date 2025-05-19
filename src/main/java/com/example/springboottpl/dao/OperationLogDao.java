@@ -1,10 +1,10 @@
-package com.example.tpl.system.dao;
+package com.example.springboottpl.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.tpl.system.entity.OperationLogBean;
+import com.example.springboottpl.entity.OperationLogBean;
 
 /**
  * 描述：操作日志

@@ -1,15 +1,15 @@
-package com.example.tpl.system.biz;
+package com.example.springboottpl.biz;
 
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddNoticeReqVo;
-import com.example.tpl.system.vo.req.DeleteNoticeReqVo;
-import com.example.tpl.system.vo.req.QueryNoticeDetailReqVo;
-import com.example.tpl.system.vo.req.QueryNoticeListReqVo;
-import com.example.tpl.system.vo.req.UpdateNoticeReqVo;
-import com.example.tpl.system.vo.req.UpdateNoticeStatusReqVo;
-import com.example.tpl.system.vo.resp.QueryNoticeDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryNoticeListRespVo;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddNoticeReqVo;
+import com.example.springboottpl.vo.req.DeleteNoticeReqVo;
+import com.example.springboottpl.vo.req.QueryNoticeDetailReqVo;
+import com.example.springboottpl.vo.req.QueryNoticeListReqVo;
+import com.example.springboottpl.vo.req.UpdateNoticeReqVo;
+import com.example.springboottpl.vo.req.UpdateNoticeStatusReqVo;
+import com.example.springboottpl.vo.resp.QueryNoticeDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryNoticeListRespVo;
 
 /**
  * 描述：通知公告

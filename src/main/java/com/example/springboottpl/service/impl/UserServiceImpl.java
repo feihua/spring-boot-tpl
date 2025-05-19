@@ -1,24 +1,24 @@
-package com.example.tpl.system.service.impl;
+package com.example.springboottpl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.tpl.system.biz.UserBiz;
-import com.example.tpl.system.service.UserService;
-import com.example.tpl.system.util.Result;
-import com.example.tpl.system.util.ResultPage;
-import com.example.tpl.system.vo.req.AddUserReqVo;
-import com.example.tpl.system.vo.req.DeleteUserReqVo;
-import com.example.tpl.system.vo.req.QueryUserDetailReqVo;
-import com.example.tpl.system.vo.req.QueryUserListReqVo;
-import com.example.tpl.system.vo.req.UpdateUserReqVo;
-import com.example.tpl.system.vo.req.UpdateUserRoleReqVo;
-import com.example.tpl.system.vo.req.UpdateUserStatusReqVo;
-import com.example.tpl.system.vo.req.UserLoginReqVo;
-import com.example.tpl.system.vo.resp.QueryUserDetailRespVo;
-import com.example.tpl.system.vo.resp.QueryUserListRespVo;
-import com.example.tpl.system.vo.resp.UserMenuRespVo;
-import com.example.tpl.system.vo.resp.UserRoleRespVo;
+import com.example.springboottpl.biz.UserBiz;
+import com.example.springboottpl.service.UserService;
+import com.example.springboottpl.util.Result;
+import com.example.springboottpl.util.ResultPage;
+import com.example.springboottpl.vo.req.AddUserReqVo;
+import com.example.springboottpl.vo.req.DeleteUserReqVo;
+import com.example.springboottpl.vo.req.QueryUserDetailReqVo;
+import com.example.springboottpl.vo.req.QueryUserListReqVo;
+import com.example.springboottpl.vo.req.UpdateUserReqVo;
+import com.example.springboottpl.vo.req.UpdateUserRoleReqVo;
+import com.example.springboottpl.vo.req.UpdateUserStatusReqVo;
+import com.example.springboottpl.vo.req.UserLoginReqVo;
+import com.example.springboottpl.vo.resp.QueryUserDetailRespVo;
+import com.example.springboottpl.vo.resp.QueryUserListRespVo;
+import com.example.springboottpl.vo.resp.UserMenuRespVo;
+import com.example.springboottpl.vo.resp.UserRoleRespVo;
 
 /**
  * 描述：用户信息

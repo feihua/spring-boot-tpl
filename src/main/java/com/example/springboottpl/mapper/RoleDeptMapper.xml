@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tpl.system.dao.RoleDeptDao">
+<mapper namespace="com.example.springboottpl.dao.RoleDeptDao">
 
-    <resultMap id="BaseResultMap" type="com.example.tpl.system.entity.RoleDeptBean">
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.RoleDeptBean">
         <result column="role_id" property="roleId" jdbcType="BIGINT"/>
         <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
 
@@ -12,7 +12,7 @@
         role_id, dept_id
     </sql>
 
-    <insert id="addRoleDept" parameterType="com.example.tpl.system.entity.RoleDeptBean">
+    <insert id="addRoleDept" parameterType="com.example.springboottpl.entity.RoleDeptBean">
         insert into sys_role_dept
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="roleId != null">
@@ -40,7 +40,7 @@
         </foreach>
     </delete>
 
-    <update id="updateRoleDept" parameterType="com.example.tpl.system.entity.RoleDeptBean">
+    <update id="updateRoleDept" parameterType="com.example.springboottpl.entity.RoleDeptBean">
         update sys_role_dept
         <set>
             <if test="roleId != null">
@@ -60,7 +60,7 @@
         </where>
     </update>
 
-    <update id="updateRoleDeptStatus" parameterType="com.example.tpl.system.entity.RoleDeptBean">
+    <update id="updateRoleDeptStatus" parameterType="com.example.springboottpl.entity.RoleDeptBean">
         update sys_role_dept
         <set>
             <if test="roleId != null">
@@ -80,7 +80,7 @@
         </where>
     </update>
 
-    <select id="queryRoleDeptDetail" parameterType="com.example.tpl.system.entity.RoleDeptBean"
+    <select id="queryRoleDeptDetail" parameterType="com.example.springboottpl.entity.RoleDeptBean"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -95,7 +95,7 @@
         </where>
     </select>
 
-    <select id="queryRoleDeptList" parameterType="com.example.tpl.system.entity.RoleDeptBean" resultMap="BaseResultMap">
+    <select id="queryRoleDeptList" parameterType="com.example.springboottpl.entity.RoleDeptBean" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role_dept
