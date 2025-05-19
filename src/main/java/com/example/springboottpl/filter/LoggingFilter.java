@@ -32,9 +32,6 @@ public class LoggingFilter implements Filter {
     @Autowired
     private TplConfig tplConfig;
 
-    @Value("${not.intercept.urls}")
-    public String notInterceptUrls;
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // 初始化方法
