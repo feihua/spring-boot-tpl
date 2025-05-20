@@ -23,12 +23,12 @@ pagehelper:
 server:
   port: 8080
   servlet:
-    context-path: /tpl
+    context-path: /system
 
 # 不需要拦截的url
 not:
   intercept:
-    urls: /tpl/user/login,/tpl/swagger-ui/index.html,/tpl/v3/api-docs/default,/tpl/doc.html,/tpl/v2/api-docs,/tpl/favicon.ico
+    urls: /system/user/login,/system/swagger-ui/index.html,/system/v3/api-docs/default,/system/doc.html,/system/v2/api-docs,/system/favicon.ico
 
 knife4j:
   enable: true
