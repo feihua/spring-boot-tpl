@@ -77,7 +77,6 @@ public class LoginLogController {
    @ApiOperationSupport(order = 3)
    @Operation(summary = "1.3 查询系统访问记录详情")
    @PostMapping("/queryLoginLogDetail")
-   @OperateLog(description = "【系统访问记录】查询系统访问记录详情")
    public Result<QueryLoginLogDetailRespVo> queryLoginLogDetail(@RequestBody @Valid QueryLoginLogDetailReqVo loginLog){
        return loginLogService.queryLoginLogDetail(loginLog);
    }
@@ -93,7 +92,6 @@ public class LoginLogController {
    @ApiOperationSupport(order = 4)
    @Operation(summary = "1.4 查询系统访问记录列表")
    @PostMapping("/queryLoginLogList")
-   @OperateLog(description = "【系统访问记录】查询系统访问记录列表")
    public Result<ResultPage<QueryLoginLogListRespVo>> queryLoginLogList(@RequestBody @Valid QueryLoginLogListReqVo loginLog){
         return loginLogService.queryLoginLogList(loginLog);
    }

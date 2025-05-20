@@ -127,13 +127,11 @@ public class OperationLogBizImpl implements OperationLogBiz {
         //bean.setCostTime(operationLog.getCostTime());//耗时
         //bean.setOperateTime(operationLog.getOperateTime());//操作时间
 
-        OperationLogBean logBean = operationLogDao.queryOperationLogDetail(bean);
-        if (logBean == null) {
+        OperationLogBean operationLogBean = operationLogDao.queryOperationLogDetail(bean);
+        if (operationLogBean == null) {
             return Result.error("查询操作日志详情失败,操作日志不存在");
         }
 
-
-        OperationLogBean operationLogBean = operationLogDao.queryOperationLogDetail(bean);
 
         QueryOperationLogDetailRespVo resp = new QueryOperationLogDetailRespVo();
         resp.setId(operationLogBean.getId());//主键

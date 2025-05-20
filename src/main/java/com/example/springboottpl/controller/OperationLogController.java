@@ -77,7 +77,6 @@ public class OperationLogController {
     @ApiOperationSupport(order = 3)
     @Operation(summary = "1.3 查询操作日志详情")
     @PostMapping("/queryOperateLogDetail")
-    @OperateLog(description = "【操作日志】查询操作日志详情")
     public Result<QueryOperationLogDetailRespVo> queryOperationLogDetail(@RequestBody @Valid QueryOperationLogDetailReqVo operationLog) {
         return operationLogService.queryOperationLogDetail(operationLog);
     }
@@ -93,7 +92,6 @@ public class OperationLogController {
     @ApiOperationSupport(order = 4)
     @Operation(summary = "1.4 查询操作日志列表")
     @PostMapping("/queryOperateLogList")
-    @OperateLog(description = "【操作日志】查询操作日志列表")
     public Result<ResultPage<QueryOperationLogListRespVo>> queryOperationLogList(@RequestBody @Valid QueryOperationLogListReqVo operationLog) {
         return operationLogService.queryOperationLogList(operationLog);
     }
