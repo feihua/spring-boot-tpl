@@ -54,16 +54,13 @@ public class LogAspect {
     /**
      * Controller层切点 注解拦截
      */
-    @Pointcut("@annotation(com.example.tpl.system.annotation.OperateLog)")
+    @Pointcut("@annotation(com.example.springboottpl.annotation.OperateLog)")
     public void operateAspect() {
     }
 
     @Around("operateAspect()")
     public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
         String requestUri = request.getRequestURI();//请求的Uri
-        if (requestUri.contains("queryOperateLogList") || requestUri.contains("queryOperateLogDetail")) {
-            return point.proceed();
-        }
 
         Date beginTime = new Date();
         beginTimeThreadLocal.set(beginTime);
@@ -116,10 +113,10 @@ public class LogAspect {
         logAddReqVo.setOperationDesc(desc);
         logAddReqVo.setOperateParam(JsonUtil.toJson(args));
 
-        log.info("请求参数: {}", JsonUtil.toJson(args));
+//        log.info("请求参数: {}", JsonUtil.toJson(args));
         logThreadLocal.set(logAddReqVo);
         Object result = point.proceed();
-        log.info("响应参数: {}", JsonUtil.toJson(result));
+        log.info("请求参数: {}，响应参数: {}", JsonUtil.toJson(args), JsonUtil.toJson(result));
 
         logAddReqVo.setJsonResult(JsonUtil.toJson(result));
         logAddReqVo.setStatus(1);
@@ -141,21 +138,21 @@ public class LogAspect {
      */
     @AfterThrowing(pointcut = "operateAspect()", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        log.info("响应参数: {}", ExceptionUtil.stackTrace(e));
-
         AddOperationLogReqVo result = logThreadLocal.get();
+        log.error("请求参数: {}，异常信息: {}", result.getOperateParam(), ExceptionUtil.stackTrace(e));
+
+
         result.setErrorMsg(e.getMessage());
         result.setErrMsgDetail(ExceptionUtil.stackTrace(e));
 
         long endTime = System.currentTimeMillis();
         String endTimeStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime);
         long useTime = endTime - beginTimeThreadLocal.get().getTime();
-        log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), useTime);
 
         result.setStatus(0);
         result.setCostTime(useTime);
         logService.addOperationLog(result);
-        log.error("{}-{}", e.getMessage(), ExceptionUtil.stackTrace(e));
+        log.info("计时结束: {}, URI: {}  耗时： {}", endTimeStr, request.getRequestURI(), useTime);
     }
 
     /**

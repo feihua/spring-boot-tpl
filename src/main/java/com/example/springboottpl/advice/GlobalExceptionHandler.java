@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = TplException.class)
     @ResponseBody
     public Result<Integer> tplExceptionHandler(HttpServletRequest req, TplException e) {
-        log.error("处理业务异常: {}", ExceptionUtil.stackTrace(e));
+//        log.error("处理业务异常: {}", ExceptionUtil.stackTrace(e));
         return Result.resp(e.getCode(), e.getMessage());
     }
 
